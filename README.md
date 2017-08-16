@@ -29,7 +29,7 @@ Function: folder where you save .bat file to delete and make temporary folder, e
 
 Development Folder:
 
-(C:\UNLOCODE-SEPARATOR\AppSrc)
+(C:\UNLOCODE-SEPARATOR\AppSrc).
 Function: In this folder you will find the .pkg files which is where the code is located.
 
 # by the way :
