@@ -1,0 +1,262 @@
+======================================================
+DFrepair 1.0
+ The following options are in use for this session:
+  LogFile      : VDFRepair.log.
+  Verbose      : ON.
+  Repair       : ON.
+  Cleanup      : OFF.
+  Bare         : OFF.
+  Reclaim      : OFF.
+  Condense     : OFF.
+ Index options:
+  BadDataFlag  : FILE.
+  DupDataFlag  : FILE.
+  MaxSortBuffer: NOT SET.
+======================================================
+
+Processing workspace:  C:\DataFlex Projects\UNLOCODE UNECE DATAFLEX\Programs\Config.ws, 
+Processing filelist:  C:\DataFlex Projects\UNLOCODE UNECE DATAFLEX\Data\Filelist.cfg
+**********************************************************************
+C:\DataFlex Projects\UNLOCODE UNECE DATAFLEX\Data\maintenance.dat
+Analyzing...
+                                 Reported -   Analyzed
+======================================================
+Total record (used + deleted):          0 -          0
+Number of used records       :          0 -          0
+Number of deleted records    :          0 -          0
+Physical size                :       3092 -       3092
+
+Attributes of interest
+======================================================
+DF_FILE_RECORD_LENGTH  : 20
+DF_FILE_REUSE_DELETED  : 1
+DF_FILE_REVISION       : 3.0
+DF_FILE_INTEGRITY_CHECK: 1
+DF_FILE_COMPRESSION    : 0
+======================================================
+Time spent on table C:\DataFlex Projects\UNLOCODE UNECE DATAFLEX\Data\maintenance.dat: 00:00:00.
+**********************************************************************
+C:\DataFlex Projects\UNLOCODE UNECE DATAFLEX\Data\locode.dat
+Analyzing...
+                                 Reported -   Analyzed
+======================================================
+Total record (used + deleted):          0 -          0
+Number of used records       :          0 -          0
+Number of deleted records    :          0 -          0
+Physical size                :       3328 -       3328
+
+Attributes of interest
+======================================================
+DF_FILE_RECORD_LENGTH  : 256
+DF_FILE_REUSE_DELETED  : 1
+DF_FILE_REVISION       : 3.0
+DF_FILE_INTEGRITY_CHECK: 1
+DF_FILE_COMPRESSION    : 0
+======================================================
+Time spent on table C:\DataFlex Projects\UNLOCODE UNECE DATAFLEX\Data\locode.dat: 00:00:00.
+**********************************************************************
+C:\Program Files (x86)\DataFlex 18.2\Usr\flexerrs.dat
+Analyzing...
+                                 Reported -   Analyzed
+======================================================
+Total record (used + deleted):        120 -        120
+Number of used records       :        120 -        120
+Number of deleted records    :          0 -          0
+Physical size                :      10816 -      10816
+
+Attributes of interest
+======================================================
+DF_FILE_RECORD_LENGTH  : 64
+DF_FILE_REUSE_DELETED  : 1
+DF_FILE_REVISION       : 3.0
+DF_FILE_INTEGRITY_CHECK: 0
+DF_FILE_COMPRESSION    : 0
+======================================================
+Time spent on table C:\Program Files (x86)\DataFlex 18.2\Usr\flexerrs.dat: 00:00:01.
+**********************************************************************
+C:\DataFlex Projects\UNLOCODE UNECE DATAFLEX\Data\codetype.dat
+Analyzing...
+                                 Reported -   Analyzed
+======================================================
+Total record (used + deleted):          1 -          1
+Number of used records       :          0 -          0
+Number of deleted records    :          1 -          1
+Physical size                :       5376 -       5376
+
+Attributes of interest
+======================================================
+DF_FILE_RECORD_LENGTH  : 1152
+DF_FILE_REUSE_DELETED  : 1
+DF_FILE_REVISION       : 3.0
+DF_FILE_INTEGRITY_CHECK: 1
+DF_FILE_COMPRESSION    : 0
+======================================================
+Analyzing free list...
+Free list OK.
+Time spent on table C:\DataFlex Projects\UNLOCODE UNECE DATAFLEX\Data\codetype.dat: 00:00:00.
+**********************************************************************
+C:\DataFlex Projects\UNLOCODE UNECE DATAFLEX\Data\codemast.dat
+Analyzing...
+                                 Reported -   Analyzed
+======================================================
+Total record (used + deleted):          2 -          2
+Number of used records       :          0 -          0
+Number of deleted records    :          2 -          2
+Physical size                :       3225 -       3225
+
+Attributes of interest
+======================================================
+DF_FILE_RECORD_LENGTH  : 51
+DF_FILE_REUSE_DELETED  : 1
+DF_FILE_REVISION       : 3.0
+DF_FILE_INTEGRITY_CHECK: 1
+DF_FILE_COMPRESSION    : 0
+======================================================
+Analyzing free list...
+Free list OK.
+Time spent on table C:\DataFlex Projects\UNLOCODE UNECE DATAFLEX\Data\codemast.dat: 00:00:00.
+Processing filelist:  C:\DataFlex Projects\UNLOCODE UNECE DATAFLEX\Data\Filelist.cfg
+**********************************************************************
+C:\DataFlex Projects\UNLOCODE UNECE DATAFLEX\Data\maintenance.dat
+Analyzing...
+                                 Reported -   Analyzed
+======================================================
+Total record (used + deleted):          0 -          0
+Number of used records       :          0 -          0
+Number of deleted records    :          0 -          0
+Physical size                :       3092 -       3092
+
+Attributes of interest
+======================================================
+DF_FILE_RECORD_LENGTH  : 20
+DF_FILE_REUSE_DELETED  : 1
+DF_FILE_REVISION       : 3.0
+DF_FILE_INTEGRITY_CHECK: 1
+DF_FILE_COMPRESSION    : 0
+======================================================
+Time spent on table C:\DataFlex Projects\UNLOCODE UNECE DATAFLEX\Data\maintenance.dat: 00:00:00.
+**********************************************************************
+C:\DataFlex Projects\UNLOCODE UNECE DATAFLEX\Data\locode.dat
+Analyzing...
+                                 Reported -   Analyzed
+======================================================
+Total record (used + deleted):          0 -          0
+Number of used records       :          0 -          0
+Number of deleted records    :          0 -          0
+Physical size                :       3328 -       3328
+
+Attributes of interest
+======================================================
+DF_FILE_RECORD_LENGTH  : 256
+DF_FILE_REUSE_DELETED  : 1
+DF_FILE_REVISION       : 3.0
+DF_FILE_INTEGRITY_CHECK: 1
+DF_FILE_COMPRESSION    : 0
+======================================================
+Time spent on table C:\DataFlex Projects\UNLOCODE UNECE DATAFLEX\Data\locode.dat: 00:00:00.
+**********************************************************************
+C:\Program Files (x86)\DataFlex 18.2\Usr\flexerrs.dat
+Analyzing...
+                                 Reported -   Analyzed
+======================================================
+Total record (used + deleted):        120 -        120
+Number of used records       :        120 -        120
+Number of deleted records    :          0 -          0
+Physical size                :      10816 -      10816
+
+Attributes of interest
+======================================================
+DF_FILE_RECORD_LENGTH  : 64
+DF_FILE_REUSE_DELETED  : 1
+DF_FILE_REVISION       : 3.0
+DF_FILE_INTEGRITY_CHECK: 0
+DF_FILE_COMPRESSION    : 0
+======================================================
+Time spent on table C:\Program Files (x86)\DataFlex 18.2\Usr\flexerrs.dat: 00:00:01.
+**********************************************************************
+C:\DataFlex Projects\UNLOCODE UNECE DATAFLEX\Data\codetype.dat
+Analyzing...
+                                 Reported -   Analyzed
+======================================================
+Total record (used + deleted):          1 -          1
+Number of used records       :          0 -          0
+Number of deleted records    :          1 -          1
+Physical size                :       5376 -       5376
+
+Attributes of interest
+======================================================
+DF_FILE_RECORD_LENGTH  : 1152
+DF_FILE_REUSE_DELETED  : 1
+DF_FILE_REVISION       : 3.0
+DF_FILE_INTEGRITY_CHECK: 1
+DF_FILE_COMPRESSION    : 0
+======================================================
+Analyzing free list...
+Free list OK.
+Time spent on table C:\DataFlex Projects\UNLOCODE UNECE DATAFLEX\Data\codetype.dat: 00:00:00.
+**********************************************************************
+C:\DataFlex Projects\UNLOCODE UNECE DATAFLEX\Data\codemast.dat
+Analyzing...
+                                 Reported -   Analyzed
+======================================================
+Total record (used + deleted):          2 -          2
+Number of used records       :          0 -          0
+Number of deleted records    :          2 -          2
+Physical size                :       3225 -       3225
+
+Attributes of interest
+======================================================
+DF_FILE_RECORD_LENGTH  : 51
+DF_FILE_REUSE_DELETED  : 1
+DF_FILE_REVISION       : 3.0
+DF_FILE_INTEGRITY_CHECK: 1
+DF_FILE_COMPRESSION    : 0
+======================================================
+Analyzing free list...
+Free list OK.
+Time spent on table C:\DataFlex Projects\UNLOCODE UNECE DATAFLEX\Data\codemast.dat: 00:00:00.
+**********************************************************************
+C:\DataFlex Projects\UNLOCODE UNECE DATAFLEX\Data\locode.dat
+Analyzing...
+                                 Reported -   Analyzed
+======================================================
+Total record (used + deleted):          0 -          0
+Number of used records       :          0 -          0
+Number of deleted records    :          0 -          0
+Physical size                :       3328 -       3328
+
+Attributes of interest
+======================================================
+DF_FILE_RECORD_LENGTH  : 256
+DF_FILE_REUSE_DELETED  : 1
+DF_FILE_REVISION       : 3.0
+DF_FILE_INTEGRITY_CHECK: 1
+DF_FILE_COMPRESSION    : 0
+======================================================
+Time spent on table C:\DataFlex Projects\UNLOCODE UNECE DATAFLEX\Data\locode.dat: 00:00:00.
+**********************************************************************
+C:\DataFlex Projects\UNLOCODE UNECE DATAFLEX\Data\maintenance.dat
+Analyzing...
+                                 Reported -   Analyzed
+======================================================
+Total record (used + deleted):          0 -          0
+Number of used records       :          0 -          0
+Number of deleted records    :          0 -          0
+Physical size                :       3092 -       3092
+
+Attributes of interest
+======================================================
+DF_FILE_RECORD_LENGTH  : 20
+DF_FILE_REUSE_DELETED  : 1
+DF_FILE_REVISION       : 3.0
+DF_FILE_INTEGRITY_CHECK: 1
+DF_FILE_COMPRESSION    : 0
+======================================================
+Time spent on table C:\DataFlex Projects\UNLOCODE UNECE DATAFLEX\Data\maintenance.dat: 00:00:00.
+======================================================
+Summary information
+  Logged to VDFRepair.log
+  Total files tested        : 12
+  Total files needing repair: 0
+  Total files repaired      : 0
+======================================================

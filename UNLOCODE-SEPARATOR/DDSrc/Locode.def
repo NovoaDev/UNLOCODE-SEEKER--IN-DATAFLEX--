@@ -1,0 +1,43 @@
+-----------------------------------------------------------------------------
+  DATE: 16/08/2017      TIME: 09:25                                  PAGE:  1
+  FILE DEFINITION FOR FILE: Locode (# 2)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : DATAFLEX
+  FILE ROOT NAME            : Locode
+  USER DISPLAY NAME         : Locode
+  DATAFLEX FILE NAME        : Locode
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 256       ( USED: 210 )
+  MAX NUMBER OF RECORDS     : 120000    ( USED: 22000 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : FILE
+  HEADER INTEGRITY CHECKING : YES
+  TRANSACTION TYPE          : CLIENT ATOMIC
+  RECORD IDENTITY INDEX     : 0 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : 
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  CHANGE           ASC      5     1      
+  2  LOCODE           ASC     10     6      
+  3  NAME             ASC     50    16  2   
+  4  NAMEWITHOUTDIDACTS  ASC     50    66      
+  5  SUBDIV           ASC      5   116      
+  6  FUNCTIONS        ASC     10   121  2   
+  7  STATUS           ASC      5   131      
+  8  DATEE            ASC      5   136      
+  9  IATA             ASC      5   141      
+ 10  COORDINATES      ASC     15   146      
+ 11  REMARKS          ASC     50   161      
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    Recnum          NO  NO       3      3       1     ON-LINE
+
+  2    NAME            NO  NO       60     6       2     ON-LINE
+       FUNCTIONS       NO  NO 
+

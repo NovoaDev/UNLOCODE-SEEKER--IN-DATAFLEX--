@@ -1,0 +1,4391 @@
+Compiling Program: C:\UNLOCODE-SEPARATOR\AppSrc\UNLOCODE.src
+Memory Available: 2147483646
+1>Use DFAllEnt.pkg
+Using pre-compiled package DFALLENT.PKG
+Including file: dfallent.pkd    (C:\Program Files (x86)\DataFlex 18.2\Pkg\dfallent.pkd)
+75288>Use cCJStandardCommandBarSystem.pkg
+Including file: cCJStandardCommandBarSystem.pkg    (C:\Program Files (x86)\DataFlex 18.2\Pkg\cCJStandardCommandBarSystem.pkg)
+75288>>>// these are all the packages used in a standard MDI menubar/toolbar system
+75288>>>
+75288>>>Use cCJCommandBarSystem.pkg
+75288>>>Use cCJStandardMenuItemClasses.pkg
+Including file: cCJStandardMenuItemClasses.pkg    (C:\Program Files (x86)\DataFlex 18.2\Pkg\cCJStandardMenuItemClasses.pkg)
+75288>>>>>Use Dfpanel.pkg
+75288>>>>>Use cCJCommandBarSystem.pkg
+75288>>>>>Use LanguageText.pkg
+75288>>>>>
+75288>>>>>
+75288>>>>>Class cCJUndoMenuItem is a cCJMenuItem
+75289>>>>>    
+75289>>>>>    Procedure Construct_Object
+75291>>>>>        Forward Send Construct_Object
+75293>>>>>        Set psCaption   to C_$CaptionUndo
+75294>>>>>        Set psToolTip to C_$ToolTipUndo
+75295>>>>>        Set psDescription to C_$DescUndo
+75296>>>>>        Set psImage to "ActionUndo.ico"
+75297>>>>>        Set pbActiveUpdate to True
+75298>>>>>        Set psCategory to C_$CategoryEdit
+75299>>>>>        Set psShortcut to C_$Key_Ctrl_Z
+75300>>>>>    End_Procedure
+75301>>>>>
+75301>>>>>    Procedure OnExecute Variant vCommandBarControl
+75303>>>>>        Send Undo of (focus(Self))
+75304>>>>>    End_Procedure
+75305>>>>>    
+75305>>>>>    Function IsEnabled Returns Boolean
+75307>>>>>        Boolean bEnabled
+75307>>>>>        Get CanUndo of (Focus(Self)) to bEnabled
+75308>>>>>        Function_Return bEnabled
+75309>>>>>    End_Function
+75310>>>>>         
+75310>>>>>End_Class
+75311>>>>>
+75311>>>>>
+75311>>>>>Class cCJDeleteEditMenuItem is a cCJMenuItem
+75312>>>>>    
+75312>>>>>    Procedure Construct_Object
+75314>>>>>        Forward Send Construct_Object
+75316>>>>>        Set psCaption   to C_$CaptionDelete
+75317>>>>>        Set psToolTip to C_$ToolTipDelete
+75318>>>>>        Set psDescription to C_$DescDelete
+75319>>>>>        Set psImage to "actionDelete.ico"
+75320>>>>>        Set psShortcut to C_$Key_Delete
+75321>>>>>        Set pbActiveUpdate to True
+75322>>>>>        Set psCategory to C_$CategoryEdit
+75323>>>>>    End_Procedure
+75324>>>>>
+75324>>>>>
+75324>>>>>    Procedure OnExecute Variant vCommandBarControl
+75326>>>>>        Send Delete of (focus(Self))
+75327>>>>>    End_Procedure
+75328>>>>>    
+75328>>>>>    Function IsEnabled Returns Boolean
+75330>>>>>        Boolean bEnabled
+75330>>>>>        Get CanDelete of (Focus(Self)) to bEnabled
+75331>>>>>        Function_Return bEnabled
+75332>>>>>    End_Function
+75333>>>>>         
+75333>>>>>End_Class
+75334>>>>>
+75334>>>>>
+75334>>>>>Class cCJCutMenuItem is a cCJMenuItem
+75335>>>>>    
+75335>>>>>    Procedure Construct_Object
+75337>>>>>        Forward Send Construct_Object
+75339>>>>>        Set psCaption   to C_$CaptionCut
+75340>>>>>        Set psToolTip to C_$TooltipCut
+75341>>>>>        Set psDescription to C_$DescCut
+75342>>>>>        Set psImage to "actionCut.ico"
+75343>>>>>        Set psShortcut to C_$Key_Ctrl_X
+75344>>>>>        Set pbActiveUpdate to True
+75345>>>>>        Set psCategory to C_$CategoryEdit
+75346>>>>>    End_Procedure
+75347>>>>>
+75347>>>>>
+75347>>>>>    Procedure OnExecute Variant vCommandBarControl
+75349>>>>>        Send Cut of (focus(Self))
+75350>>>>>    End_Procedure
+75351>>>>>    
+75351>>>>>    Function IsEnabled Returns Boolean
+75353>>>>>        Boolean bEnabled
+75353>>>>>        Get CanCut of (Focus(Self)) to bEnabled
+75354>>>>>        Function_Return bEnabled
+75355>>>>>    End_Function
+75356>>>>>         
+75356>>>>>End_Class
+75357>>>>>
+75357>>>>>
+75357>>>>>Class cCJCopyMenuItem is a cCJMenuItem
+75358>>>>>    
+75358>>>>>    Procedure Construct_Object
+75360>>>>>        Forward Send Construct_Object
+75362>>>>>        Set psCaption   to C_$CaptionCopy
+75363>>>>>        Set psToolTip to C_$ToolTipCopy
+75364>>>>>        Set psDescription to C_$DescCopy
+75365>>>>>        Set psImage to "actionCopy.ico"
+75366>>>>>        Set psShortcut to C_$Key_Ctrl_C
+75367>>>>>        Set pbActiveUpdate to True
+75368>>>>>        Set psCategory to C_$CategoryEdit
+75369>>>>>    End_Procedure
+75370>>>>>
+75370>>>>>
+75370>>>>>    Procedure OnExecute Variant vCommandBarControl
+75372>>>>>        Send Copy of (focus(Self))
+75373>>>>>    End_Procedure
+75374>>>>>    
+75374>>>>>    Function IsEnabled Returns Boolean
+75376>>>>>        Boolean bEnabled
+75376>>>>>        Get CanCopy of (Focus(Self)) to bEnabled
+75377>>>>>        Function_Return bEnabled
+75378>>>>>    End_Function
+75379>>>>>         
+75379>>>>>End_Class
+75380>>>>>
+75380>>>>>
+75380>>>>>Class cCJPasteMenuItem is a cCJMenuItem
+75381>>>>>    
+75381>>>>>    Procedure Construct_Object
+75383>>>>>        Forward Send Construct_Object
+75385>>>>>        Set psCaption   to C_$CaptionPaste
+75386>>>>>        Set psToolTip to C_$ToolTipPaste
+75387>>>>>        Set psDescription to C_$DescPaste
+75388>>>>>        Set psImage to "actionPaste.ico"
+75389>>>>>        Set pbActiveUpdate to True
+75390>>>>>        Set psShortcut to C_$Key_Ctrl_V
+75391>>>>>        Set psCategory to C_$CategoryEdit
+75392>>>>>    End_Procedure
+75393>>>>>
+75393>>>>>
+75393>>>>>    Procedure OnExecute Variant vCommandBarControl
+75395>>>>>        Send Paste of (focus(Self))
+75396>>>>>    End_Procedure
+75397>>>>>    
+75397>>>>>    Function IsEnabled Returns Boolean
+75399>>>>>        Boolean bEnabled
+75399>>>>>        Get CanPaste of (Focus(Self)) to bEnabled
+75400>>>>>        Function_Return bEnabled
+75401>>>>>    End_Function
+75402>>>>>         
+75402>>>>>End_Class
+75403>>>>>
+75403>>>>>Class cCJSelectAllMenuItem is a cCJMenuItem
+75404>>>>>    
+75404>>>>>    Procedure Construct_Object
+75406>>>>>        Forward Send Construct_Object
+75408>>>>>        Set psCaption   to C_$CaptionSelectAll
+75409>>>>>        Set psToolTip to C_$ToolTipSelectAll
+75410>>>>>        Set psDescription to C_$DescSelectAll
+75411>>>>>        Set pbActiveUpdate to True
+75412>>>>>        Set psShortcut to C_$Key_Ctrl_A
+75413>>>>>        Set psCategory to C_$CategoryEdit
+75414>>>>>    End_Procedure
+75415>>>>>
+75415>>>>>
+75415>>>>>    Procedure OnExecute Variant vCommandBarControl
+75417>>>>>        Send Select_All of (focus(Self))
+75418>>>>>    End_Procedure
+75419>>>>>    
+75419>>>>>    Function IsEnabled Returns Boolean
+75421>>>>>        Boolean bEnabled
+75421>>>>>        Get CanSelect of (Focus(Self)) to bEnabled
+75422>>>>>        Function_Return bEnabled
+75423>>>>>    End_Function
+75424>>>>>         
+75424>>>>>End_Class
+75425>>>>>
+75425>>>>> 
+75425>>>>>Class cCJExitMenuItem is a cCJMenuItem
+75426>>>>>
+75426>>>>>    Procedure Construct_Object
+75428>>>>>        Forward Send Construct_Object
+75430>>>>>        Set psCaption to C_$CaptionExit
+75431>>>>>        Set psToolTip to C_$ToolTipExit
+75432>>>>>        Set psDescription to C_$ToolTipExit
+75433>>>>>        Set psShortcut to C_$Key_Alt_F4
+75434>>>>>        Set psCategory to C_$CategoryFile
+75435>>>>>    End_Procedure
+75436>>>>>
+75436>>>>>    Procedure OnExecute Variant vCommandBarControl
+75438>>>>>        Send Exit_Application of Desktop
+75439>>>>>    End_Procedure
+75440>>>>>
+75440>>>>>End_Class           
+75441>>>>>
+75441>>>>>Class cCJHelpMenuItem is a cCJMenuItem    
+75442>>>>>
+75442>>>>>    Procedure Construct_Object
+75444>>>>>        Forward Send Construct_Object
+75446>>>>>        Set psCaption to C_$CaptionHelp
+75447>>>>>        Set psDescription to C_$ToolTipHelp
+75448>>>>>        Set psToolTip to C_$DescHelp
+75449>>>>>        Set psImage to "ActionHelp.ico"
+75450>>>>>        Set psShortcut to "F1"
+75451>>>>>        Set psCategory to C_$CategoryHelp
+75452>>>>>    End_Procedure
+75453>>>>>    
+75453>>>>>    Procedure OnExecute Variant vCommandBarControl
+75455>>>>>        Send Help of (Focus(Self))
+75456>>>>>    End_Procedure
+75457>>>>>
+75457>>>>>End_Class
+75458>>>>>
+75458>>>>>Class cCJStatusbarMenuItem is a cCJMenuItem
+75459>>>>>
+75459>>>>>    Procedure Construct_Object
+75461>>>>>        Forward Send Construct_Object
+75463>>>>>        Set psCaption to C_$CaptionAddStatusbar
+75464>>>>>        Set psToolTip to C_$ToolTipAddStatusbar
+75465>>>>>        Set psDescription to  C_$DescAddStatusbar
+75466>>>>>        Set psCategory to C_$CategoryWindow
+75467>>>>>    End_Procedure
+75468>>>>>
+75468>>>>>    Procedure OnExecute Variant vCommandBarControl
+75470>>>>>        Handle hoCommandBars hoClientArea
+75470>>>>>        Get CommandBarSystemObject to hoCommandBars
+75471>>>>>        Get ClientAreaObject of hoCommandBars to hoClientArea
+75472>>>>>        If hoClientArea Begin
+75474>>>>>            // the clientarea's parent panel has message
+75474>>>>>            Send Toggle_StatusBar of (Parent(hoClientArea))
+75475>>>>>        End
+75475>>>>>>
+75475>>>>>    End_Procedure
+75476>>>>>
+75476>>>>>     Function IsChecked Returns Boolean
+75478>>>>>        Boolean bOn
+75478>>>>>        Handle hoCommandBars hoClientArea
+75478>>>>>        Get CommandBarSystemObject to hoCommandBars
+75479>>>>>        Get ClientAreaObject of hoCommandBars to hoClientArea
+75480>>>>>        If hoClientArea Begin
+75482>>>>>            // the clientarea's parent panel has message
+75482>>>>>            Get StatusBar_State of (Parent(hoClientArea)) to bOn
+75483>>>>>        End
+75483>>>>>>
+75483>>>>>        Function_Return bOn
+75484>>>>>     End_Function
+75485>>>>>End_Class
+75486>>>>>
+75486>>>>>Class cCJAutoArrangeIconsMenuItem is a cCJMenuItem
+75487>>>>>
+75487>>>>>    Procedure Construct_Object
+75489>>>>>        Forward Send Construct_Object
+75491>>>>>        Set psCaption to C_$CaptionAutoArrangeIcons
+75492>>>>>        Set psToolTip to C_$ToolTipAutoArrangeIcons
+75493>>>>>        Set psDescription to C_$DescAutoArrangeIcons
+75494>>>>>        Set psCategory to C_$CategoryWindow
+75495>>>>>    End_Procedure
+75496>>>>>
+75496>>>>>    Procedure OnExecute Variant vCommandBarControl
+75498>>>>>        Handle hoCommandBars hoClientArea
+75498>>>>>        Get CommandBarSystemObject to hoCommandBars
+75499>>>>>        Get ClientAreaObject of hoCommandBars to hoClientArea
+75500>>>>>        If hoClientArea Begin
+75502>>>>>            // the clientarea's parent panel has message
+75502>>>>>            Send Toggle_Auto_Arrange_Icons of (Parent(hoClientArea))
+75503>>>>>        End
+75503>>>>>>
+75503>>>>>    End_Procedure
+75504>>>>>    
+75504>>>>>     Function IsChecked Returns Boolean
+75506>>>>>        Boolean bOn
+75506>>>>>        Handle hoCommandBars hoClientArea
+75506>>>>>        Get CommandBarSystemObject to hoCommandBars
+75507>>>>>        Get ClientAreaObject of hoCommandBars to hoClientArea
+75508>>>>>        If hoClientArea Begin
+75510>>>>>            // the clientarea's parent panel has message
+75510>>>>>            Get Auto_Arrange_Icons_State of (Parent(hoClientArea)) to bOn
+75511>>>>>        End
+75511>>>>>>
+75511>>>>>        Function_Return bOn
+75512>>>>>     End_Function
+75513>>>>>End_Class
+75514>>>>>
+75514>>>>>Class cCJRestoreMenusMenuItem is a cCJMenuItem
+75515>>>>>
+75515>>>>>    Procedure Construct_Object
+75517>>>>>        Forward Send Construct_Object
+75519>>>>>        Set psCaption to C_$CaptionRestoreMenus
+75520>>>>>        Set psToolTip to C_$ToolTipRestoreMenus
+75521>>>>>        Set psDescription to C_$DescRestoreMenus
+75522>>>>>        Set psCategory to C_$CategoryWindow
+75523>>>>>    End_Procedure
+75524>>>>>
+75524>>>>>    Procedure OnExecute Variant vCommandBarControl
+75526>>>>>        Handle hoCommandBars
+75526>>>>>        Get CommandBarSystemObject to hoCommandBars
+75527>>>>>        Send RestoreLayout of hoCommandBars
+75528>>>>>    End_Procedure
+75529>>>>>    
+75529>>>>>End_Class
+75530>>>>>
+75530>>>>>Class cCJCascadeMenuItem is a cCJMenuItem
+75531>>>>>
+75531>>>>>    Procedure Construct_Object
+75533>>>>>        Forward Send Construct_Object
+75535>>>>>        Set psCaption to C_$CaptionCascade
+75536>>>>>        Set psToolTip to C_$ToolTipCascade
+75537>>>>>        Set psDescription to  C_$DescCascade
+75538>>>>>        Set psImage to "ActionCascade.ico"
+75539>>>>>        Set psCategory to C_$CategoryWindow
+75540>>>>>    End_Procedure
+75541>>>>>    
+75541>>>>>    Procedure OnExecute Variant vCommandBarControl
+75543>>>>>        Handle hoCommandBars hoClientArea
+75543>>>>>        Get CommandBarSystemObject to hoCommandBars
+75544>>>>>        Get ClientAreaObject of hoCommandBars to hoClientArea
+75545>>>>>        If hoClientArea Begin
+75547>>>>>            Send Cascade_Windows of hoClientArea
+75548>>>>>        End
+75548>>>>>>
+75548>>>>>    End_Procedure
+75549>>>>>End_Class
+75550>>>>>
+75550>>>>>Class cCJTileHorizontally is a cCJMenuItem
+75551>>>>>
+75551>>>>>    Procedure Construct_Object
+75553>>>>>        Forward Send Construct_Object
+75555>>>>>        Set psCaption to C_$CaptionTileHorizontally 
+75556>>>>>        Set psToolTip to C_$ToolTipTileHorizontally  
+75557>>>>>        Set psDescription to  C_$DescTileHorizontally
+75558>>>>>        Set psImage to "ActionTileHorizontally.ico"
+75559>>>>>        Set psCategory to C_$CategoryWindow
+75560>>>>>    End_Procedure
+75561>>>>>
+75561>>>>>    Procedure OnExecute Variant vCommandBarControl
+75563>>>>>        Handle hoCommandBars hoClientArea
+75563>>>>>        Get CommandBarSystemObject to hoCommandBars
+75564>>>>>        Get ClientAreaObject of hoCommandBars to hoClientArea
+75565>>>>>        If hoClientArea Begin
+75567>>>>>            Send Tile_Windows_Horizontal of hoClientArea
+75568>>>>>        End
+75568>>>>>>
+75568>>>>>    End_Procedure
+75569>>>>>End_Class
+75570>>>>>
+75570>>>>>Class cCJTileVertically is a cCJMenuItem
+75571>>>>>
+75571>>>>>    Procedure Construct_Object
+75573>>>>>        Forward Send Construct_Object
+75575>>>>>        Set psCaption to C_$CaptionTileVertically  
+75576>>>>>        Set psToolTip to C_$ToolTipTileVertically
+75577>>>>>        Set psDescription to  C_$DescTileVertically
+75578>>>>>        Set psImage to "ActionTileVertically.ico"
+75579>>>>>        Set psCategory to C_$CategoryWindow
+75580>>>>>    End_Procedure
+75581>>>>>
+75581>>>>>    Procedure OnExecute Variant vCommandBarControl
+75583>>>>>        Handle hoCommandBars hoClientArea
+75583>>>>>        Get CommandBarSystemObject to hoCommandBars
+75584>>>>>        Get ClientAreaObject of hoCommandBars to hoClientArea
+75585>>>>>        If hoClientArea Begin
+75587>>>>>            Send Tile_Windows_Vertical of hoClientArea
+75588>>>>>        End
+75588>>>>>>
+75588>>>>>    End_Procedure
+75589>>>>>End_Class
+75590>>>>>
+75590>>>>>Class cCJMinimizeWindowsMenuItem is a cCJMenuItem
+75591>>>>>
+75591>>>>>    Procedure Construct_Object
+75593>>>>>        Forward Send Construct_Object
+75595>>>>>        Set psCaption to C_$CaptionMinimizeWindows 
+75596>>>>>        Set psToolTip to C_$ToolTipMinimizeWindows
+75597>>>>>        Set psDescription to  C_$DescMinimizeWindows
+75598>>>>>        Set psCategory to C_$CategoryWindow
+75599>>>>>    End_Procedure
+75600>>>>>
+75600>>>>>    Procedure OnExecute Variant vCommandBarControl
+75602>>>>>        Handle hoCommandBars hoClientArea
+75602>>>>>        Get CommandBarSystemObject to hoCommandBars
+75603>>>>>        Get ClientAreaObject of hoCommandBars to hoClientArea
+75604>>>>>        If hoClientArea Begin
+75606>>>>>            // the clientarea's parent panel has message
+75606>>>>>            Send Minimize_all_Windows of (Parent(hoClientArea))
+75607>>>>>        End
+75607>>>>>>
+75607>>>>>    End_Procedure
+75608>>>>>End_Class
+75609>>>>>
+75609>>>>>
+75609>>>>>Class cCJRestoreWindowsMenuItem is a cCJMenuItem
+75610>>>>>
+75610>>>>>    Procedure Construct_Object
+75612>>>>>        Forward Send Construct_Object
+75614>>>>>        Set psCaption to C_$CaptionRestoreWindows
+75615>>>>>        Set psToolTip to C_$ToolTipRestoreWindows
+75616>>>>>        Set psDescription to  C_$DescRestoreWindows
+75617>>>>>        Set psCategory to C_$CategoryWindow
+75618>>>>>    End_Procedure
+75619>>>>>
+75619>>>>>    Procedure OnExecute Variant vCommandBarControl
+75621>>>>>        Handle hoCommandBars hoClientArea
+75621>>>>>        Get CommandBarSystemObject to hoCommandBars
+75622>>>>>        Get ClientAreaObject of hoCommandBars to hoClientArea
+75623>>>>>        If hoClientArea Begin
+75625>>>>>            // the clientarea's parent panel has message
+75625>>>>>            Send Restore_all_Windows of (Parent(hoClientArea))
+75626>>>>>        End
+75626>>>>>>
+75626>>>>>    End_Procedure
+75627>>>>>End_Class
+75628>>>>>
+75628>>>>>Class cCJArrangeIconsMenuItem is a cCJMenuItem
+75629>>>>>
+75629>>>>>    Procedure Construct_Object
+75631>>>>>        Forward Send Construct_Object
+75633>>>>>        Set psCaption to C_$CaptionArrangeIcons  
+75634>>>>>        Set psToolTip to C_$ToolTipArrangeIcons
+75635>>>>>        Set psDescription to  C_$DescArrangeIcons
+75636>>>>>        Set psCategory to C_$CategoryWindow
+75637>>>>>    End_Procedure
+75638>>>>>
+75638>>>>>    Procedure OnExecute Variant vCommandBarControl
+75640>>>>>        Handle hoCommandBars hoClientArea
+75640>>>>>        Get CommandBarSystemObject to hoCommandBars
+75641>>>>>        Get ClientAreaObject of hoCommandBars to hoClientArea
+75642>>>>>        If hoClientArea Begin
+75644>>>>>            Send Arrange_Icons of hoClientArea
+75645>>>>>        End
+75645>>>>>>
+75645>>>>>    End_Procedure
+75646>>>>>
+75646>>>>>End_Class
+75647>>>>>    
+75647>>>Use cCJAboutMenuItem.pkg
+Including file: cCJAboutMenuItem.pkg    (C:\Program Files (x86)\DataFlex 18.2\Pkg\cCJAboutMenuItem.pkg)
+75647>>>>>Use cCJCommandBarSystem.pkg
+75647>>>>>Use LanguageText.pkg
+75647>>>>>
+75647>>>>>// It is expected that if you use this class that you provide an about object that is
+75647>>>>>// activated via activate_about such as DfAbout.pkg. We don't use this for you automatically
+75647>>>>>// because you may wish to create your own custom about package.
+75647>>>>>
+75647>>>>>Class cCJAboutMenuItem is a cCJMenuItem    
+75648>>>>>
+75648>>>>>    Procedure Construct_Object
+75650>>>>>        Forward Send Construct_Object
+75652>>>>>        Set psCaption to C_$CaptionAbout
+75653>>>>>        Set psDescription to C_$ToolTipAbout
+75654>>>>>        Set psToolTip to C_$DescAbout
+75655>>>>>        Set psImage to "ActionAbout.ico"
+75656>>>>>        Set psCategory to C_$CategoryHelp
+75657>>>>>    End_Procedure
+75658>>>>>    
+75658>>>>>    Procedure OnExecute Variant vCommandBarControl
+75660>>>>>        Handle hoCommandBars hoClientArea
+75660>>>>>        Get CommandBarSystemObject to hoCommandBars
+75661>>>>>        Get ClientAreaObject of hoCommandBars to hoClientArea
+75662>>>>>        If hoClientArea Begin
+75664>>>>>            Send Activate_About of hoClientArea
+75665>>>>>        End
+75665>>>>>>
+75665>>>>>    End_Procedure
+75666>>>>>
+75666>>>>>End_Class
+75667>>>>>
+75667>>>>>
+75667>>>Use cCJDeoMenuItemClasses.pkg
+75667>>>Use cCJMDIWindowsMenuItem.pkg
+Including file: cCJMDIWindowsMenuItem.pkg    (C:\Program Files (x86)\DataFlex 18.2\Pkg\cCJMDIWindowsMenuItem.pkg)
+75667>>>>>Use cCJCommandBarSystem.pkg
+75667>>>>>
+75667>>>>>Register_Function Client_ID Returns Integer
+75667>>>>>
+75667>>>>>// only used by cCJMDIWIndowsMenuItem
+75667>>>>>Class cCJMDIWindowItem is a cCJMenuItem
+75668>>>>>
+75668>>>>>    Procedure Construct_Object
+75670>>>>>        Forward Send Construct_Object
+75672>>>>>        Property Handle phWindow 0 // object id of view
+75673>>>>>        Set pbControlFlagNoMovable to True
+75674>>>>>        Set pbActiveUpdate to True
+75675>>>>>    End_Procedure
+75676>>>>>    
+75676>>>>>    Procedure OnExecute Variant vCommandBarControl
+75678>>>>>        Handle hWindow
+75678>>>>>        Get phWindow to hWindow
+75679>>>>>        Send Activate_View of hWindow
+75680>>>>>    End_Procedure
+75681>>>>>    
+75681>>>>>End_Class                
+75682>>>>>
+75682>>>>>
+75682>>>>>Class cCJMDIWindowsMenuItem is a cCJMenuItem
+75683>>>>>    
+75683>>>>>    Procedure Construct_Object
+75685>>>>>        Forward Send Construct_Object
+75687>>>>>        Property Handle[] phArrayOfWindows
+75688>>>>>        Set peControlType to xtpControlPopup
+75689>>>>>        Set psCategory to C_$CategoryWindow
+75690>>>>>    End_Procedure
+75691>>>>>    
+75691>>>>>     // This adds MDI windows to the existing menu items.
+75691>>>>>     // This removes any existing windows menus and always adds a new set to the end
+75691>>>>>
+75691>>>>>     Procedure OnPopupInit Variant vCommandBarControl Handle hCommandBarControls
+75693>>>>>        Handle  hClientArea hView
+75693>>>>>        String  sLabel
+75693>>>>>        Integer i iWindows
+75693>>>>>        Handle[] hArrayOfWindows
+75694>>>>>        Variant vItem
+75694>>>>>        
+75694>>>>>        // delete all windows actions and menu items. Assume we have an array of DF action objects for the windows
+75694>>>>>        // also assume that destroying an action removes all menu instances of that action
+75694>>>>>        Get phArrayOfWindows to hArrayOfWindows
+75695>>>>>        Move (SizeOfArray(hArrayOfWindows)) to iWindows
+75696>>>>>        For i from 0 to (iWindows-1)
+75702>>>>>>
+75702>>>>>            Send Destroy of hArrayOfWindows[i] // assume this removes all menu items of this action
+75703>>>>>        Loop
+75704>>>>>>
+75704>>>>>        Move (ResizeArray(hArrayOfWindows,0)) to hArrayOfWindows
+75705>>>>>
+75705>>>>>        // Add all views to this menu. Create the action and add the item
+75705>>>>>        Move 0 to i
+75706>>>>>        Get Client_Id to hClientArea // object id of client area
+75707>>>>>        If (hClientArea > 0) Begin
+75709>>>>>            Get Next_Mdi_Dialog of hClientArea True to hView // find first view
+75710>>>>>            While (hView <> 0)
+75714>>>>>                If (Active_State(hView)) Begin
+75716>>>>>                    // create the action
+75716>>>>>                    Get Create U_cCJMDIWindowItem to hArrayOfWindows[i]
+75717>>>>>                    Get Label of hView to sLabel // caption bar (name) of view
+75718>>>>>                    Set psCaption of hArrayOfWindows[i] to sLabel
+75719>>>>>                    Set psDescription of hArrayOfWindows[i] to ("Make this view (" - trim(sLabel) - ") the active window.")
+75720>>>>>                    If (current_scope(desktop)=hView and View_mode(hView)<>VIEWMODE_ICONIZE) Begin
+75722>>>>>                        Set pbChecked of hArrayOfWindows[i] to True
+75723>>>>>                    End
+75723>>>>>>
+75723>>>>>                    Set phWindow of hArrayOfWindows[i] to hView // used by custom OnExecute
+75724>>>>>                    If (i=0) Begin
+75726>>>>>                        Set pbControlBeginGroup of hArrayOfWindows[i] to True
+75727>>>>>                    End
+75727>>>>>>
+75727>>>>>                    // Create a menu item for this action
+75727>>>>>                    Get AddDynamicControl of hArrayOfWindows[i] hCommandBarControls to vItem
+75728>>>>>                    Increment i
+75729>>>>>                End
+75729>>>>>>
+75729>>>>>                Get Next_Mdi_Dialog of hClientArea False to hView // find next
+75730>>>>>            Loop
+75731>>>>>>
+75731>>>>>        End
+75731>>>>>>
+75731>>>>>
+75731>>>>>        Set phArrayOfWindows to hArrayOfWindows
+75732>>>>>
+75732>>>>>     End_Procedure
+75733>>>>>     
+75733>>>>>End_Class
+75734>>>>>
+75734>
+75734>Object oHtmlHelp is a cHtmlHelp
+75736>End_Object
+75737>
+75737>Object oApplication is a cApplication
+75739>    Set peHelpType to htHtmlHelp
+75740>End_Object
+75741>
+75741>Object oToolTipController is a cToolTipController
+75743>    Move Self to ghoToolTipController
+75744>End_Object
+75745>
+75745>Use oEditContextMenu.pkg
+Including file: oEditContextMenu.pkg    (C:\Program Files (x86)\DataFlex 18.2\Pkg\oEditContextMenu.pkg)
+75745>>>Use cCJStandardMenuItemClasses.pkg
+75745>>>
+75745>>>Object oEditContextMenu is a cCJContextMenu
+75747>>>    
+75747>>>    Move Self to Default_Form_Floating_Menu_ID
+75748>>>    
+75748>>>    Object oUndoMenuItem is a cCJUndoMenuItem
+75750>>>    End_Object
+75751>>>    
+75751>>>    Object oCutMenuItem is a cCJCutMenuItem
+75753>>>        Set pbControlBeginGroup to True
+75754>>>    End_Object
+75755>>>    
+75755>>>    Object oCopyMenuItem is a cCJCopyMenuItem
+75757>>>    End_Object
+75758>>>
+75758>>>    Object oPasteMenuItem is a cCJPasteMenuItem
+75760>>>    End_Object
+75761>>>
+75761>>>    Object oDeleteItem is a cCJDeleteEditMenuItem
+75763>>>    End_Object
+75764>>>
+75764>>>    Object oSelectAllMenuItem is a cCJSelectAllMenuItem
+75766>>>        Set pbControlBeginGroup to True
+75767>>>    End_Object
+75768>>>
+75768>>>End_Object
+75769>>>
+75769>Use oDEOEditContextMenu17.pkg
+Including file: oDEOEditContextMenu17.pkg    (C:\Program Files (x86)\DataFlex 18.2\Pkg\oDEOEditContextMenu17.pkg)
+75769>>>Use Windows.pkg
+75769>>>Use cCJStandardMenuItemClasses.pkg
+75769>>>Use cCJDeoMenuItemClasses.pkg
+75769>>>
+75769>>>
+75769>>>Object oDEOEditContextMenu17 is a cCJContextMenu
+75771>>>    
+75771>>>    Move Self to Default_dbFloating_Menu_ID
+75772>>>    
+75772>>>    Object oUndoMenuItem is a cCJUndoMenuItem
+75774>>>    End_Object
+75775>>>    
+75775>>>    Object oCutMenuItem is a cCJCutMenuItem
+75777>>>        Set pbControlBeginGroup to True
+75778>>>    End_Object
+75779>>>    
+75779>>>    Object oCopyMenuItem is a cCJCopyMenuItem
+75781>>>    End_Object
+75782>>>
+75782>>>    Object oPasteMenuItem is a cCJPasteMenuItem
+75784>>>    End_Object
+75785>>>
+75785>>>    Object oDeleteItem is a cCJDeleteEditMenuItem
+75787>>>    End_Object
+75788>>>
+75788>>>    Object oSelectAllMenuItem is a cCJSelectAllMenuItem
+75790>>>        Set pbControlBeginGroup to True
+75791>>>    End_Object
+75792>>>
+75792>>>    Object oPromptMenuItem is a cCJPromptMenuItem
+75794>>>        Set pbControlBeginGroup to True
+75795>>>    End_Object
+75796>>>
+75796>>>    Object oFindNextMenu is a cCJFindNextMenuItem
+75798>>>        Set pbControlBeginGroup to True
+75799>>>    End_Object
+75800>>>
+75800>>>    Object oFindPreviousMenu is a cCJFindPreviousMenuItem
+75802>>>    End_Object
+75803>>>
+75803>>>    Object oClearMenuItem is a cCJClearMenuItem
+75805>>>        Set pbControlBeginGroup to True
+75806>>>    End_Object
+75807>>>
+75807>>>    Object oClearAllMenu is a cCJClearAllMenuItem
+75809>>>    End_Object
+75810>>>
+75810>>>    Object oSaveMenu is a cCJSaveMenuItem
+75812>>>    End_Object
+75813>>>    
+75813>>>    Object oDeleteMenu is a cCJDeleteMenuItem
+75815>>>    End_Object
+75816>>>
+75816>>>    Object oRememberitem is a cCJRememberFieldMenuItem
+75818>>>        Set pbControlBeginGroup to True
+75819>>>    End_Object
+75820>>>
+75820>>>    Object oRetainItem is a cCJRememberLastFieldMenuItem
+75822>>>    End_Object
+75823>>>
+75823>>>    Object oUnRememberitem is a cCJUnRememberFieldMenuItem
+75825>>>    End_Object
+75826>>>
+75826>>>    Object oCJClearAllDynamicDefaults is a cCJUnRememberFieldAllMenuItem
+75828>>>    End_Object
+75829>>>
+75829>>>End_Object
+75830>
+75830>Object oMain is a Panel
+75832>    Set Label to "Mi Proyecto"
+75833>    Set Location to 4 3
+75834>    Set Size to 300 450
+75835>
+75835>    Object oCommandBarSystem is a cCJCommandBarSystem
+75837>        Set pbTimerUpdate to True
+75838>
+75838>        Procedure OnCreateCommandBars
+75841>            Handle hoOptions
+75841>            Get OptionsObject to hoOptions
+75842>            Forward Send OnCreateCommandBars
+75844>        End_Procedure
+75845>
+75845>        Object oMenuBar is a cCJMenuBar
+75847>
+75847>            Object oFileMenu is a cCJMenuItem
+75849>                Set peControlType to xtpControlPopup          
+75850>                Set psCaption   to "Archivo"    // &F   <--------------------------
+75851>                Set psDescription to "Buscar, Grabar, Borrar, limpiar informaci¢n o salir de esta aplicaci¢n."
+75852>                Set psCategory to "Men£s"
+75853>
+75853>                Object oClearMenuItem is a cCJClearMenuItem
+75855>                    Set pbAddToDesignerMenu to True
+75856>                End_Object
+75857>
+75857>                Object oClearAllMenu is a cCJClearAllMenuItem
+75859>                    Set pbAddToDesignerMenu to True
+75860>                End_Object
+75861>
+75861>                Object oPromptMenuItem is a cCJPromptMenuItem
+75863>                    Set pbAddToDesignerMenu to True
+75864>                    Set pbControlBeginGroup to True
+75865>                End_Object
+75866>
+75866>                Object oFindMenuItem is a cCJFindMenuItem
+75868>                    Set pbAddToDesignerMenu to True
+75869>                    Set pbControlBeginGroup to True
+75870>                End_Object
+75871>
+75871>                Object oFindNextMenu is a cCJFindNextMenuItem
+75873>                    Set pbAddToDesignerMenu to True
+75874>                End_Object
+75875>
+75875>                Object oFindPreviousMenu is a cCJFindPreviousMenuItem
+75877>                    Set pbAddToDesignerMenu to True
+75878>                End_Object
+75879>
+75879>                Object oFindFirstMenu is a cCJFindFirstMenuItem
+75881>                    Set pbAddToDesignerMenu to True
+75882>                End_Object
+75883>
+75883>                Object oFindLastMenu is a cCJFindLastMenuItem
+75885>                    Set pbAddToDesignerMenu to True
+75886>                End_Object
+75887>
+75887>                Object oSaveMenuItem is a cCJSaveMenuItem
+75889>                    Set pbAddToDesignerMenu to True
+75890>                    Set pbControlBeginGroup to True
+75891>                End_Object
+75892>
+75892>                Object oDeleteMenuItem is a cCJDeleteMenuItem
+75894>                    Set pbAddToDesignerMenu to True
+75895>                End_Object
+75896>
+75896>                Object oExitMenu is a cCJExitMenuItem
+75898>                    Set pbControlBeginGroup to True
+75899>                End_Object
+75900>
+75900>            End_Object
+75901>
+75901>            Object oViewMenu is a cCJMenuItem
+75903>                Set peControlType to xtpControlPopup
+75904>                Set psCaption to "&Vistas"
+75905>                Set psToolTip to "Vistas"
+75906>               Set psDescription to "Vistas disponibles"
+75907>
+75907>               Object oViewMainMenuItem is a cCJMenuItem
+75909>                   Set psCaption to "ViewMain"
+75910>                   Set psTooltip to "ViewMain"
+75911>               
+75911>                   Procedure OnExecute Variant vCommandBarControl
+75914>                       Handle hoClient
+75914>                       Get Client_Id to hoClient
+75915>                       Send Activate_oViewMain of hoClient
+75916>                   End_Procedure
+75917>               End_Object
+75918>            End_Object
+75919>            
+75919>            Object oReportMenu is a cCJMenuItem
+75921>                Set peControlType to xtpControlPopup          
+75922>                Set psCaption to "&Informes"
+75923>                Set psToolTip to "Informes"
+75924>                Set psDescription to "Informes disponibles"
+75925>            End_Object
+75926>
+75926>            Object oNavigateMenu is a cCJMenuItem
+75928>                Set peControlType to xtpControlPopup      
+75929>                Set psCaption to "&Navegar"    
+75930>                Set psTooltip to "Navegar"    
+75931>                Set psDescription to "Desplazarse a diferentes areas de la aplicaci¢n"
+75932>
+75932>                Object oNextAreaMenu is a cCJNextAreaMenu
+75934>                End_Object
+75935>
+75935>                Object oPriorAreaMenu is a cCJPriorAreaMenu
+75937>                End_Object
+75938>
+75938>                Object oNextViewMenu is a cCJNextViewMenu
+75940>                End_Object
+75941>
+75941>                Object oPriorViewMenu is a cCJPriorViewMenu
+75943>                End_Object
+75944>
+75944>                Object oPromptMenu is a cCJPromptMenuItem
+75946>                    Set pbControlBeginGroup to True
+75947>                End_Object
+75948>
+75948>                Object oZoomMenu is a cCJZoomMenuItem
+75950>                End_Object
+75951>
+75951>            End_Object
+75952>
+75952>            Object oWindowMenu is a cCJMDIWindowsMenuItem
+75954>                Set peControlType to xtpControlPopup
+75955>                Set psCaption to "Ventana"      // &W <---------------
+75956>                Set psToolTip to "Ventana"
+75957>                Set psDescription to "Muestre vistas actuales y fije otras opciones de visualizaci¢n."
+75958>
+75958>                // These are the static windows items. More will be created in onInitPopup 
+75958>                Object oDisplayOptionsMenu is a cCJMenuItem
+75960>                    Set peControlType to xtpControlPopup          
+75961>                    Set psCaption to "Opciones de visualizaci¢n"  // &D <--------------
+75962>                    Set psToolTip to "Opciones de visualizaci¢n"
+75963>                    Set psDescription to "Fije opciones de visualizaci¢n"
+75964>
+75964>                    Object oStatusbarMenu is a cCJStatusbarMenuItem
+75966>                    End_Object
+75967>
+75967>                    Object oAutoArrangeIconsMenu is a cCJAutoArrangeIconsMenuItem
+75969>                    End_Object
+75970>
+75970>                    Object oRestoreMenusMenu is a cCJRestoreMenusMenuItem
+75972>                        Set pbControlBeginGroup to True
+75973>                    End_Object
+75974>
+75974>                End_Object
+75975>
+75975>                Object oCascadeMenu is a cCJCascadeMenuItem
+75977>                    Set pbControlBeginGroup to True
+75978>                End_Object
+75979>
+75979>                Object oHorizTile is a cCJTileHorizontally
+75981>                End_Object
+75982>
+75982>                Object oVertTile is a cCJTileVertically
+75984>                End_Object
+75985>
+75985>                Object oMinimizeMenuItem is a cCJMinimizeWindowsMenuItem
+75987>                    Set pbControlBeginGroup to True
+75988>                End_Object
+75989>
+75989>                Object oRestoreMenuItem is a cCJRestoreWindowsMenuItem
+75991>                End_Object
+75992>
+75992>                Object oArrangeIconsMenuItem is a cCJAutoArrangeIconsMenuItem
+75994>                    Set pbControlBeginGroup to True
+75995>                End_Object
+75996>
+75996>            End_Object
+75997>
+75997>            Object oHelpMenu is a cCJMenuItem
+75999>                Set peControlType to xtpControlPopup    
+76000>                Set psCaption to "&Ayuda"   // &H    <----------------------
+76001>                Set psDescription to "Informaci¢n para aprender y para usar esta aplicaci¢n VDF"
+76002>                Set psToolTip to "Ayuda"
+76003>
+76003>                Object oHelpMenuItem is a cCJHelpMenuItem 
+76005>                End_Object
+76006>
+76006>                Object oAboutMenuItem is a cCJAboutMenuItem
+76008>                End_Object
+76009>
+76009>            End_Object
+76010>
+76010>        End_Object
+76011>
+76011>        Object oFindToolBar is a cCJToolbar
+76013>            Set psTitle to "Barra de herramientas de b£squeda"
+76014>
+76014>            Object oFindFirstTool is a cCJFindFirstMenuItem
+76016>            End_Object
+76017>
+76017>            Object oFindPreviousTool is a cCJFindPreviousMenuItem
+76019>            End_Object
+76020>
+76020>            Object oFindMenuTool is a cCJFindMenuItem
+76022>            End_Object
+76023>
+76023>            Object oFindNextTool is a cCJFindNextMenuItem
+76025>            End_Object
+76026>
+76026>            Object oFindLastTool is a cCJFindLastMenuItem
+76028>            End_Object
+76029>
+76029>            Object oPromptToolItem is a cCJPromptMenuItem
+76031>                Set pbControlBeginGroup to True
+76032>            End_Object
+76033>
+76033>        End_Object
+76034>
+76034>        Object oFileToolBar is a cCJToolbar
+76036>            Set psTitle to "Barra de herramientas de introducci¢n de datos"
+76037>
+76037>            Object oClearToolItem is a cCJClearMenuItem
+76039>                Set peControlStyle to xtpButtonIconAndCaption
+76040>            End_Object
+76041>
+76041>            Object oClearAllToolItem2 is a cCJClearAllMenuItem
+76043>                Set peControlStyle to xtpButtonIconAndCaption
+76044>            End_Object
+76045>
+76045>            Object oSaveToolItem is a cCJSaveMenuItem
+76047>                Set peControlStyle to xtpButtonIconAndCaption
+76048>                Set pbControlBeginGroup to True
+76049>            End_Object
+76050>
+76050>            Object oDeleteToolItem is a cCJDeleteMenuItem
+76052>                Set peControlStyle to xtpButtonIconAndCaption
+76053>            End_Object
+76054>
+76054>        End_Object
+76055>
+76055>        Object oEditToolBar is a cCJToolbar
+76057>            Set psTitle to "Barra de herramientas de edici¢n"
+76058>
+76058>            Object oCutToolbarItem is a cCJCutMenuItem
+76060>            End_Object
+76061>
+76061>            Object oCopyToolbarItem is a cCJCopyMenuItem
+76063>            End_Object
+76064>
+76064>            Object oPasteToolbarItem is a cCJPasteMenuItem
+76066>            End_Object
+76067>
+76067>            Object oDeleteEditToolbarItem is a cCJDeleteEditMenuItem
+76069>                Set pbControlBeginGroup to True
+76070>            End_Object
+76071>
+76071>        End_Object
+76072>
+76072>        Object oRememberToolbar is a cCJToolbar
+76074>            Set psTitle to C_$Remember
+76075>
+76075>            Object oRememberItems is a cCJMenuItem
+76077>
+76077>                Set peControlType to xtpControlPopup
+76078>                Set peControlStyle to xtpButtonCaption
+76079>                Set psCaption to C_$Remember
+76080>                
+76080>                Object oMenuItem is a cCJRememberFieldMenuItem
+76082>                    Set peControlStyle to xtpButtonIconAndCaption
+76083>                End_Object
+76084>                
+76084>                Object oMenuItem is a cCJRememberLastFieldMenuItem
+76086>                    Set peControlStyle to xtpButtonIconAndCaption
+76087>                End_Object
+76088>                
+76088>                Object oMenuItem is a cCJUnRememberFieldMenuItem
+76090>                    Set peControlStyle to xtpButtonIconAndCaption
+76091>                End_Object
+76092>                
+76092>                Object oMenuItem is a cCJUnRememberFieldAllMenuItem
+76094>                    Set peControlStyle to xtpButtonIconAndCaption
+76095>                End_Object
+76096>
+76096>            End_Object
+76097>            
+76097>        End_Object
+76098>        
+76098>        Object oStatusBar is a cCJStatusBar
+76100>
+76100>            Object oStatusPane1 is a cCJStatusBarPane
+76102>                Set piID to sbpIDIdlePane
+76103>                Set pbStyleStretch to True
+76104>            End_Object
+76105>
+76105>            Object oStatusPane2 is a cCJStatusBarPane
+76107>                Set phoViewPane to Self
+76108>                Set pbStyleStretch to True
+76109>            End_Object
+76110>
+76110>        End_Object
+76111>
+76111>    End_Object
+76112>
+76112>    Object oClientArea is a ClientArea
+76114>        Use StdAbout.pkg
+Including file: StdAbout.pkg    (C:\Program Files (x86)\DataFlex 18.2\Pkg\StdAbout.pkg)
+76114>>>//************************************************************************
+76114>>>// Confidential Trade Secret.
+76114>>>// Copyright (c) 1997 Data Access Corporation, Miami Florida
+76114>>>// as an unpublished work.  All rights reserved.
+76114>>>// DataFlex is a registered trademark of Data Access Corporation.
+76114>>>//
+76114>>>//************************************************************************
+76114>>>//************************************************************************
+76114>>>//
+76114>>>// $File name  : StdAbout.pkg
+76114>>>// $File title : Standard about object package for VDF
+76114>>>// Notice      :
+76114>>>// $Author(s)  : John Tuohy
+76114>>>//
+76114>>>// $Rev History
+76114>>>//
+76114>>>// JT 06/27/97   File created
+76114>>>//************************************************************************
+76114>>>
+76114>>>// This provides a quick and simple way to create an about package for a program.
+76114>>>// You need to create a message inside you client area called Activate_About.
+76114>>>// Within this message you should send the message DoAbout passing needed
+76114>>>// string information.
+76114>>>//
+76114>>>//       Procedure Activate_About
+76114>>>//           Send DoAbout sTitle sVersion sCopyright sAuthor sBitmap
+76114>>>//       End_Procedure
+76114>>>//    where: sTitle =     Name of application. If none provided, uses caption
+76114>>>//                        bar title
+76114>>>//           sVersion   = Version Line. If none provided, will be blank
+76114>>>//           sCopyRight = Copyright Line. If none provided, will be blank
+76114>>>//           sAuthor    = Author name, blank if none provided
+76114>>>//           sBitMap    = Bitmap logo. If none provided, standard VDF bitmap
+76114>>>//                        is used.
+76114>>>// It is expected that you will place this in your own object package. For
+76114>>>// example an order about package may look like this:
+76114>>>//
+76114>>>//   // OrderAbout.pkg
+76114>>>//   Use StdAbout.pkg
+76114>>>//   Procedure Activate_About
+76114>>>//      String sTitle sCopyright sVersion sAuthor
+76114>>>//      Move "My Order Entry System" to sTitle
+76114>>>//      Move "Version 2.1" to sVersion
+76114>>>//      Move "Copyright 1997, Super Software Inc." to sCopyright
+76114>>>//      Move "John Smith"  to sAuthor
+76114>>>//      Send DoAbout sTitle sVersion sCopyright sAuthor ""
+76114>>>//   end_procedure
+76114>>>//   // end of file.
+76114>>>
+76114>>>Use DfAbout.pkg
+Including file: Dfabout.pkg    (C:\Program Files (x86)\DataFlex 18.2\Pkg\Dfabout.pkg)
+76114>>>>>//************************************************************************
+76114>>>>>// Confidential Trade Secret.
+76114>>>>>// Copyright (c) 1997 Data Access Corporation, Miami Florida
+76114>>>>>// as an unpublished work.  All rights reserved.
+76114>>>>>// DataFlex Is A registered trademark Of Data Access Corporation.
+76114>>>>>//
+76114>>>>>//************************************************************************
+76114>>>>>//************************************************************************
+76114>>>>>//
+76114>>>>>// $File name  : DfAbout.pkg
+76114>>>>>// $File title : About class support
+76114>>>>>// Notice      :
+76114>>>>>// $Author(s)  : Vincent Oorsprong, Ken Ross
+76114>>>>>//
+76114>>>>>// $Rev History
+76114>>>>>//
+76114>>>>>// VOO 02/22/2012 Replaced obsolete code, improved Network_User_Name by asking
+76114>>>>>//                Windows for the size first. 
+76114>>>>>// VOO 07/25/2003 Removed OnResize procedure for sysinfo dialog. Replaced logic
+76114>>>>>//                with anchor technique. Removed unnessary property in the
+76114>>>>>//                sysinfo dialog. Changed the size Of the about & sysinfo dialog
+76114>>>>>//                object To better look in Windows XP. Repositioned the close
+76114>>>>>//                button in the sysinfo dialog To line up with the display area
+76114>>>>>//                Replaced obsolete code and techniques. Removed dead code.
+76114>>>>>// JJT 10/23/2001 removed all ghoworkspace support. Uses app object or nothing
+76114>>>>>// SWB 07/19/01   Added support Of the Application object in preference to
+76114>>>>>//                the global Workspace object, if it is present
+76114>>>>>// JJT 11/05/98   Added version information
+76114>>>>>// VOO 29/10/98   Replaced the GetFreeSystemResources for the Win32 variant
+76114>>>>>// JJT 7/31/97    Registered Enumerate Workspace so dfabout can exist without
+76114>>>>>//                workspace package.
+76114>>>>>// JJT 6/27/97    Turned the sysinfo objects into classes so the AboutDialog
+76114>>>>>//                class can create this object.
+76114>>>>>//                Cleaned up the interface (used correct classes and messages)
+76114>>>>>//                Added workspace reporting support To sys-info.
+76114>>>>>//                Turned off wrapping in the sys-info editor.
+76114>>>>>// KR  ??/??/96   File created
+76114>>>>>//************************************************************************
+76114>>>>>Use LanguageText.pkg
+76114>>>>>Use Windows.pkg
+76114>>>>>Use DFbitmap.pkg
+76114>>>>>Use GlobalFunctionsProcedures.pkg
+76114>>>>>Use cTextEdit.pkg
+76114>>>>>
+76114>>>>>Use cli.pkg
+Including file: cli.pkg    (C:\Program Files (x86)\DataFlex 18.2\Pkg\cli.pkg)
+76114>>>>>>>//*****************************************************************************
+76114>>>>>>>//*** CLI.PKG                                                               ***
+76114>>>>>>>//***                                                                       ***
+76114>>>>>>>//*** Author: Ben Weijers                                                   ***
+76114>>>>>>>//***         Data Access Nederland                                         ***
+76114>>>>>>>//***         10 September 1998                                             ***
+76114>>>>>>>//***                                                                       ***
+76114>>>>>>>//*** Purpose:                                                              ***
+76114>>>>>>>//***   CLI specific functionality. There are several connectivity kits     ***
+76114>>>>>>>//***   based on  SQL/92 CLI. Those are:                                    ***
+76114>>>>>>>//***    - ODBC_DRV  The Data Access CK for ODBC                            ***
+76114>>>>>>>//***    - DB2_DRV   The Data Access CK for DB2                             ***
+76114>>>>>>>//***    - MSSQLDRV  The Data Access CK for Microsoft SQL Server            ***
+76114>>>>>>>//***                                                                       ***
+76114>>>>>>>//***   This package defines the common functionality for all CLI based     ***
+76114>>>>>>>//***   drivers.                                                            ***
+76114>>>>>>>//***                                                                       ***
+76114>>>>>>>//***   Updated:  May 23rd 2008 (Current CK build: 5.0.0.53 )               ***
+76114>>>>>>>//***             Added NULLABLE and DEFAULT attributes for DATETIME type   ***
+76114>>>>>>>//***   Updated:  Apr  6th 2009 (Current CK build: 5.0.0.61 )               ***
+76114>>>>>>>//***             Added DF_DRIVER_MATCH_CLIENT_SERVER_VERSION attribute     ***
+76114>>>>>>>//***                   DF_DRIVER_SQLSERVER_CLIENT_VERSION    attribute     ***
+76114>>>>>>>//***   Updated:  Mar 30th 2012 (Current CK build: 5.1.0.93 )               ***
+76114>>>>>>>//***             Added SQLSERVER2012CLIENT return value for                ***
+76114>>>>>>>//***             DF_DRIVER_SQLSERVER_CLIENT_VERSION attribute              ***
+76114>>>>>>>//***   Updated:  June 4th 2012 (Current CK build: 5.1.0.96)                ***
+76114>>>>>>>//***             Moved SQL Server client constants from cli.pkg to         ***
+76114>>>>>>>//***             mssqldrv.pkg                                              ***
+76114>>>>>>>//***   Updated:  april 23, 2013 (Current CK build: 6.0.0.4)                ***
+76114>>>>>>>//***             Added type mappings attributes                            ***
+76114>>>>>>>//***   Updated:  october 11, 2013 (Current CK build: 6.0.0.18)             ***
+76114>>>>>>>//***             Added DF_FILE_SQL_FILTER_EQ attribute                     ***
+76114>>>>>>>//*****************************************************************************
+76114>>>>>>>
+76114>>>>>>>//*** We are not using ifndef below because that is not supported in Character Mode
+76114>>>>>>>//*** Driver attributes
+76114>>>>>>>
+76114>>>>>>>
+76114>>>>>>>
+76114>>>>>>>
+76114>>>>>>>
+76114>>>>>>>
+76114>>>>>>>
+76114>>>>>>>
+76114>>>>>>>
+76114>>>>>>>//------------------------------------------------------------
+76114>>>>>>>
+76114>>>>>>>
+76114>>>>>>>//-------------------------------------
+76114>>>>>>>
+76114>>>>>>>
+76114>>>>>>>
+76114>>>>>>>//*** Replacement for logical column number that indicates all columns
+76114>>>>>>>
+76114>>>>>>>//*** Possible DF_FILE_GENERATE_RECORD_ID_METHOD values
+76114>>>>>>>
+76114>>>>>>>//*** Possible DF_FIELD_READ_ONLY values
+76114>>>>>>>
+76114>>>>>>>
+76114>>>>>>>//*** Possible DF_DRIVER_DEFAULT_MAP_DF_TO_SQL_TYPE_SCHEMA values
+76114>>>>>>>// #Replace MAP_DF_TO_SQL_TYPE_CK5        1       
+76114>>>>>>>// #Replace MAP_DF_TO_SQL_TYPE_CK6        2   
+76114>>>>>>>
+76114>>>>>>>
+76114>>>>>>>// Moved to Mssqldrv.pkg
+76114>>>>>>>//*** Possible DF_DRIVER_SQLSERVER_CLIENT_VERSION values
+76114>>>>>>>//#REPLACE SQLSERVERUNKNOWNCLIENT  0
+76114>>>>>>>//#REPLACE SQLSERVER2000CLIENT     8          //   "SQL Server"
+76114>>>>>>>//#REPLACE SQLSERVER2005CLIENT     9          //   "SQL Native Client"
+76114>>>>>>>//#REPLACE SQLSERVER2008CLIENT    10          //   "SQL Server Native Client 10.0"
+76114>>>>>>>//#Replace SQLSERVER2012CLIENT    11          //   "SQL Server Native Client 11.0"
+76114>>>>>>>
+76114>>>>>>>//*** Possible SQL Column type values
+76114>>>>>>>Define SQL_UNKNOWN_TYPE   For    0
+76114>>>>>>>Define SQL_CHAR           For    1
+76114>>>>>>>Define SQL_NUMERIC        For    2
+76114>>>>>>>Define SQL_DECIMAL        For    3
+76114>>>>>>>Define SQL_INTEGER        For    4
+76114>>>>>>>Define SQL_SMALLINT       For    5
+76114>>>>>>>Define SQL_FLOAT          For    6
+76114>>>>>>>Define SQL_REAL           For    7
+76114>>>>>>>Define SQL_DOUBLE         For    8
+76114>>>>>>>Define SQL_DATETIME       For    9
+76114>>>>>>>Define SQL_VARCHAR        For   12
+76114>>>>>>>Define SQL_TYPE_DATE      For   91
+76114>>>>>>>Define SQL_TYPE_TIME      For   92
+76114>>>>>>>Define SQL_TYPE_TIMESTAMP for   93
+76114>>>>>>>// Moved to mssqldrv.pkg
+76114>>>>>>>//Define SQL_TYPE_TIMESTAMP2 for   (-200) //SQL server datetime2 type */
+76114>>>>>>>
+76114>>>>>>>
+76114>>>>>>>Define SQL_DATE           For    9
+76114>>>>>>>Define SQL_INTERVAL       For   10
+76114>>>>>>>Define SQL_TIME           For   10
+76114>>>>>>>Define SQL_TIMESTAMP      For   11
+76114>>>>>>>Define SQL_LONGVARCHAR    For  (-1)
+76114>>>>>>>Define SQL_BINARY         For  (-2)
+76114>>>>>>>Define SQL_VARBINARY      For  (-3)
+76114>>>>>>>Define SQL_LONGVARBINARY  For  (-4)
+76114>>>>>>>Define SQL_BIGINT         For  (-5)
+76114>>>>>>>Define SQL_TINYINT        For  (-6)
+76114>>>>>>>Define SQL_BIT            For  (-7)
+76114>>>>>>>Define SQL_WCHAR          For  (-8)
+76114>>>>>>>Define SQL_WVARCHAR       For  (-9)
+76114>>>>>>>Define SQL_WLONGVARCHAR   For (-10)
+76114>>>>>>>Define SQL_GUID           For (-11)
+76114>>>>>>>
+76114>>>>>>>//*** Driver level attributes
+76114>>>>>>>
+76114>>>>>>>
+76114>>>>>>>//*** Error number constants
+76114>>>>>>>
+76114>>>>>>>
+76114>>>>>>>//*** Call driver function identifiers
+76114>>>>>>>
+76114>>>>>>>
+76114>>>>>>>//*** Init data source types
+76114>>>>>>>
+76114>>>>>>>
+76114>>>>>>>//*** Dummy strings used in the commands
+76114>>>>>>>    String  CLI$StrDummy 255
+76114>>>>>>>    Integer CLI$IntDummy
+76114>>>>>>>
+76114>>>>>>>
+76114>>>>>>>//*****************************************************************************
+76114>>>>>>>//*** CLI_SetConstraint <FileNum> <NewState>                                ***
+76114>>>>>>>//***                                                                       ***
+76114>>>>>>>//***   Setup a constraint for a file.                                      ***
+76114>>>>>>>//*****************************************************************************
+76114>>>>>>>
+76114>>>>>>>
+76114>>>>>>>
+76114>>>>>>>
+76114>>>>>>>//*****************************************************************************
+76114>>>>>>>//*** CLI_Set_Driver_Atrtribute / CLI_Get_Driver_Attribute                  ***
+76114>>>>>>>//***                                                                       ***
+76114>>>>>>>//*** Set or get an attribute at driver level. These attributes, when set,  ***
+76114>>>>>>>//*** will be set for the remainder of the session or until set again. To   ***
+76114>>>>>>>//*** permanently set driver level attributes change the driver             ***
+76114>>>>>>>//*** configuration file.                                                   ***
+76114>>>>>>>//*****************************************************************************
+76114>>>>>>>
+76114>>>>>>>
+76114>>>>>>>
+76114>>>>>>>
+76114>>>>>>>
+76114>>>>>>>
+76114>>>>>>>
+76114>>>>>>>//*****************************************************************************
+76114>>>>>>>//*** Class  : cCLIHandler                                                  ***
+76114>>>>>>>//*** Purpose: An instance of this class can be used as a broker object to  ***
+76114>>>>>>>//***          call several CLI releated methods.                           ***
+76114>>>>>>>//*****************************************************************************
+76114>>>>>>>
+76114>>>>>>>Class cCLIHandler Is An Array
+76115>>>>>>>
+76115>>>>>>>    Procedure Construct_Object Integer iImage
+76117>>>>>>>        Forward Send Construct_object iImage
+76119>>>>>>>
+76119>>>>>>>        Property String  psDriverID       Public ""
+76120>>>>>>>    End_Procedure // Construct_Object
+76121>>>>>>>
+76121>>>>>>>
+76121>>>>>>>
+76121>>>>>>>    //***
+76121>>>>>>>    //*** Fucntion: CKRevsion
+76121>>>>>>>    //*** Purpose : The revsion of a CLI Connectivity Kit
+76121>>>>>>>    //***
+76121>>>>>>>
+76121>>>>>>>    Function CKRevision Returns String
+76123>>>>>>>        Local String  sDriverID
+76123>>>>>>>        Local String  sRevision
+76123>>>>>>>        Local String  sVoid
+76123>>>>>>>        Local Integer iRetval
+76123>>>>>>>
+76123>>>>>>>        Get psDriverID To sDriverID
+76124>>>>>>>        If (sDRiverID <> "") Begin
+76126>>>>>>>            Move (Repeat(" ", 255)) To sRevision
+76127>>>>>>>            Call_Driver 0 sDRiverID Function CLI_CKREVISION Callback 0 Passing sRevision sVoid 0 Result iRetval
+76132>>>>>>>        End
+76132>>>>>>>>
+76132>>>>>>>
+76132>>>>>>>        Function_Return sRevision
+76133>>>>>>>    End_Function // CKRevision
+76134>>>>>>>
+76134>>>>>>>
+76134>>>>>>>
+76134>>>>>>>    //***
+76134>>>>>>>    //*** Function: ExtractPartFromRevision
+76134>>>>>>>    //*** Purpose : Extarct the Nth part of a a.b.c.d revsion string.
+76134>>>>>>>    //***
+76134>>>>>>>    //*** Returns : The part version number or -1 if there is no such part number.
+76134>>>>>>>    //***
+76134>>>>>>>
+76134>>>>>>>    Function ExtractPartFromRevision Integer iPartNum String sRevision Returns Integer
+76136>>>>>>>        Local Integer iPartRev
+76136>>>>>>>        Local Integer iCurrentPart
+76136>>>>>>>        Local Integer iSeparatorPos
+76136>>>>>>>
+76136>>>>>>>        If (iPartNum > 4) ;            Function_Return -1
+76139>>>>>>>
+76139>>>>>>>        Move 0 To iCurrentPart
+76140>>>>>>>        Repeat
+76140>>>>>>>>
+76140>>>>>>>            Move (Pos(".", sRevision)) To iSeparatorPos
+76141>>>>>>>            If (iSeparatorPos > 0) Begin
+76143>>>>>>>                Move (Left(sRevision, iSeparatorPos - 1)) To iPartRev
+76144>>>>>>>                Move (Right(sRevision, Length(sRevision) - iSeparatorPos)) To sRevision
+76145>>>>>>>                Increment iCurrentPart
+76146>>>>>>>            End
+76146>>>>>>>>
+76146>>>>>>>            Else If (sRevision <> "") Begin
+76149>>>>>>>                Move sRevision To iPartRev
+76150>>>>>>>                Move "" To sRevision
+76151>>>>>>>                Increment iCurrentPart
+76152>>>>>>>            End
+76152>>>>>>>>
+76152>>>>>>>            Else ;                Move -1 To iPartRev
+76154>>>>>>>        Until (iCurrentPart >= iPartNum Or iPartRev = -1)
+76156>>>>>>>
+76156>>>>>>>        Function_Return iPartRev
+76157>>>>>>>    End_Function // EcxtractPartFromRevision
+76158>>>>>>>
+76158>>>>>>>
+76158>>>>>>>
+76158>>>>>>>    //***
+76158>>>>>>>    //*** Function: CKMajorRevision
+76158>>>>>>>    //*** Purpose : Returns the major revision of the CK
+76158>>>>>>>    //***
+76158>>>>>>>
+76158>>>>>>>    Function CKMajorRevision Returns Integer
+76160>>>>>>>        Function_Return (ExtractPartFromRevision (Current_Object, 1, CKRevision(Current_Object)))
+76161>>>>>>>    End_Function // CKMajorRevision
+76162>>>>>>>
+76162>>>>>>>
+76162>>>>>>>
+76162>>>>>>>    //***
+76162>>>>>>>    //*** Function: CKMinorRevision
+76162>>>>>>>    //*** Purpose : Returns the minor revision of the CK
+76162>>>>>>>    //***
+76162>>>>>>>
+76162>>>>>>>    Function CKMinorRevision Returns Integer
+76164>>>>>>>        Function_Return (ExtractPartFromRevision (Current_Object, 2, CKRevision(Current_Object)))
+76165>>>>>>>    End_Function // CKMinorRevision
+76166>>>>>>>
+76166>>>>>>>
+76166>>>>>>>
+76166>>>>>>>    //***
+76166>>>>>>>    //*** Function: CKReleaseRevision
+76166>>>>>>>    //*** Purpose : Returns the release revision of the CK
+76166>>>>>>>    //***
+76166>>>>>>>
+76166>>>>>>>    Function CKReleaseRevision Returns Integer
+76168>>>>>>>        Function_Return (ExtractPartFromRevision (Current_Object, 3, CKRevision(Current_Object)))
+76169>>>>>>>    End_Function // CKReleaseRevision
+76170>>>>>>>
+76170>>>>>>>
+76170>>>>>>>
+76170>>>>>>>    //***
+76170>>>>>>>    //*** Function: CKBuildRevision
+76170>>>>>>>    //*** Purpose : Returns the major revision of the CK
+76170>>>>>>>    //***
+76170>>>>>>>
+76170>>>>>>>    Function CKBuildRevision Returns Integer
+76172>>>>>>>        Function_Return (ExtractPartFromRevision (Current_Object, 4, CKRevision(Current_Object)))
+76173>>>>>>>    End_Function // CKBuildRevision
+76174>>>>>>>
+76174>>>>>>>
+76174>>>>>>>
+76174>>>>>>>    //***
+76174>>>>>>>    //*** Function: IsMinimalRevision
+76174>>>>>>>    //*** Purpose : Determines if the CK conforms to a passed minimal revsion.
+76174>>>>>>>    //***
+76174>>>>>>>
+76174>>>>>>>    Function IsMinimalRevision Integer iMajor Integer iMinor Integer iRelease Integer iBuild Returns Integer
+76176>>>>>>>        If (iMajor < CKMajorRevision(Current_object)) ;            Function_return (TRUE)
+76179>>>>>>>        Else If (iMajor = CKMajorRevision(Current_object)) Begin
+76182>>>>>>>            If (iMinor < CKMinorRevision(Current_object)) ;                Function_return (TRUE)
+76185>>>>>>>            Else If (iMinor = CKMinorRevision(Current_object)) Begin
+76188>>>>>>>                If (iRelease < CKReleaseRevision(Current_object)) ;                    Function_return (TRUE)
+76191>>>>>>>                Else If (iRelease = CKReleaseRevision(Current_object) And iBuild <= CKBuildRevision(Current_object)) ;                    Function_return (TRUE)
+76195>>>>>>>            End
+76195>>>>>>>>
+76195>>>>>>>        End
+76195>>>>>>>>
+76195>>>>>>>
+76195>>>>>>>        Function_Return (FALSE)
+76196>>>>>>>    End_Function // IsMinimalRevision
+76197>>>>>>>
+76197>>>>>>>
+76197>>>>>>>
+76197>>>>>>>    //***
+76197>>>>>>>    //*** Function: RegistrationName
+76197>>>>>>>    //*** Purpose : Returns the Connectiivty Kit registration name.
+76197>>>>>>>    //***
+76197>>>>>>>
+76197>>>>>>>    Function RegistrationName Returns String
+76199>>>>>>>        Local String  sRegistration
+76199>>>>>>>        Local String  sDRiverId
+76199>>>>>>>        Local String  sVoid
+76199>>>>>>>        Local Integer iRetval
+76199>>>>>>>
+76199>>>>>>>        Get psDriverID To sDriverID
+76200>>>>>>>        If (sDRiverID <> "") Begin
+76202>>>>>>>            Move (Repeat(" ", 255)) To sRegistration
+76203>>>>>>>            Call_Driver 0 sDRiverID Function CLI_GETREGNAME Callback 0 Passing sRegistration sVoid 0 Result iRetval
+76208>>>>>>>        End
+76208>>>>>>>>
+76208>>>>>>>
+76208>>>>>>>        Function_Return sRegistration
+76209>>>>>>>    End_Function // RegistrationName
+76210>>>>>>>
+76210>>>>>>>
+76210>>>>>>>
+76210>>>>>>>    //***
+76210>>>>>>>    //*** Function: SerialNumber
+76210>>>>>>>    //*** Purpose : Returns the Connectiivty Kit serial number.
+76210>>>>>>>    //***
+76210>>>>>>>
+76210>>>>>>>    Function SerialNumber Returns Integer
+76212>>>>>>>        Local String  sDRiverId
+76212>>>>>>>        Local String  sVoid
+76212>>>>>>>        Local Integer iRetval
+76212>>>>>>>
+76212>>>>>>>        Get psDriverID To sDriverID
+76213>>>>>>>        If (sDRiverID <> "") Begin
+76215>>>>>>>            Call_Driver 0 sDRiverID Function CLI_GETSERIALNUM Callback 0 Passing sVoid sVoid 0 Result iRetval
+76220>>>>>>>        End
+76220>>>>>>>>
+76220>>>>>>>
+76220>>>>>>>        Function_Return iRetval
+76221>>>>>>>    End_Function // SerialNumber
+76222>>>>>>>
+76222>>>>>>>
+76222>>>>>>>
+76222>>>>>>>    //***
+76222>>>>>>>    //*** Function: MaxUsers
+76222>>>>>>>    //*** Purpose : Returns the Connectiivty Kit maximum number of users.
+76222>>>>>>>    //***
+76222>>>>>>>
+76222>>>>>>>    Function MaxUsers Returns Integer
+76224>>>>>>>        Local String  sDRiverId
+76224>>>>>>>        Local String  sVoid
+76224>>>>>>>        Local Integer iRetval
+76224>>>>>>>
+76224>>>>>>>        Get psDriverID To sDriverID
+76225>>>>>>>        If (sDRiverID <> "") Begin
+76227>>>>>>>            Call_Driver 0 sDRiverID Function CLI_GETMAXUSERS Callback 0 Passing sVoid sVoid 0 Result iRetval
+76232>>>>>>>        End
+76232>>>>>>>>
+76232>>>>>>>
+76232>>>>>>>        Function_Return iRetval
+76233>>>>>>>    End_Function // MaxUsers
+76234>>>>>>>
+76234>>>>>>>
+76234>>>>>>>
+76234>>>>>>>    //***
+76234>>>>>>>    //*** Procedure: DumpStatus
+76234>>>>>>>    //*** Purpose  : Dump the current status of the drver in the passed disk file.
+76234>>>>>>>    //***
+76234>>>>>>>
+76234>>>>>>>    Procedure DumpStatus String sFileName
+76236>>>>>>>        Local String  sVoid
+76236>>>>>>>        Local String  sDriverID
+76236>>>>>>>        Local Integer iVoid
+76236>>>>>>>
+76236>>>>>>>        Get psDriverID To sDriverID
+76237>>>>>>>        If (sDriverID <> "") ;            Call_driver 0 sDriverID Function CLI_DUMPSTATUS Callback 0 Passing sFileName sVoid iVoid Result iVoid
+76244>>>>>>>    End_Procedure // DumpStatus
+76245>>>>>>>
+76245>>>>>>>
+76245>>>>>>>
+76245>>>>>>>    //***
+76245>>>>>>>    //*** Procedure: ReadConfiguration
+76245>>>>>>>    //*** Purpose  : Reset all driver level configurable attributes to the
+76245>>>>>>>    //***            default value and then reread the configuration.
+76245>>>>>>>    //***
+76245>>>>>>>
+76245>>>>>>>    Procedure ReadConfiguration
+76247>>>>>>>        Local String  sVoid
+76247>>>>>>>        Local String  sDriverID
+76247>>>>>>>        Local Integer iVoid
+76247>>>>>>>
+76247>>>>>>>        Get psDriverID To sDriverID
+76248>>>>>>>        If (sDriverID <> "") ;            Call_driver 0 sDriverID Function CLI_READCONFIGURATION Callback 0 Passing sVoid sVoid iVoid Result iVoid
+76255>>>>>>>    End_Procedure // ReadConfiguration
+76256>>>>>>>
+76256>>>>>>>
+76256>>>>>>>
+76256>>>>>>>    //***
+76256>>>>>>>    //*** Function: TextToRIMValue
+76256>>>>>>>    //*** Purpose : Convert a text to the corresponding
+76256>>>>>>>    //***           Generate_Record_ID_Method attribute value
+76256>>>>>>>    //***
+76256>>>>>>>
+76256>>>>>>>    Function TextToRIMValue String sText Returns Integer
+76258>>>>>>>        If (sText = "None") ;            Function_return RIM_NONE
+76261>>>>>>>        Else If (sText = "Identity Column") ;            Function_return RIM_IDENTITY_COLUMN
+76265>>>>>>>        Else If (sText = "Dispenser Table") ;            Function_return RIM_DISPENSER_TABLE
+76269>>>>>>>        Else If (sText = "External") ;            Function_return RIM_EXTERNAL
+76273>>>>>>>    End_Function // TextToRIMValue
+76274>>>>>>>
+76274>>>>>>>
+76274>>>>>>>
+76274>>>>>>>    //***
+76274>>>>>>>    //*** Function: RIMValueTotext
+76274>>>>>>>    //*** Purpose : Convert a Generate_Record_ID_Method attribute value to the
+76274>>>>>>>    //***           corresponding text.
+76274>>>>>>>    //***
+76274>>>>>>>
+76274>>>>>>>    Function RIMValueToText Integer iAttrValue Returns String
+76276>>>>>>>        If (iAttrValue = RIM_NONE) ;            Function_return "None"
+76279>>>>>>>        Else If (iAttrValue = RIM_IDENTITY_COLUMN) ;            Function_return "Identity Column"
+76283>>>>>>>        Else If (iAttrValue = RIM_DISPENSER_TABLE) ;            Function_return "Dispenser Table"
+76287>>>>>>>        Else If (iAttrValue = RIM_EXTERNAL) ;            Function_return "External"
+76291>>>>>>>    End_Function // RIMValueToText
+76292>>>>>>>
+76292>>>>>>>
+76292>>>>>>>
+76292>>>>>>>    //***
+76292>>>>>>>    //*** Function: TextToROValue
+76292>>>>>>>    //*** Purpose : Convert a text to the corresponding
+76292>>>>>>>    //***           Generate_Record_ID_Method attribute value
+76292>>>>>>>    //***
+76292>>>>>>>
+76292>>>>>>>    Function TextToROValue String sText Returns Integer
+76294>>>>>>>        If (sText = "No") ;            Function_return RO_NO
+76297>>>>>>>        Else If (sText = "Ignore Change") ;            Function_return RO_IGNORECHANGE
+76301>>>>>>>        Else If (sText = "Accept Change") ;            Function_return RO_ACCEPTCHANGE
+76305>>>>>>>        Else If (sText = "Error On Change") ;            Function_return RO_ERRORONCHANGE
+76309>>>>>>>    End_Function // TextToRIMValue
+76310>>>>>>>
+76310>>>>>>>
+76310>>>>>>>
+76310>>>>>>>    //***
+76310>>>>>>>    //*** Function: ROValueTotext
+76310>>>>>>>    //*** Purpose : Convert a Generate_Record_ID_Method attribute value to the
+76310>>>>>>>    //***           corresponding text.
+76310>>>>>>>    //***
+76310>>>>>>>
+76310>>>>>>>    Function ROValueToText Integer iAttrValue Returns String
+76312>>>>>>>        If (iAttrValue = RO_NO) ;            Function_return "No"
+76315>>>>>>>        Else If (iAttrValue = RO_IGNORECHANGE) ;            Function_return "Ignore Change"
+76319>>>>>>>        Else If (iAttrValue = RO_ACCEPTCHANGE) ;            Function_return "Accept Change"
+76323>>>>>>>        Else If (iAttrValue = RO_ERRORONCHANGE) ;            Function_return "Error On Change"
+76327>>>>>>>    End_Function // RIMValueToText
+76328>>>>>>>
+76328>>>>>>>
+76328>>>>>>>
+76328>>>>>>>    //***
+76328>>>>>>>    //*** Function: LastDriverError
+76328>>>>>>>    //*** Purpose : Return the text f the last error geneated by the driver.
+76328>>>>>>>    //***
+76328>>>>>>>
+76328>>>>>>>    Function LastDriverError Returns String
+76330>>>>>>>        Local String  sDriverID
+76330>>>>>>>        Local String  sLastError
+76330>>>>>>>        Local String  sLastErrorLength
+76330>>>>>>>        Local Integer iLastErrorLength
+76330>>>>>>>        Local Integer iVoid
+76330>>>>>>>
+76330>>>>>>>        //*** Initialize
+76330>>>>>>>        Move "" To sLastError
+76331>>>>>>>
+76331>>>>>>>        Get psDriverID To sDriverID
+76332>>>>>>>        If (sDriverID <> "") Begin
+76334>>>>>>>            //*** Get the text of the last error
+76334>>>>>>>            Move (Repeat(Character(" "), 14)) To sLastErrorlength
+76335>>>>>>>            Call_driver 0 sDriverID Function CLI_GETDRIVERATTRIBUTE Callback 0 Passing sLastErrorLength iVoid DRVR_LASTERRORTEXTLENGTH Result iVoid
+76340>>>>>>>            Move (Left(sLastErrorLength, Pos(Character(0), sLastErrorLength) - 1)) To iLastErrorLength
+76341>>>>>>>
+76341>>>>>>>            If (iLastErrorLength > 0) Begin
+76343>>>>>>>                Move (Repeat(Character(" "), iLastErrorLength + 1)) To sLastError
+76344>>>>>>>                Call_driver 0 sDriverID Function CLI_GETDRIVERATTRIBUTE Callback 0 Passing sLastError iVoid DRVR_LASTERRORTEXT Result iVoid
+76349>>>>>>>                Move (Left(sLastError, Pos(Character(0), sLastError) - 1)) To sLastError
+76350>>>>>>>            End
+76350>>>>>>>>
+76350>>>>>>>        End
+76350>>>>>>>>
+76350>>>>>>>
+76350>>>>>>>        Function_Return sLastError
+76351>>>>>>>    End_Function // LastDriverError
+76352>>>>>>>
+76352>>>>>>>
+76352>>>>>>>
+76352>>>>>>>    //***
+76352>>>>>>>    //*** Function: EnumerateTables
+76352>>>>>>>    //*** Purpose : Enumerate the tables in a database
+76352>>>>>>>    //***
+76352>>>>>>>
+76352>>>>>>>    Function EnumerateTables String sLogin Returns Integer
+76354>>>>>>>        Local String  sDriver
+76354>>>>>>>        Local String  sVoid
+76354>>>>>>>        Local Integer iNumTables
+76354>>>>>>>        Local Integer iVoid
+76354>>>>>>>
+76354>>>>>>>        Get psDriverID To sDriver
+76355>>>>>>>        If (sDriver <> "") ;            Call_driver 0 sDriver Function CLI_ENUMERATE_TABLES Callback 0 Passing sLogin sVoid iVoid Result iNumTables
+76362>>>>>>>
+76362>>>>>>>        Function_Return iNumTables
+76363>>>>>>>    End_Function // EnumerateTables
+76364>>>>>>>
+76364>>>>>>>
+76364>>>>>>>
+76364>>>>>>>    //***
+76364>>>>>>>    //*** Function: TableName
+76364>>>>>>>    //*** Purpose : Returns the name of the table enumerated at the given position
+76364>>>>>>>    //***
+76364>>>>>>>
+76364>>>>>>>    Function TableName Integer iIndex Returns String
+76366>>>>>>>        Local String  sDriver
+76366>>>>>>>        Local String  sTableName
+76366>>>>>>>        Local String  sVoid
+76366>>>>>>>        Local Integer iVoid
+76366>>>>>>>
+76366>>>>>>>        Get psDriverID To sDriver
+76367>>>>>>>        If (sDriver <> "") Begin
+76369>>>>>>>            Move (Repeat(" ", 255)) To sTableName
+76370>>>>>>>            Call_driver 0 sDriver Function CLI_TABLENAME Callback 0 Passing sTableName sVoid iIndex Result iVoid
+76375>>>>>>>        End
+76375>>>>>>>>
+76375>>>>>>>
+76375>>>>>>>        Function_Return sTableName
+76376>>>>>>>    End_Function // TableName
+76377>>>>>>>
+76377>>>>>>>
+76377>>>>>>>
+76377>>>>>>>    //***
+76377>>>>>>>    //*** Function: SchemaName
+76377>>>>>>>    //*** Purpose : Returns the name of the schema of the table enumerated at the given position
+76377>>>>>>>    //***
+76377>>>>>>>
+76377>>>>>>>    Function SchemaName Integer iIndex Returns String
+76379>>>>>>>        Local String  sDriver
+76379>>>>>>>        Local String  sSchemaName
+76379>>>>>>>        Local String  sVoid
+76379>>>>>>>        Local Integer iVoid
+76379>>>>>>>
+76379>>>>>>>        Get psDriverID To sDriver
+76380>>>>>>>        If (sDriver <> "") Begin
+76382>>>>>>>            Move (Repeat(" ", 255)) To sSchemaName
+76383>>>>>>>            Call_driver 0 sDriver Function CLI_TABLESCHEMA Callback 0 Passing sSchemaName sVoid iIndex Result iVoid
+76388>>>>>>>        End
+76388>>>>>>>>
+76388>>>>>>>
+76388>>>>>>>        Function_Return sSchemaName
+76389>>>>>>>    End_Function // SchemaName
+76390>>>>>>>
+76390>>>>>>>
+76390>>>>>>>
+76390>>>>>>>    //***
+76390>>>>>>>    //*** Function: TableType
+76390>>>>>>>    //*** Purpose : Returns the type of the table enumerated at the given position.
+76390>>>>>>>    //***           Types can be "TABLE", "VIEW", "SYSTEM TABLE", "GLOBAL TEMPORARY",
+76390>>>>>>>    //***           "LOCAL TEMPORARY", "ALIAS", "SYNONYM"
+76390>>>>>>>    //***
+76390>>>>>>>
+76390>>>>>>>    Function TableType Integer iIndex Returns String
+76392>>>>>>>        Local String  sDriver
+76392>>>>>>>        Local String  sTableType
+76392>>>>>>>        Local String  sVoid
+76392>>>>>>>        Local Integer iVoid
+76392>>>>>>>
+76392>>>>>>>        Get psDriverID To sDriver
+76393>>>>>>>        If (sDriver <> "") Begin
+76395>>>>>>>            Move (Repeat(" ", 25)) To sTableType
+76396>>>>>>>            Call_driver 0 sDriver Function CLI_TABLETYPE Callback 0 Passing sTableType sVoid iIndex Result iVoid
+76401>>>>>>>        End
+76401>>>>>>>>
+76401>>>>>>>
+76401>>>>>>>        Function_Return sTableType
+76402>>>>>>>    End_Function // TableType
+76403>>>>>>>
+76403>>>>>>>
+76403>>>>>>>
+76403>>>>>>>    //***
+76403>>>>>>>    //*** Function: TableComment
+76403>>>>>>>    //*** Purpose : Returns the comment of the table enumerated at the given position
+76403>>>>>>>    //***
+76403>>>>>>>
+76403>>>>>>>    Function TableComment Integer iIndex Returns String
+76405>>>>>>>        Local String  sDriver
+76405>>>>>>>        Local String  sTableComment
+76405>>>>>>>        Local String  sVoid
+76405>>>>>>>        Local Integer iVoid
+76405>>>>>>>
+76405>>>>>>>        Get psDriverID To sDriver
+76406>>>>>>>        If (sDriver <> "") Begin
+76408>>>>>>>            Move (Repeat(" ", 255)) To sTableComment
+76409>>>>>>>            Call_driver 0 sDriver Function CLI_TABLECOMMENT Callback 0 Passing sTableComment sVoid iIndex Result iVoid
+76414>>>>>>>        End
+76414>>>>>>>>
+76414>>>>>>>
+76414>>>>>>>        Function_Return sTableComment
+76415>>>>>>>    End_Function // TableComment
+76416>>>>>>>
+76416>>>>>>>
+76416>>>>>>>
+76416>>>>>>>    //***
+76416>>>>>>>    //*** Function: EnumerateColumns
+76416>>>>>>>    //*** Purpose : Enumerate the columns in a table
+76416>>>>>>>    //***
+76416>>>>>>>
+76416>>>>>>>    Function EnumerateColumns String sLogin String sTableName Returns Integer
+76418>>>>>>>        Local String  sDriver
+76418>>>>>>>        Local Integer iNumColumns
+76418>>>>>>>        Local Integer iVoid
+76418>>>>>>>
+76418>>>>>>>        Get psDriverID To sDriver
+76419>>>>>>>        If (sDriver <> "") ;            Call_driver 0 sDriver Function CLI_ENUMERATE_COLUMNS Callback 0 Passing sLogin sTablename iVoid Result iNumColumns
+76426>>>>>>>
+76426>>>>>>>        Function_Return iNumColumns
+76427>>>>>>>    End_Function // EnumerateColumns
+76428>>>>>>>
+76428>>>>>>>
+76428>>>>>>>
+76428>>>>>>>    //***
+76428>>>>>>>    //*** Function: ColumnName
+76428>>>>>>>    //*** Purpose : Returns the name of the column enumerated at the given position
+76428>>>>>>>    //***
+76428>>>>>>>
+76428>>>>>>>    Function ColumnName Integer iIndex Returns String
+76430>>>>>>>        Local String  sDriver
+76430>>>>>>>        Local String  sColumnName
+76430>>>>>>>        Local String  sVoid
+76430>>>>>>>        Local Integer iVoid
+76430>>>>>>>
+76430>>>>>>>        Get psDriverID To sDriver
+76431>>>>>>>        If (sDriver <> "") Begin
+76433>>>>>>>            Move (Repeat(" ", 255)) To sColumnName
+76434>>>>>>>            Call_driver 0 sDriver Function CLI_COLUMNNAME Callback 0 Passing sColumnName sVoid iIndex Result iVoid
+76439>>>>>>>        End
+76439>>>>>>>>
+76439>>>>>>>
+76439>>>>>>>        Function_Return sColumnName
+76440>>>>>>>    End_Function // ColumnName
+76441>>>>>>>
+76441>>>>>>>
+76441>>>>>>>
+76441>>>>>>>    //***
+76441>>>>>>>    //*** Function: CLIDFDateToSQLDate
+76441>>>>>>>    //*** Purpose : Convert a DataFlex date to a SQL date using the dummy zero date value.
+76441>>>>>>>    //***
+76441>>>>>>>
+76441>>>>>>>    Function CLIDFDateToSQLDate String sDRiver Date dDFDate Returns String
+76443>>>>>>>        Local String sSQLDate
+76443>>>>>>>        Local Integer iOrgDateFmt
+76443>>>>>>>        Local Integer iOrgDateSep
+76443>>>>>>>
+76443>>>>>>>        //*** Change date format to military, SQL dates are military dates
+76443>>>>>>>        Get_Attribute DF_DATE_FORMAT To iOrgDateFmt
+76446>>>>>>>        Get_Attribute DF_DATE_SEPARATOR To iOrgDateSep
+76449>>>>>>>        Set_Attribute DF_DATE_FORMAT To DF_DATE_MILITARY
+76452>>>>>>>        Set_Attribute DF_DATE_SEPARATOR To (Ascii('-'))
+76455>>>>>>>
+76455>>>>>>>        //*** We only need to convert if the date is 0
+76455>>>>>>>        If (Integer(dDFDate = 0)) ;            CLI_Get_Driver_Attribute sDRiver DRVR_DUMMY_ZERO_DATE_VALUE To sSQLDate
+76464>>>>>>>        Else ;            Move dDFDate To sSQLDate
+76466>>>>>>>
+76466>>>>>>>        //*** Change date format back to original
+76466>>>>>>>        Set_Attribute DF_DATE_FORMAT To iOrgDateFmt
+76469>>>>>>>        Set_Attribute DF_DATE_SEPARATOR To iOrgDateSep
+76472>>>>>>>
+76472>>>>>>>        Function_Return sSQLDate
+76473>>>>>>>    End_Function // CLIDFDateToSQLDate
+76474>>>>>>>
+76474>>>>>>>
+76474>>>>>>>
+76474>>>>>>>    //***
+76474>>>>>>>    //*** Function: CLISQLDateToDFDate
+76474>>>>>>>    //*** Purpose : Convert a SQL date to a DataFlex date using the dummy zero date value.
+76474>>>>>>>    //***
+76474>>>>>>>
+76474>>>>>>>    Function CLISQLDateToDFDate String sDRiver String sSQLDate Returns Date
+76476>>>>>>>        Local Date dDFDate
+76476>>>>>>>        Local String sDummyDateValue
+76476>>>>>>>        Local Integer iOrgDateFmt
+76476>>>>>>>        Local Integer iOrgDateSep
+76476>>>>>>>
+76476>>>>>>>        //*** Change date format to military, SQL dates are military dates
+76476>>>>>>>        Get_Attribute DF_DATE_FORMAT To iOrgDateFmt
+76479>>>>>>>        Get_Attribute DF_DATE_SEPARATOR To iOrgDateSep
+76482>>>>>>>        Set_Attribute DF_DATE_FORMAT To DF_DATE_MILITARY
+76485>>>>>>>        Set_Attribute DF_DATE_SEPARATOR To (Ascii('-'))
+76488>>>>>>>
+76488>>>>>>>        //*** We only need to convert if the date is the dummy zero date value
+76488>>>>>>>        CLI_Get_Driver_Attribute sDRiver DRVR_DUMMY_ZERO_DATE_VALUE To sDummyDateValue
+76495>>>>>>>        If (sDummyDateValue = sSQLDate) ;            Move 0 To dDFDate
+76498>>>>>>>        Else ;            Move sSQLDate To dDFDate
+76500>>>>>>>
+76500>>>>>>>        //*** Change date format back to original
+76500>>>>>>>        Set_Attribute DF_DATE_FORMAT To iOrgDateFmt
+76503>>>>>>>        Set_Attribute DF_DATE_SEPARATOR To iOrgDateSep
+76506>>>>>>>
+76506>>>>>>>        Function_Return dDFDate
+76507>>>>>>>    End_Function // CLISQLDateToDFDate
+76508>>>>>>>
+76508>>>>>>>
+76508>>>>>>>
+76508>>>>>>>    //***
+76508>>>>>>>    //*** Function: RedirectConnection
+76508>>>>>>>    //*** Purpose : Redirect an exisitng connection. The existing connection
+76508>>>>>>>    //***           will point to another database but all tables will stay
+76508>>>>>>>    //***           open!
+76508>>>>>>>    //***
+76508>>>>>>>
+76508>>>>>>>    Function RedirectConnection String sOldConnection String sNewConnection Returns Integer
+76510>>>>>>>        Local String  sDriver
+76510>>>>>>>        Local String  sVoid
+76510>>>>>>>        Local Integer iResult
+76510>>>>>>>        Local Integer iVoid
+76510>>>>>>>
+76510>>>>>>>        Get psDriverID To sDriver
+76511>>>>>>>        If (sDriver <> "") Begin
+76513>>>>>>>            Call_driver 0 sDriver Function CLI_REDIRECTCONNECTION Callback 0 Passing sOldConnection sNewConnection iVoid Result iResult
+76518>>>>>>>        End
+76518>>>>>>>>
+76518>>>>>>>        Function_Return iResult
+76519>>>>>>>    End_Function // RedirectConnect
+76520>>>>>>>
+76520>>>>>>>
+76520>>>>>>>
+76520>>>>>>>    //***
+76520>>>>>>>    //*** Function: CreateConnectionID
+76520>>>>>>>    //*** Purpose : Create a DataFlex side connection id that can be used later on.
+76520>>>>>>>    //***
+76520>>>>>>>
+76520>>>>>>>    Function CreateConnectionID String sID String sConnStr Integer iOpt Returns Integer
+76522>>>>>>>        Local String  sDriver
+76522>>>>>>>        Local Integer iResult
+76522>>>>>>>        Local Integer iOptions
+76522>>>>>>>
+76522>>>>>>>        Get psDriverID to sDriver
+76523>>>>>>>        If (Num_Arguments = 2) ;            Move 0 to iOptions
+76526>>>>>>>        Else ;            Move iOpt to iOptions
+76528>>>>>>>        If (sDriver <> "") Begin
+76530>>>>>>>            Call_Driver 0 sDriver Function CLI_CREATECONNECTIONID Callback 0 Passing sID sConnStr iOptions Result iResult
+76535>>>>>>>        End
+76535>>>>>>>>
+76535>>>>>>>        Function_Return iResult
+76536>>>>>>>    End_Function // CreateConnectionID
+76537>>>>>>>
+76537>>>>>>>
+76537>>>>>>>
+76537>>>>>>>    //***
+76537>>>>>>>    //*** Function: DeleteConnectionID
+76537>>>>>>>    //*** Purpose : Delete a DataFlex side connection id.
+76537>>>>>>>    //***
+76537>>>>>>>
+76537>>>>>>>    Function DeleteConnectionID String sID Integer iIndex Returns Integer
+76539>>>>>>>        Local String  sDriver
+76539>>>>>>>        Local Integer iResult
+76539>>>>>>>        Local String sVoid
+76539>>>>>>>
+76539>>>>>>>        Get psDriverID To sDriver
+76540>>>>>>>        If (sDriver <> "") Begin
+76542>>>>>>>            Call_Driver 0 sDriver Function CLI_DELETECONNECTIONID Callback 0 Passing sID sVoid iIndex Result iResult
+76547>>>>>>>        End
+76547>>>>>>>>
+76547>>>>>>>        Function_Return iResult
+76548>>>>>>>    End_Function // DeleteConnectionID
+76549>>>>>>>
+76549>>>>>>>End_Class // cCLIHandler
+76550>>>>>Use DFBTRDRV.PKG
+Including file: DFBTRDRV.PKG    (C:\Program Files (x86)\DataFlex 18.2\Pkg\DFBTRDRV.PKG)
+76550>>>>>>>//****************************************************************************
+76550>>>>>>>//
+76550>>>>>>>// $File name  : DFBTRDRV.PKG
+76550>>>>>>>// $File title : Package for the DataFlex Connectivity Kit for Pervasive.SQL
+76550>>>>>>>// Notice      : This package contains constants and commands, used to call
+76550>>>>>>>//               specific functions in the DFBTRDRV.
+76550>>>>>>>// $Author(s)  : Eddy Kleinjan
+76550>>>>>>>//
+76550>>>>>>>// $System     : DataFlex Connectivity Kit for Pervasive.SQL
+76550>>>>>>>// Created     : 01-07-97 @ 12:00:00
+76550>>>>>>>//
+76550>>>>>>>// Changed     : 04-04-2001.
+76550>>>>>>>//               DataFlex Connectity Kit for Pervasive.SQL version 1.3.0.145
+76550>>>>>>>//
+76550>>>>>>>// Changed     : June 6, 2001
+76550>>>>>>>//               DataFlex Connectity Kit for Pervasive.SQL version 1.3.0.148
+76550>>>>>>>//
+76550>>>>>>>//               Added DFBTR_DDF_OWNER command.
+76550>>>>>>>//
+76550>>>>>>>// Changed     : June 12, 2001
+76550>>>>>>>//               DataFlex Connectity Kit for Pervasive.SQL version 1.3.0.149
+76550>>>>>>>//
+76550>>>>>>>//               Added DF_FIELD_IS_NULL and DF_FIELD_NULL_ALLOWED attributes
+76550>>>>>>>//
+76550>>>>>>>// Changed     : August 4, 2004
+76550>>>>>>>//               DataFlex Connectity Kit for Pervasive.SQL version 3.0.0.1
+76550>>>>>>>//
+76550>>>>>>>//               Added cDfbtrdrvHandler class.
+76550>>>>>>>//               New functions in this class:
+76550>>>>>>>//                  Function CKRevision Returns String
+76550>>>>>>>//                  Function CkUsesUri Returns Integer
+76550>>>>>>>//                  Function PSQLRequesterVersionInfo Integer iFileNum Returns String
+76550>>>>>>>//                  Function PSQLLocalEngineVersionInfo Integer iFileNum Returns String
+76550>>>>>>>//                  Function PSQLServerEngineVersionInfo Integer iFileNum Returns String
+76550>>>>>>>//
+76550>>>>>>>// Changed     : September 30, 2005
+76550>>>>>>>//               DataFlex Connectity Kit for Pervasive.SQL version 3.0.0.14
+76550>>>>>>>//
+76550>>>>>>>//               Bugfix: Prevent compiler errors when no (df)error.pkg is used
+76550>>>>>>>//****************************************************************************
+76550>>>>>>>Use Ui
+76550>>>>>>>//
+76550>>>>>>>// Driver Indentification
+76550>>>>>>>//
+76550>>>>>>>
+76550>>>>>>>//*** Driver attributes
+76550>>>>>>>//
+76550>>>>>>>// Call_Driver functions ID's
+76550>>>>>>>//
+76550>>>>>>>//
+76550>>>>>>>// DFBTRFN_CONVERT_FILE options
+76550>>>>>>>//
+76550>>>>>>>
+76550>>>>>>>//
+76550>>>>>>>// DFBTRFN_SET_OWNER options
+76550>>>>>>>//
+76550>>>>>>>
+76550>>>>>>>//
+76550>>>>>>>// DFBTRFN_SET_TRANSACTION_TYPE options
+76550>>>>>>>//
+76550>>>>>>>
+76550>>>>>>>
+76550>>>>>>>//
+76550>>>>>>>// Command to create all vars which may be needed
+76550>>>>>>>// in other commands.
+76550>>>>>>>//
+76550>>>>>>>
+76550>>>>>>>
+76550>>>>>>>
+76550>>>>>>>//
+76550>>>>>>>// Command to set the owner of a Btrieve file.
+76550>>>>>>>// File must have been opened.
+76550>>>>>>>// Filenumber needs to be passed.
+76550>>>>>>>// To clear set the owner to "".
+76550>>>>>>>// Examples:
+76550>>>>>>>//      DFBTR_SET_OWNER MyFileNumber to "Secret"
+76550>>>>>>>//      DFBTR_SET_OWNER MyFileNumber to "Secret" READONLY CALLBACK MyCallBack
+76550>>>>>>>//      DFBTR_SET_OWNER MyFileNumber to "Secret" ENCRYPT
+76550>>>>>>>//      DFBTR_SET_OWNER MyFileNumber to "Secret" READONLY ENCRYPT CALLBACK MyCallBack
+76550>>>>>>>// To clear:
+76550>>>>>>>//      DFBTR_SET_OWNER MyFileNumber to ""
+76550>>>>>>>//
+76550>>>>>>>
+76550>>>>>>>
+76550>>>>>>>
+76550>>>>>>>//
+76550>>>>>>>// Command to parse DFBTR_SET_OWNVER
+76550>>>>>>>// options.
+76550>>>>>>>//
+76550>>>>>>>
+76550>>>>>>>
+76550>>>>>>>
+76550>>>>>>>//
+76550>>>>>>>// Command to parse for Callback
+76550>>>>>>>//
+76550>>>>>>>
+76550>>>>>>>
+76550>>>>>>>
+76550>>>>>>>//
+76550>>>>>>>// Command to clear the owner of a Btrieve file.
+76550>>>>>>>// File must have been opened.
+76550>>>>>>>// Filenumber needs to be passed.
+76550>>>>>>>// Examples:
+76550>>>>>>>//      DFBTR_CLEAR_OWNER MyFileNumber
+76550>>>>>>>//
+76550>>>>>>>
+76550>>>>>>>
+76550>>>>>>>
+76550>>>>>>>//
+76550>>>>>>>// Command to add a owner name to the internal list of ownernames
+76550>>>>>>>// which will be tries when opening files.
+76550>>>>>>>//
+76550>>>>>>>
+76550>>>>>>>
+76550>>>>>>>
+76550>>>>>>>//
+76550>>>>>>>// Command to remove all owners from the internal list of ownernames
+76550>>>>>>>//
+76550>>>>>>>
+76550>>>>>>>
+76550>>>>>>>//
+76550>>>>>>>// Command to set the owner name to be used when opening the DDF files.
+76550>>>>>>>// The DDF owner is required when Pervasive.SQL security is turned on.
+76550>>>>>>>// The DDF owner is equal to the password of the Master user in Pervasive.SQL
+76550>>>>>>>// This command overwrites the DDF_OWNER setting in DFBTRDRV.INT
+76550>>>>>>>//
+76550>>>>>>>
+76550>>>>>>>//
+76550>>>>>>>// Command to change the transaction type.
+76550>>>>>>>// Valid types are:
+76550>>>>>>>//     DFBTRTT_NONE
+76550>>>>>>>//     DFBTRTT_EXCLUSIVE
+76550>>>>>>>//     DFBTRTT_CONCURRENT
+76550>>>>>>>//
+76550>>>>>>>//
+76550>>>>>>>
+76550>>>>>>>
+76550>>>>>>>
+76550>>>>>>>//
+76550>>>>>>>// Command to get the current transaction type.
+76550>>>>>>>//
+76550>>>>>>>
+76550>>>>>>>//
+76550>>>>>>>// Command to set explicit_locking
+76550>>>>>>>//
+76550>>>>>>>
+76550>>>>>>>//
+76550>>>>>>>// Command to get explicit locking
+76550>>>>>>>//
+76550>>>>>>>
+76550>>>>>>>//
+76550>>>>>>>// Command to set detection for incompatible positive signs in numeric fields
+76550>>>>>>>//
+76550>>>>>>>
+76550>>>>>>>//
+76550>>>>>>>// Command to get detection for incompatible positive signs in numeric fields
+76550>>>>>>>//
+76550>>>>>>>
+76550>>>>>>>//*****************************************************************************
+76550>>>>>>>//*** Class  : cDfbtrdrvHandler                                                  ***
+76550>>>>>>>//*** Purpose: An instance of this class can be used as a broker object to  ***
+76550>>>>>>>//***          call several Dfbtrdrv releated methods.                           ***
+76550>>>>>>>//*****************************************************************************
+76550>>>>>>>
+76550>>>>>>>Class cDFBtrDrvHandler Is An Array
+76551>>>>>>>
+76551>>>>>>>    Procedure Construct_Object Integer iImage
+76553>>>>>>>        Forward Send Construct_object iImage
+76555>>>>>>>
+76555>>>>>>>        Property String  psDriverID       Public "DFBTRDRV"
+76556>>>>>>>    End_Procedure // Construct_Object
+76557>>>>>>>
+76557>>>>>>>
+76557>>>>>>>
+76557>>>>>>>    //***
+76557>>>>>>>    //*** Function: CKRevsion
+76557>>>>>>>    //*** Purpose : The revsion of a Dfbtrdrv Connectivity Kit
+76557>>>>>>>    //***
+76557>>>>>>>
+76557>>>>>>>    Function CKRevision Returns String
+76559>>>>>>>        Local String  sDriverID
+76559>>>>>>>        Local String  sRevision
+76559>>>>>>>        Local String  sVoid
+76559>>>>>>>        Local Integer iRetval
+76559>>>>>>>
+76559>>>>>>>        // Ignore error 20491 DFBTRERR_INVALID_DRIVER_FUNCTION_CALL.
+76559>>>>>>>        // This error would otherwise be raised when we have an older
+76559>>>>>>>        // DFBTRDRV version that has no DFBTRFN_CKREVISION function
+76559>>>>>>>        Send Ignore_error To Error_object_Id 20491
+76560>>>>>>>        Get psDriverID To sDriverID
+76561>>>>>>>        Move (Repeat(" ", 255)) To sRevision
+76562>>>>>>>        Call_Driver 0 sDRiverID Function DFBTRFN_CKREVISION Callback 0 Passing sRevision sVoid 0 Result iRetval
+76567>>>>>>>        Send Trap_Error To Error_object_Id 20491
+76568>>>>>>>        If (Trim(sRevision) = "") Begin
+76570>>>>>>>            // Unable to get the revision. return all zeroes.
+76570>>>>>>>            Move "0.0.0.0" To sRevision
+76571>>>>>>>        End
+76571>>>>>>>>
+76571>>>>>>>        Function_Return sRevision
+76572>>>>>>>    End_Function // CKRevision
+76573>>>>>>>
+76573>>>>>>>    Function CkUsesUri Returns Integer
+76575>>>>>>>        Local String  sDriverID
+76575>>>>>>>        Local String  sVoid1
+76575>>>>>>>        Local String  sVoid2
+76575>>>>>>>        Local Integer iRetval
+76575>>>>>>>
+76575>>>>>>>        Get psDriverID To sDriverID
+76576>>>>>>>
+76576>>>>>>>        Move 0 To iRetval
+76577>>>>>>>        // Ignore error 20491 DFBTRERR_INVALID_DRIVER_FUNCTION_CALL.
+76577>>>>>>>        // This error would otherwise be raised when we have an older
+76577>>>>>>>        // DFBTRDRV version that has no DFBTRFN_CKUSESURI function
+76577>>>>>>>        Send Ignore_error To Error_object_Id 20491
+76578>>>>>>>        Call_Driver 0 sDRiverID Function DFBTRFN_CKUSESURI Callback 0 Passing sVoid1 sVoid2 0 Result iRetval
+76583>>>>>>>        Send Trap_Error To Error_object_Id 20491
+76584>>>>>>>
+76584>>>>>>>        Function_Return iRetval
+76585>>>>>>>    End_Function // CKUsesUri
+76586>>>>>>>
+76586>>>>>>>
+76586>>>>>>>
+76586>>>>>>>    //***
+76586>>>>>>>    //*** Function: ExtractPartFromRevsion
+76586>>>>>>>    //*** Purpose : Extarct the Nth part of a a.b.c.d revsion string.
+76586>>>>>>>    //***
+76586>>>>>>>    //*** Returns : The part version number or -1 if there is no such part number.
+76586>>>>>>>    //***
+76586>>>>>>>
+76586>>>>>>>    Function ExtractPartFromRevision Integer iPartNum String sRevision Returns Integer
+76588>>>>>>>        Local Integer iPartRev
+76588>>>>>>>        Local Integer iCurrentPart
+76588>>>>>>>        Local Integer iSeparatorPos
+76588>>>>>>>
+76588>>>>>>>        If (iPartNum > 4) ;            Function_Return -1
+76591>>>>>>>
+76591>>>>>>>        Move 0 To iCurrentPart
+76592>>>>>>>        Repeat
+76592>>>>>>>>
+76592>>>>>>>            Move (Pos(".", sRevision)) To iSeparatorPos
+76593>>>>>>>            If (iSeparatorPos > 0) Begin
+76595>>>>>>>                Move (Left(sRevision, iSeparatorPos - 1)) To iPartRev
+76596>>>>>>>                Move (Right(sRevision, Length(sRevision) - iSeparatorPos)) To sRevision
+76597>>>>>>>                Increment iCurrentPart
+76598>>>>>>>            End
+76598>>>>>>>>
+76598>>>>>>>            Else If (sRevision <> "") Begin
+76601>>>>>>>                Move sRevision To iPartRev
+76602>>>>>>>                Move "" To sRevision
+76603>>>>>>>                Increment iCurrentPart
+76604>>>>>>>            End
+76604>>>>>>>>
+76604>>>>>>>            Else ;                Move -1 To iPartRev
+76606>>>>>>>        Until (iCurrentPart >= iPartNum Or iPartRev = -1)
+76608>>>>>>>
+76608>>>>>>>        Function_Return iPartRev
+76609>>>>>>>    End_Function // EcxtractPartFromRevision
+76610>>>>>>>
+76610>>>>>>>
+76610>>>>>>>
+76610>>>>>>>    //***
+76610>>>>>>>    //*** Function: CKMajorRevision
+76610>>>>>>>    //*** Purpose : Returns the major revision of the CK
+76610>>>>>>>    //***
+76610>>>>>>>
+76610>>>>>>>    Function CKMajorRevision Returns Integer
+76612>>>>>>>        Function_Return (ExtractPartFromRevision (Current_Object, 1, CKRevision(Current_Object)))
+76613>>>>>>>    End_Function // CKMajorRevision
+76614>>>>>>>
+76614>>>>>>>
+76614>>>>>>>
+76614>>>>>>>    //***
+76614>>>>>>>    //*** Function: CKMinorRevision
+76614>>>>>>>    //*** Purpose : Returns the minor revision of the CK
+76614>>>>>>>    //***
+76614>>>>>>>
+76614>>>>>>>    Function CKMinorRevision Returns Integer
+76616>>>>>>>        Function_Return (ExtractPartFromRevision (Current_Object, 2, CKRevision(Current_Object)))
+76617>>>>>>>    End_Function // CKMinorRevision
+76618>>>>>>>
+76618>>>>>>>
+76618>>>>>>>
+76618>>>>>>>    //***
+76618>>>>>>>    //*** Function: CKReleaseRevision
+76618>>>>>>>    //*** Purpose : Returns the release revision of the CK
+76618>>>>>>>    //***
+76618>>>>>>>
+76618>>>>>>>    Function CKReleaseRevision Returns Integer
+76620>>>>>>>        Function_Return (ExtractPartFromRevision (Current_Object, 3, CKRevision(Current_Object)))
+76621>>>>>>>    End_Function // CKReleaseRevision
+76622>>>>>>>
+76622>>>>>>>
+76622>>>>>>>
+76622>>>>>>>    //***
+76622>>>>>>>    //*** Function: CKBuildRevision
+76622>>>>>>>    //*** Purpose : Returns the major revision of the CK
+76622>>>>>>>    //***
+76622>>>>>>>
+76622>>>>>>>    Function CKBuildRevision Returns Integer
+76624>>>>>>>        Function_Return (ExtractPartFromRevision (Current_Object, 4, CKRevision(Current_Object)))
+76625>>>>>>>    End_Function // CKBuildRevision
+76626>>>>>>>
+76626>>>>>>>
+76626>>>>>>>
+76626>>>>>>>    //***
+76626>>>>>>>    //*** Function: IsMinimalRevision
+76626>>>>>>>    //*** Purpose : Determines if the CK conforms to a passed minimal revsion.
+76626>>>>>>>    //***
+76626>>>>>>>
+76626>>>>>>>    Function IsMinimalRevision Integer iMajor Integer iMinor Integer iRelease Integer iBuild Returns Integer
+76628>>>>>>>        If (iMajor < CKMajorRevision(Current_object)) ;            Function_return (TRUE)
+76631>>>>>>>        Else If (iMajor = CKMajorRevision(Current_object)) Begin
+76634>>>>>>>            If (iMinor < CKMinorRevision(Current_object)) ;                Function_return (TRUE)
+76637>>>>>>>            Else If (iMinor = CKMinorRevision(Current_object)) Begin
+76640>>>>>>>                If (iRelease < CKReleaseRevision(Current_object)) ;                    Function_return (TRUE)
+76643>>>>>>>                Else If (iRelease = CKReleaseRevision(Current_object) And iBuild <= CKBuildRevision(Current_object)) ;                    Function_return (TRUE)
+76647>>>>>>>            End
+76647>>>>>>>>
+76647>>>>>>>        End
+76647>>>>>>>>
+76647>>>>>>>
+76647>>>>>>>        Function_Return (FALSE)
+76648>>>>>>>    End_Function // IsMinimalRevision
+76649>>>>>>>
+76649>>>>>>>    //   Functions to query the Pervasive.SQL version:
+76649>>>>>>>    //       PSQLRequesterVersionInfo    Integer iFileNum Returns String
+76649>>>>>>>    //       PSQLLocalEngineVersionInfo  Integer iFileNum Returns String
+76649>>>>>>>    //       PSQLServerEngineVersionInfo Integer iFileNum Returns String
+76649>>>>>>>    //
+76649>>>>>>>    //   All 3 functions return the version of a Pervasive.SQL component
+76649>>>>>>>    //   in the following format:
+76649>>>>>>>    //       <version>.<revision>.<type>
+76649>>>>>>>    //   possible values for <type>:
+76649>>>>>>>    //       9 for 32-bit Windows workstation/workgroup engine or Linux
+76649>>>>>>>    //         server using Workgroup authentication mode
+76649>>>>>>>    //       C for client cache engine
+76649>>>>>>>    //       D for DOS workstation
+76649>>>>>>>    //       N for client Requester
+76649>>>>>>>    //       S for NetWare server
+76649>>>>>>>    //       T for 32-bit Windows server engine
+76649>>>>>>>    //       U for Linux server using PAM or BTPASSWD authentication
+76649>>>>>>>    //
+76649>>>>>>>    //   example:
+76649>>>>>>>    //       8.50.T
+76649>>>>>>>    //   will be returned for a Pervasive.SQL 8.5 Server Engine running on
+76649>>>>>>>    //   32-bits Windows server.
+76649>>>>>>>    //
+76649>>>>>>>    //   The FileNumber parameter must specify an opened table or 0.
+76649>>>>>>>    //   For PSQLServerEngineVersionInfo the FileNumber can not be 0.
+76649>>>>>>>    //
+76649>>>>>>>    //   If the version information is not available or can not be obtained
+76649>>>>>>>    //   the functions will return "0.0.0"
+76649>>>>>>>
+76649>>>>>>>
+76649>>>>>>>    //***
+76649>>>>>>>    //*** Function: PSQLRequesterVersionInfo
+76649>>>>>>>    //*** Purpose : Returns the version information of the
+76649>>>>>>>    //***           Pervasive.SQL Client requester.
+76649>>>>>>>
+76649>>>>>>>    Function PSQLRequesterVersionInfo Integer iFileNum Returns String
+76651>>>>>>>
+76651>>>>>>>        Local String  sDriverID
+76651>>>>>>>        Local String  sVersion
+76651>>>>>>>        Local String  sVoid
+76651>>>>>>>        Local Integer iRetval
+76651>>>>>>>
+76651>>>>>>>        // Ignore error 20491 DFBTRERR_INVALID_DRIVER_FUNCTION_CALL.
+76651>>>>>>>        // This error would otherwise be raised when we have an older
+76651>>>>>>>        // DFBTRDRV version that has no DFBTRFN_CKREVISION function
+76651>>>>>>>        Send Ignore_error To Error_object_Id 20491
+76652>>>>>>>        Get psDriverID To sDriverID
+76653>>>>>>>        Move (Repeat(" ", 255)) To sVersion
+76654>>>>>>>        Call_Driver iFileNum sDRiverID Function DFBTRFN_PSQLREQUESTERVERSIONINFO Callback 0 Passing sVersion sVoid 0 Result iRetval
+76659>>>>>>>        Send Trap_Error To Error_object_Id 20491
+76660>>>>>>>        If (Trim(sVersion) = "") Begin
+76662>>>>>>>            // Unable to get the revision. return all zeroes.
+76662>>>>>>>            Move "0.0.0" To sVersion
+76663>>>>>>>        End
+76663>>>>>>>>
+76663>>>>>>>        Function_Return sVersion
+76664>>>>>>>    End_Function //  PSQLRequesterVersion
+76665>>>>>>>
+76665>>>>>>>    //***
+76665>>>>>>>    //*** Function: PSQLLocalEngineVersionInfo
+76665>>>>>>>    //*** Purpose : Returns the version information of the
+76665>>>>>>>    //***           Pervasive.SQL Local Engine
+76665>>>>>>>
+76665>>>>>>>    Function PSQLLocalEngineVersionInfo Integer iFileNum Returns String
+76667>>>>>>>
+76667>>>>>>>        Local String  sDriverID
+76667>>>>>>>        Local String  sVersion
+76667>>>>>>>        Local String  sVoid
+76667>>>>>>>        Local Integer iRetval
+76667>>>>>>>
+76667>>>>>>>        // Ignore error 20491 DFBTRERR_INVALID_DRIVER_FUNCTION_CALL.
+76667>>>>>>>        // This error would otherwise be raised when we have an older
+76667>>>>>>>        // DFBTRDRV version that has no DFBTRFN_CKREVISION function
+76667>>>>>>>        Send Ignore_error To Error_object_Id 20491
+76668>>>>>>>        Get psDriverID To sDriverID
+76669>>>>>>>        Move (Repeat(" ", 255)) To sVersion
+76670>>>>>>>        Call_Driver iFileNum sDRiverID Function DFBTRFN_PSQLLOCALENGINEVERSIONINFO Callback 0 Passing sVersion sVoid 0 Result iRetval
+76675>>>>>>>        Send Trap_Error To Error_object_Id 20491
+76676>>>>>>>        If (Trim(sVersion) = "") Begin
+76678>>>>>>>            // Unable to get the revision. return all zeroes.
+76678>>>>>>>            Move "0.0.0" To sVersion
+76679>>>>>>>        End
+76679>>>>>>>>
+76679>>>>>>>        Function_Return sVersion
+76680>>>>>>>    End_Function //  PSQLLocalEngineVersion
+76681>>>>>>>
+76681>>>>>>>    //***
+76681>>>>>>>    //*** Function: PSQLServerEngineVersionInfo
+76681>>>>>>>    //*** Purpose : Returns the version information of the
+76681>>>>>>>    //***           Pervasive.SQL Server Engine
+76681>>>>>>>
+76681>>>>>>>    Function PSQLServerEngineVersionInfo Integer iFileNum Returns String
+76683>>>>>>>
+76683>>>>>>>        Local String  sDriverID
+76683>>>>>>>        Local String  sVersion
+76683>>>>>>>        Local String  sVoid
+76683>>>>>>>        Local Integer iRetval
+76683>>>>>>>
+76683>>>>>>>        // Ignore error 20491 DFBTRERR_INVALID_DRIVER_FUNCTION_CALL.
+76683>>>>>>>        // This error would otherwise be raised when we have an older
+76683>>>>>>>        // DFBTRDRV version that has no DFBTRFN_CKREVISION function
+76683>>>>>>>        Send Ignore_error To Error_object_Id 20491
+76684>>>>>>>        Get psDriverID To sDriverID
+76685>>>>>>>        Move (Repeat(" ", 255)) To sVersion
+76686>>>>>>>        Call_Driver iFileNum sDRiverID Function DFBTRFN_PSQLSERVERENGINEVERSIONINFO Callback 0 Passing sVersion sVoid 0 Result iRetval
+76691>>>>>>>        Send Trap_Error To Error_object_Id 20491
+76692>>>>>>>        If (Trim(sVersion) = "") Begin
+76694>>>>>>>            // Unable to get the revision. return all zeroes.
+76694>>>>>>>            Move "0.0.0" To sVersion
+76695>>>>>>>        End
+76695>>>>>>>>
+76695>>>>>>>        Function_Return sVersion
+76696>>>>>>>    End_Function //  PSQLServerEngineVersion
+76697>>>>>>>
+76697>>>>>>>End_Class // cDfbtrdrvHandler
+76698>>>>>>>
+76698>>>>>
+76698>>>>>
+76698>>>>>External_Function WNetGetUser "WNetGetUserA" MPR.DLL Pointer lpName Pointer lpUser_Name Pointer lpLength Returns DWord
+76699>>>>>
+76699>>>>>Register_Function phoWorkspace Returns Handle
+76699>>>>>Register_Function Help_filename Returns String
+76699>>>>>Register_Function GetHelpFile Returns String
+76699>>>>>Register_Function pbEnterKeyAsTabKey Returns Boolean
+76699>>>>>
+76699>>>>>//****************************************************************************
+76699>>>>>// $Module type: FUNCTION
+76699>>>>>// $Module name: Network_User_Name
+76699>>>>>// $Author     : AK/VOO/KCR
+76699>>>>>// Created     : 09-24-96 @ 19:17
+76699>>>>>//
+76699>>>>>// Description
+76699>>>>>//    This function reads the current username Of windows and returns that
+76699>>>>>//    name or an text unknown user
+76699>>>>>//
+76699>>>>>// $Rev History
+76699>>>>>//  02/22/2012  Ask Windows how long the size of the name should be
+76699>>>>>//  07/25/2003  Replaced obsolete code
+76699>>>>>//  09/24/1996  Module header created
+76699>>>>>//****************************************************************************
+76699>>>>>Function Network_User_Name for cDesktop Returns String
+76701>>>>>    String sName
+76701>>>>>    Integer iRetval iLength
+76701>>>>>
+76701>>>>>    Move 0 to iLength
+76702>>>>>    Move (WNetGetUser (0, 0, AddressOf (iLength))) to iRetval
+76703>>>>>    ZeroString iLength to sName
+76704>>>>>    Move (WNetGetUser (0, AddressOf (sName), AddressOf (iLength))) to iRetval
+76705>>>>>
+76705>>>>>    If (iRetval = NO_ERROR) Begin
+76707>>>>>        Function_Return (CString (sName))
+76708>>>>>    End
+76708>>>>>>
+76708>>>>>    
+76708>>>>>    Function_Return "User Unknown"
+76709>>>>>End_Function
+76710>>>>>
+76710>>>>>// OBSOLETE STRUCTURE AND WINDOWS API CALL. KEPT FOR BACKWARDS COMPATIBILITY
+76710>>>>>Type MEMORYSTATUS
+76710>>>>>   Field MEMORYSTATUS.dwLength         as DWord // sizeof(MEMORYSTATUS)
+76710>>>>>   Field MEMORYSTATUS.dwMemoryLoad     as DWord // percent Of memory in use
+76710>>>>>   Field MEMORYSTATUS.dwTotalPhys      as DWord // bytes Of physical memory
+76710>>>>>   Field MEMORYSTATUS.dwAvailPhys      as DWord // free physical memory bytes
+76710>>>>>   Field MEMORYSTATUS.dwTotalPageFile  as DWord // bytes Of paging file
+76710>>>>>   Field MEMORYSTATUS.dwAvailPageFile  as DWord // free bytes Of paging file
+76710>>>>>   Field MEMORYSTATUS.dwTotalVirtual   as DWord // user bytes Of address space
+76710>>>>>   Field MEMORYSTATUS.dwAvailVirtual   as DWord // free user bytes
+76710>>>>>End_Type // MEMORYSTATUS
+76710>>>>>
+76710>>>>>External_Function GlobalMemoryStatus "GlobalMemoryStatus" Kernel32.Dll Pointer lpsMemoryStatus Returns Integer
+76711>>>>>
+76711>>>>>Struct tWinMemoryStatusEx
+76711>>>>>    UInteger dwLength                
+76711>>>>>    UInteger dwMemoryLoad          
+76711>>>>>    UBigInt ullTotalPhys           
+76711>>>>>    UBigInt ullAvailPhys           
+76711>>>>>    UBigInt ullTotalPageFile       
+76711>>>>>    UBigInt ullAvailPageFile       
+76711>>>>>    UBigInt ullTotalVirtual        
+76711>>>>>    UBigInt ullAvailVirtual        
+76711>>>>>    UBigInt ullAvailExtendedVirtual
+76711>>>>>End_Struct
+76711>>>>>
+76711>>>>>External_Function GlobalMemoryStatusEx "GlobalMemoryStatusEx" Kernel32.Dll Pointer lpMemoryStatus Returns Integer
+76712>>>>>
+76712>>>>>Class SysinfoDisplay is a cTextEdit
+76713>>>>>    Procedure Construct_Object
+76715>>>>>        Forward Send Construct_Object
+76717>>>>>
+76717>>>>>        Set Location To 6 6
+76718>>>>>        Set Size To 110 255
+76719>>>>>        Set Read_Only_State To True
+76720>>>>>        Set pbWrap to False
+76721>>>>>    End_Procedure
+76722>>>>>
+76722>>>>>    //****************************************************************************
+76722>>>>>    // $Module type: PROCEDURE
+76722>>>>>    // $Module name: Show_Current_Directory
+76722>>>>>    // $Author     : VOO
+76722>>>>>    // Created     : 06-10-96 @ 15:24
+76722>>>>>    //
+76722>>>>>    // Description
+76722>>>>>    //    This method will show the name Of the current directory in the system
+76722>>>>>    //    information box
+76722>>>>>    //
+76722>>>>>    // $Rev History
+76722>>>>>    //    06-10-96  Module header created
+76722>>>>>    //****************************************************************************
+76722>>>>>    Procedure Show_Current_Directory
+76724>>>>>        String sDir
+76724>>>>>
+76724>>>>>        Get_Current_Directory To sDir
+76725>>>>>
+76725>>>>>        Send AppendTextLn (SFormat (C_$CurrentDirectory, sDir))
+76726>>>>>    End_Procedure
+76727>>>>>
+76727>>>>>    Procedure Show_Windows_Directory
+76729>>>>>        String sWindir
+76729>>>>>
+76729>>>>>        Get_Windows_Directory To sWindir
+76730>>>>>
+76730>>>>>        Send AppendTextLn (SFormat (C_$WindowsDirectory, sWindir))
+76731>>>>>    End_Procedure
+76732>>>>>
+76732>>>>>    Procedure Show_Current_User
+76734>>>>>        Send AppendTextLn (SFormat (C_$NetworkUserName, Network_User_Name (Self)))
+76735>>>>>    End_Procedure
+76736>>>>>
+76736>>>>>    Procedure Show_Number_Format
+76738>>>>>        Integer iFormat
+76738>>>>>        String sFormatText
+76738>>>>>
+76738>>>>>        Get_Attribute DF_THOUSANDS_SEPARATOR to iFormat
+76741>>>>>        Move (Character (iFormat)) To sFormatText
+76742>>>>>        Send AppendTextLn (SFormat (C_$ThousandsSeparator, sFormatText, iFormat))
+76743>>>>>
+76743>>>>>        Get_Attribute DF_DECIMAL_SEPARATOR to iFormat
+76746>>>>>        Move (Character (iFormat)) to sFormatText
+76747>>>>>        Send AppendTextLn (SFormat (C_$DecimalSeparator, sFormatText))
+76748>>>>>    End_Procedure
+76749>>>>>
+76749>>>>>    Procedure Show_Filelist_Name
+76751>>>>>        String sFilename
+76751>>>>>
+76751>>>>>        Get_Attribute DF_FILELIST_NAME to sFilename
+76754>>>>>
+76754>>>>>        Send AppendTextLn (SFormat (C_$CurrentFilelist, sFilename))
+76755>>>>>        Send AppendTextLn ""
+76756>>>>>    End_Procedure
+76757>>>>>
+76757>>>>>    Procedure Show_Lock_Delay
+76759>>>>>        Integer iLockdelay
+76759>>>>>
+76759>>>>>        Get_Attribute DF_LOCK_DELAY to iLockdelay
+76762>>>>>
+76762>>>>>        Send AppendTextLn (SFormat (C_$DatabaseLockingDelay, iLockDelay))
+76763>>>>>    End_Procedure
+76764>>>>>
+76764>>>>>    Procedure Show_Lock_Timeout
+76766>>>>>        Integer iLockTimeout
+76766>>>>>
+76766>>>>>        Get_Attribute DF_LOCK_TIMEOUT to iLockTimeout
+76769>>>>>
+76769>>>>>        Send AppendTextLn (SFormat (C_$DatabaseLockingTimeout, iLockTimeOut))
+76770>>>>>    End_Procedure
+76771>>>>>
+76771>>>>>    Procedure Show_Screen_Size
+76773>>>>>        Integer iYscreensize iXscreensize
+76773>>>>>
+76773>>>>>        Move (GetSystemMetrics (SM_CXSCREEN)) To iXscreensize
+76774>>>>>        Move (GetSystemMetrics (SM_CYSCREEN)) To iYscreensize
+76775>>>>>
+76775>>>>>        Send AppendTextLn (SFormat (C_$VideoResolution, iXscreensize, iYscreensize))
+76776>>>>>    End_Procedure
+76777>>>>>
+76777>>>>>    Procedure Show_Page_Size
+76779>>>>>        Send AppendTextLn (SFormat (C_$PageEndFormFeed, Pageend, Pagefeed))
+76780>>>>>    End_procedure
+76781>>>>>
+76781>>>>>    Procedure Show_Date
+76783>>>>>        Date dToday
+76783>>>>>
+76783>>>>>        Sysdate dToday
+76784>>>>>
+76784>>>>>        Send AppendTextLn (SFormat (C_$CurrentSystemDate, String (dToday)))
+76785>>>>>    End_procedure
+76786>>>>>
+76786>>>>>    Procedure Show_Date_Format
+76788>>>>>        Integer iDateFormat
+76788>>>>>        String sDateFormat
+76788>>>>>
+76788>>>>>        Get_Attribute DF_DATE_FORMAT to iDateFormat
+76791>>>>>        Case Begin
+76791>>>>>            Case (iDateFormat = DF_DATE_USA)
+76793>>>>>                Move C_$USA To sDateFormat
+76794>>>>>                Case Break
+76795>>>>>            Case (iDateFormat = DF_DATE_EUROPEAN)
+76798>>>>>                Move C_$European To sDateFormat
+76799>>>>>                Case Break
+76800>>>>>            Case (iDateFormat = DF_DATE_MILITARY)
+76803>>>>>                Move C_$Military To sDateFormat
+76804>>>>>                Case Break
+76805>>>>>            Case Else
+76805>>>>>                Move C_$UnknownDateType To sDateFormat
+76806>>>>>                Case Break
+76807>>>>>        Case End
+76807>>>>>
+76807>>>>>        Send AppendTextLn (SFormat (C_$DateFormat, sDateformat))
+76808>>>>>    End_Procedure
+76809>>>>>
+76809>>>>>    Procedure Show_Systemresources
+76811>>>>>        tWinMemoryStatusEx MemoryStatusInfo
+76811>>>>>        tWinMemoryStatusEx MemoryStatusInfo
+76811>>>>>        Integer iRetval
+76811>>>>>
+76811>>>>>        Move (SizeOfType (tWinMemoryStatusEx)) to MemoryStatusInfo.dwLength
+76812>>>>>        Move (GlobalMemoryStatusEx (AddressOf (MemoryStatusInfo))) to iRetval
+76813>>>>>        If (iRetval = 0) Begin
+76815>>>>>            Move (ShowLastError ()) to iRetval
+76816>>>>>        End
+76816>>>>>>
+76816>>>>>
+76816>>>>>        Send AppendTextLn (SFormat (C_$AvailableMemory, MemoryStatusInfo.ullTotalPhys))
+76817>>>>>        Send AppendTextLn (SFormat (C_$MemoryUtilization, MemoryStatusInfo.dwMemoryLoad))
+76818>>>>>        Send AppendTextLn (SFormat (C_$AvailablePhysicalMemory, Real (MemoryStatusInfo.ullAvailPhys) / Real (MemoryStatusInfo.ullTotalPhys) * 100.0))
+76819>>>>>        Send AppendTextLn (SFormat (C_$AvailablePagefileSpace, Real (MemoryStatusInfo.ullAvailPageFile) / Real (MemoryStatusInfo.ullTotalPageFile) * 100.0))
+76820>>>>>        Send AppendTextLn (SFormat (C_$AvailableVirtualMemory, Real (MemoryStatusInfo.ullAvailVirtual) / Real (MemoryStatusInfo.ullTotalVirtual) * 100.0))
+76821>>>>>    End_Procedure
+76822>>>>>
+76822>>>>>    Procedure Show_Registration
+76824>>>>>        String sRegName
+76824>>>>>        Integer iSN iMaxUsers
+76824>>>>>
+76824>>>>>        Registration sRegName iSN
+76825>>>>>>
+76825>>>>>        
+76825>>>>>        Get_Licensed_Max_Users to iMaxUsers
+76826>>>>>
+76826>>>>>        Send AppendTextLn ""
+76827>>>>>        Send AppendTextLn (SFormat (C_$Serial, iSN))
+76828>>>>>        Send AppendTextLn (SFormat (C_$RegName, sRegName))
+76829>>>>>        Send AppendTextLn (SFormat (C_$MaxNumUsers, iMaxUsers))
+76830>>>>>    End_Procedure
+76831>>>>>
+76831>>>>>    //****************************************************************************
+76831>>>>>    // If workspaces are used, we will send the message EnumerateWorkspaceData
+76831>>>>>    // To the workspace object passing the an object and message To send back
+76831>>>>>    // To this object. It is expected that the workspace object will send this
+76831>>>>>    // message for every line Of information it wants displayed (passing the
+76831>>>>>    // information To be displayed
+76831>>>>>    //****************************************************************************
+76831>>>>>    Register_Procedure EnumerateWorkspaceData Integer hObjId Integer hmMessId
+76831>>>>>
+76831>>>>>    Procedure Show_ServicePack
+76833>>>>>        String sKey sVersionDescription sVersion 
+76833>>>>>        Handle hoRegistry
+76833>>>>>        Boolean bExists bOpened
+76833>>>>>        
+76833>>>>>        Get Create (RefClass (cRegistry)) to hoRegistry
+76834>>>>>        Set phRootKey of hoRegistry to HKEY_LOCAL_MACHINE
+76835>>>>>        Set pfAccessRights of hoRegistry to KEY_READ
+76836>>>>>
+76836>>>>>        Move C_DFVersionRegistryRoot to sKey
+76837>>>>>        Get KeyExists of hoRegistry sKey to bExists
+76838>>>>>        If (bExists) Begin
+76840>>>>>            Get OpenKey of hoRegistry sKey to bOpened
+76841>>>>>            If (bOpened) Begin
+76843>>>>>                Get ValueExists of hoRegistry "CurrentVersionDescription" to bExists
+76844>>>>>                If (bExists) Begin
+76846>>>>>                    Get ReadString of hoRegistry "CurrentVersionDescription" to sVersionDescription
+76847>>>>>                End
+76847>>>>>>
+76847>>>>>                
+76847>>>>>                Get ValueExists of hoRegistry "CurrentVersion" to bExists
+76848>>>>>                If (bExists) Begin
+76850>>>>>                    Get ReadString of hoRegistry "CurrentVersion" to sVersion
+76851>>>>>                End                
+76851>>>>>>
+76851>>>>>                Send CloseKey of hoRegistry
+76852>>>>>            End
+76852>>>>>>
+76852>>>>>        End
+76852>>>>>>
+76852>>>>>        Send Destroy of hoRegistry
+76853>>>>>
+76853>>>>>        If (sVersionDescription <> "") Begin
+76855>>>>>           Send AppendTextLn (sVersionDescription * "-" * sVersion)
+76856>>>>>           Send AppendTextLn ""
+76857>>>>>        End
+76857>>>>>>
+76857>>>>>    End_Procedure
+76858>>>>>    
+76858>>>>>
+76858>>>>>    Procedure Show_WorkspaceInformation
+76860>>>>>        Integer hoWorkspace
+76860>>>>>
+76860>>>>>        If (ghoApplication <> 0) Begin
+76862>>>>>            Get phoWorkspace of ghoApplication to hoWorkspace
+76863>>>>>            If (hoWorkspace <> 0) Begin
+76865>>>>>                Send EnumerateWorkspaceData of hoWorkspace Self (Refproc (AppendTextLn))
+76866>>>>>                Send AppendTextLn ""
+76867>>>>>            End
+76867>>>>>>
+76867>>>>>        End
+76867>>>>>>
+76867>>>>>    End_Procedure
+76868>>>>>
+76868>>>>>    Function VersionStr Integer iVer Integer iRev Integer iBld Returns String
+76870>>>>>        Function_Return (String (iVer) - "." - String (iRev) - "." - String (iBld))
+76871>>>>>    End_Function
+76872>>>>>
+76872>>>>>    Procedure Show_Versions
+76874>>>>>        Integer iVersion iRevision iBuild
+76874>>>>>
+76874>>>>>        Version_Information iVersion iRevision iBuild
+76876>>>>>
+76876>>>>>        Send AppendTextLn (SFormat (C_$RuntimeVersion, VersionStr(Self,iVersion,iRevision,iBuild) ))
+76877>>>>>        Send AppendTextLn (SFormat (C_$PackageVersion, VersionStr(Self,PKG_VERSION, PKG_REVISION, PKG_BUILD) ))
+76878>>>>>        Send AppendTextLn (SFormat (C_$FMACVersion, VersionStr(Self,FMAC_VERSION, FMAC_REVISION, FMAC_BUILD) ))
+76879>>>>>    End_Procedure
+76880>>>>>    
+76880>>>>>    Function CKRevisionNumber String sDriverID Returns String
+76882>>>>>        Handle hoCLIHandler
+76882>>>>>        Handle hoDFBtrDrvHandler
+76882>>>>>        String sCKRevision
+76882>>>>>
+76882>>>>>
+76882>>>>>        If (sDriverID = "MSSQLDRV" or sDriverID = "ODBC_DRV" or sDriverID = "DB2_DRV") Begin
+76884>>>>>            Get Create (RefClass(cCLIHandler)) to hoCLIHandler
+76885>>>>>            Set psDriverID of hoCLIHandler to sDriverID
+76886>>>>>            Move (CKRevision(hoCLIHandler)) to sCKRevision
+76887>>>>>            Send Destroy of hoCLIHandler
+76888>>>>>        End
+76888>>>>>>
+76888>>>>>        Else Begin
+76889>>>>>            If (sDriverID = "DFBTRDRV") Begin
+76891>>>>>                Get Create (RefClass(cDFBtrDrvHandler)) to hoDFBtrDrvHandler
+76892>>>>>                Set psDriverID of hoDFBtrDrvHandler to sDriverID
+76893>>>>>                Move (CKRevision(hoDFBtrDrvHandler)) to sCKRevision
+76894>>>>>                Send Destroy of hoDFBtrDrvHandler
+76895>>>>>            End
+76895>>>>>>
+76895>>>>>        End
+76895>>>>>>
+76895>>>>>        
+76895>>>>>        Function_Return sCKRevision
+76896>>>>>    End_Function
+76897>>>>>    
+76897>>>>>    
+76897>>>>>    Function IsDataAccessCK String sDriverID Returns Boolean
+76899>>>>>        
+76899>>>>>        If (sDriverID = "DATAFLEX") Begin
+76901>>>>>            Function_Return False
+76902>>>>>        End
+76902>>>>>>
+76902>>>>>    
+76902>>>>>        Function_Return (sDriverID = "MSSQLDRV" or sDriverID = "ODBC_DRV" or sDriverID = "DB2_DRV" or sDriverID = "DFBTRDRV")
+76903>>>>>    End_Function    
+76904>>>>>
+76904>>>>>
+76904>>>>>    //***
+76904>>>>>    //*** BW
+76904>>>>>    //*** Procedure: Show_Drivers
+76904>>>>>    //*** Purpose  : Show loaded database drivers
+76904>>>>>    //***
+76904>>>>>
+76904>>>>>    Procedure Show_Drivers
+76906>>>>>        String sCurrentDriver sRevNumber
+76906>>>>>        String sLoadedDrivers
+76906>>>>>        Integer iNumberOfDrivers iCount
+76906>>>>>        Boolean bOK
+76906>>>>>
+76906>>>>>        Move "" To sLoadedDrivers
+76907>>>>>        Get_Attribute DF_NUMBER_DRIVERS To iNumberOfDrivers
+76910>>>>>        For iCount From 1 To iNumberOfDrivers
+76916>>>>>>
+76916>>>>>            Get_Attribute DF_DRIVER_NAME Of iCount To sCurrentDriver
+76919>>>>>            If (sLoadedDrivers <> "") Begin
+76921>>>>>                Move (Append (sLoadedDrivers, ", ")) To sLoadedDrivers
+76922>>>>>            End
+76922>>>>>>
+76922>>>>>            Get IsDataAccessCK sCurrentDriver to bOK
+76923>>>>>            If (bOK) Begin
+76925>>>>>                Get CKRevisionNumber sCurrentDriver to sRevNumber
+76926>>>>>                Move (sCurrentDriver * "(" + sRevNumber + ")") to sCurrentDriver
+76927>>>>>            End
+76927>>>>>>
+76927>>>>>            Move (Append (sLoadedDrivers, sCurrentDriver)) To sLoadedDrivers
+76928>>>>>        Loop
+76929>>>>>>
+76929>>>>>        Send AppendTextLn (SFormat (C_$DatabaseDriver, sLoadedDrivers))
+76930>>>>>    End_Procedure
+76931>>>>>
+76931>>>>>    Procedure Show_HelpFile
+76933>>>>>        String sHelpFile
+76933>>>>>        Integer eHelpType
+76933>>>>>
+76933>>>>>        If (ghoApplication <> 0) Begin
+76935>>>>>            Get peHelpType Of ghoApplication To eHelpType
+76936>>>>>            If (eHelpType = htHtmlHelp and ghoHtmlHelp) Begin
+76938>>>>>                Get GetHelpFile Of ghoHtmlHelp To sHelpFile
+76939>>>>>            End
+76939>>>>>>
+76939>>>>>            Else If (eHelpType = htWinHelp and Help_object_id) Begin
+76942>>>>>                Get Help_filename Of Help_object_id To sHelpFile
+76943>>>>>            End
+76943>>>>>>
+76943>>>>>            Else Begin
+76944>>>>>                Move C_$ThereIsNoHelpfileDefined To sHelpFile
+76945>>>>>            End
+76945>>>>>>
+76945>>>>>
+76945>>>>>            Send AppendTextLn ""
+76946>>>>>            Send AppendTextLn (SFormat (C_$HelpFile, sHelpFile))
+76947>>>>>        End
+76947>>>>>>
+76947>>>>>    End_Procedure
+76948>>>>>
+76948>>>>>    Procedure Show_EnterAsTab
+76950>>>>>        Boolean bEnterKeyAsTabKey
+76950>>>>>        String sText
+76950>>>>>
+76950>>>>>        If (ghoApplication <> 0) Begin
+76952>>>>>            Get pbEnterKeyAsTabKey Of ghoApplication To bEnterKeyAsTabKey
+76953>>>>>            If (bEnterKeyAsTabKey) Begin
+76955>>>>>                Move "True" To sText
+76956>>>>>            End
+76956>>>>>>
+76956>>>>>            Else Begin
+76957>>>>>                Move "False" To sText
+76958>>>>>            End
+76958>>>>>>
+76958>>>>>            Send AppendTextLn (SFormat (C_$EnterKeyNavForward, sText))
+76959>>>>>        End
+76959>>>>>>
+76959>>>>>    End_Procedure
+76960>>>>>
+76960>>>>>    //****************************************************************************
+76960>>>>>    // $Module type: PROCEDURE
+76960>>>>>    // $Module name: Add_Focus
+76960>>>>>    // $Author     : VOO
+76960>>>>>    // Created     : 24-09-96 @ 19:43
+76960>>>>>    //
+76960>>>>>    // Description
+76960>>>>>    //    During activation we will remove the old information and add the newly
+76960>>>>>    //    found systeminformation
+76960>>>>>    //
+76960>>>>>    // $Rev History
+76960>>>>>    //    24-09-96  Module header created
+76960>>>>>    //****************************************************************************
+76960>>>>>    Procedure Add_Focus Integer hoRoot
+76962>>>>>        Forward Send Add_Focus hoRoot
+76964>>>>>
+76964>>>>>        Send Delete_Data
+76965>>>>>
+76965>>>>>        Set Changed_State To False
+76966>>>>>        Set Read_Only_State To True
+76967>>>>>
+76967>>>>>        Send Show_ServicePack
+76968>>>>>        Send Show_Versions   
+76969>>>>>        Send Show_Drivers         
+76970>>>>>        Send Show_HelpFile
+76971>>>>>        Send Show_Current_Directory
+76972>>>>>        Send Show_Filelist_Name          
+76973>>>>>        If (ghoApplication <> 0) Begin
+76975>>>>>            Send Show_WorkSpaceInformation // added To show WS info
+76976>>>>>        End
+76976>>>>>>
+76976>>>>>        Send Show_Current_User 
+76977>>>>>        Send Show_Windows_Directory 
+76978>>>>>        Send Show_Screen_Size
+76979>>>>>        Send Show_Page_Size
+76980>>>>>        Send Show_EnterAsTab        
+76981>>>>>        Send Show_Number_Format
+76982>>>>>        Send Show_Date_Format
+76983>>>>>        Send Show_Lock_Delay
+76984>>>>>        Send Show_Lock_Timeout
+76985>>>>>        Send Show_Date
+76986>>>>>        Send Show_Systemresources
+76987>>>>>        Send Show_Registration
+76988>>>>>        Send Beginning_of_Data
+76989>>>>>
+76989>>>>>        Set Icon to 'default.ico'
+76990>>>>>    End_Procedure
+76991>>>>>End_Class
+76992>>>>>
+76992>>>>>//****************************************************************************
+76992>>>>>// $Module type: OBJECT
+76992>>>>>// $Module name: Sysinfo_Dialog
+76992>>>>>// $Author     : VOO
+76992>>>>>// Created     : 24-09-96 @ 18:47
+76992>>>>>//
+76992>>>>>// Description
+76992>>>>>//    This object shows the systeminformation on the screen
+76992>>>>>//
+76992>>>>>// $Rev History
+76992>>>>>//    24-09-96  Module header created
+76992>>>>>//****************************************************************************
+76992>>>>>Class SysInfoDialog Is A ModalPanel
+76993>>>>>    Procedure Construct_Object
+76995>>>>>        Forward Send Construct_Object
+76997>>>>>
+76997>>>>>        Set Label to C_$SystemInformation
+76998>>>>>        Set Size to 140 267
+76999>>>>>        Set piMinSize to 140 267
+77000>>>>>        Set Locate_Mode To CENTER_ON_SCREEN
+77001>>>>>        Set Border_Style to Border_Thick
+77002>>>>>
+77002>>>>>        Object oSysinfoDisplay Is A SysInfoDisplay
+77004>>>>>            Set peAnchors to anAll
+77005>>>>>        End_Object
+77006>>>>>
+77006>>>>>        Object oCloseButton Is A Button
+77008>>>>>            Set Label To C_$Close
+77009>>>>>            Set Location To 120 210
+77010>>>>>            Set Message Item 0 To (Refproc (Close_Panel))
+77011>>>>>            Set Default_State To True
+77012>>>>>            Set peAnchors to anBottomRight
+77013>>>>>        End_Object
+77014>>>>>
+77014>>>>>        On_Key kCancel Send Close_Panel
+77015>>>>>    End_Procedure
+77016>>>>>End_Class
+77017>>>>>
+77017>>>>>// Purpose:
+77017>>>>>//
+77017>>>>>// Ken Ross 12/17/96 5:16PM
+77017>>>>>//
+77017>>>>>Class AboutDialog Is A ModalPanel
+77018>>>>>    Procedure Construct_Object
+77020>>>>>        String sVdfRootDir
+77020>>>>>
+77020>>>>>        Forward Send Construct_Object
+77022>>>>>
+77022>>>>>        Set Label To C_$About
+77023>>>>>        Set Size to 89 212
+77024>>>>>        Set Locate_Mode To CENTER_ON_SCREEN
+77025>>>>>
+77025>>>>>        Object oSysInfoDialog Is A SysInfoDialog
+77027>>>>>        End_Object
+77028>>>>>
+77028>>>>>        Object oBox Is A Container3d
+77030>>>>>            Set Border_Style To Border_StaticEdge
+77031>>>>>            Set Size to 63 202
+77032>>>>>            Set Location To 4 5
+77033>>>>>
+77033>>>>>            Object oAboutGraphic Is A BitmapContainer
+77035>>>>>                Set Border_Style To Border_None
+77036>>>>>                Set Bitmap_Style To Bitmap_Center
+77037>>>>>                Set Size To 48 48
+77038>>>>>                Set Location To 7 2
+77039>>>>>            End_Object
+77040>>>>>
+77040>>>>>            Object oProductName Is A TextBox
+77042>>>>>                Set Label To C_$ProductName
+77043>>>>>                Set Size To 10 45
+77044>>>>>                Set Location To 8 53
+77045>>>>>            End_Object
+77046>>>>>
+77046>>>>>            Object oVersion Is A TextBox
+77048>>>>>                Set Label To C_$Version
+77049>>>>>                Set Size To 10 25
+77050>>>>>                Set Location To 21 53
+77051>>>>>            End_Object
+77052>>>>>
+77052>>>>>            Object oCopyright Is A TextBox
+77054>>>>>                Set Label To C_$Copyright
+77055>>>>>                Set Size To 10 31
+77056>>>>>                Set Location To 34 53
+77057>>>>>            End_Object
+77058>>>>>
+77058>>>>>            Object oAuthor Is A TextBox
+77060>>>>>                Set Label To C_$Author
+77061>>>>>                Set Size To 10 22
+77062>>>>>                Set Location To 46 53
+77063>>>>>            End_Object
+77064>>>>>        End_Object
+77065>>>>>
+77065>>>>>        Object oOKButton Is A Button
+77067>>>>>            On_Item C_$OK Send Close_Panel
+77068>>>>>            Set Size To 14 50
+77069>>>>>            Set Location To 71 157
+77070>>>>>        End_Object
+77071>>>>>
+77071>>>>>        Object oSysInfoButton Is A Button
+77073>>>>>            On_Item C_$SystemInfo Send Show_Sysinfo
+77074>>>>>            Set Size To 14 50
+77075>>>>>            Set Location To 71 101
+77076>>>>>        End_Object
+77077>>>>>
+77077>>>>>        On_Key Kcancel Send KeyAction Of oOKButton
+77078>>>>>
+77078>>>>>        Set Logo To "DacAbout.bmp"  // square bitmaps Of 42x42 work best
+77079>>>>>    End_Procedure
+77080>>>>>
+77080>>>>>    Procedure Set ProductName String sProductName
+77082>>>>>        Set Label Of oProductName To sProductName
+77083>>>>>    End_Procedure
+77084>>>>>
+77084>>>>>    Procedure Set Version String sVersion
+77086>>>>>        Set Label Of oVersion To sVersion
+77087>>>>>    End_Procedure
+77088>>>>>
+77088>>>>>    Procedure Set Copyright string sCopyright
+77090>>>>>        Set Label Of oCopyright To sCopyright
+77091>>>>>    End_Procedure
+77092>>>>>
+77092>>>>>    Procedure Set Author String sAuthor
+77094>>>>>        Set Label Of oAuthor To sAuthor
+77095>>>>>    End_Procedure
+77096>>>>>
+77096>>>>>    Procedure Set Logo string sLogo
+77098>>>>>        // square bitmaps Of 42x42 work best
+77098>>>>>        Set Bitmap Of oAboutGraphic To sLogo
+77099>>>>>    End_Procedure
+77100>>>>>
+77100>>>>>    Procedure Show_Sysinfo
+77102>>>>>        Send Popup_Modal Of oSysinfoDialog
+77103>>>>>    End_Procedure
+77104>>>>>
+77104>>>>>    Procedure End_Construct_Object
+77106>>>>>        Handle hoVersionInfo
+77106>>>>>        Boolean bIncluded
+77106>>>>>        Integer iMajor iMinor iRelease iBuild
+77106>>>>>        String sLabel
+77106>>>>>
+77106>>>>>        Get Label Of oVersion To sLabel
+77107>>>>>        If (sLabel = C_$VERSION) Begin
+77109>>>>>            // set it To the version info Of the program, if available
+77109>>>>>            If (ghoApplication <> 0) Begin
+77111>>>>>                Get phoVersionInfo of ghoApplication to hoVersionInfo
+77112>>>>>                If (hoVersionInfo <> 0) Begin
+77114>>>>>                    Get pbIncluded of hoVersionInfo to bIncluded
+77115>>>>>                    If (bIncluded) Begin
+77117>>>>>                        Get piVersionMajor of hoVersionInfo to iMajor
+77118>>>>>                        Get piVersionMinor of hoVersionInfo to iMinor
+77119>>>>>                        Get piVersionRelease of hoVersionInfo to iRelease
+77120>>>>>                        Get piVersionBuild of hoVersionInfo to iBuild
+77121>>>>>                        Move (SFormat (C_$VERSION + ": %1.%2.%3.%4", iMajor, iMinor, iRelease, iBuild)) to sLabel
+77122>>>>>                        Set Version to sLabel
+77123>>>>>                    End
+77123>>>>>>
+77123>>>>>                End
+77123>>>>>>
+77123>>>>>            End
+77123>>>>>>
+77123>>>>>        End
+77123>>>>>>
+77123>>>>>
+77123>>>>>        Forward Send End_Construct_Object
+77125>>>>>    End_Procedure
+77126>>>>>End_Class
+77127>>>
+77127>>>// *************************************************************************
+77127>>>//  Public message. This is the default message. It is expected that you will
+77127>>>//   create your own message to override this
+77127>>>// *************************************************************************
+77127>>>
+77127>>>Procedure Activate_About
+77130>>>   Send DoAbout "" "" "" "" ""
+77131>>>End_Procedure
+77132>>>
+77132>>>// *************************************************************************
+77132>>>//  Public message. It is expected that you will send this message (most
+77132>>>//  likely from Activate_About. This creates an about object, activates it
+77132>>>//  and destroys it when done. It is not exepected that you will augment this.
+77132>>>// *************************************************************************
+77132>>>
+77132>>>Procedure DoAbout string sTitle string sVersion string sCopyRight string sAuthor string sBitmap
+77135>>>        integer hoObj hoMain
+77135>>>
+77135>>>        // create object
+77135>>>        Object About is an AboutDialog
+77137>>>            // if no title passed use the label of the main panel
+77137>>>            // (if a main panel exists).
+77137>>>            if sTitle     eq '' Begin
+77139>>>                Get Main_Window of desktop to hoMain
+77140>>>                if hoMain Get Label of hoMain to sTitle
+77143>>>            end
+77143>>>>
+77143>>>            set productname to sTitle
+77144>>>            set version     to sVersion
+77145>>>            set copyright   to sCopyRight
+77146>>>            set author      to sAuthor
+77147>>>            If sBitmap    ne '' ;               set logo to sBitMap // square bitmaps of 42x42 work best
+77150>>>            Move self to hoObj // object Id
+77151>>>        End_Object
+77152>>>        Send Popup   of hoObj    // popup the about object
+77153>>>        Send Destroy of hoObj // when done, it will be destroyed
+77154>>>End_procedure
+77155>        Use ViewMain.vw
+Including file: ViewMain.vw    (C:\UNLOCODE-SEPARATOR\AppSrc\ViewMain.vw)
+77155>>>Use Windows.pkg
+77155>>>Use DFClient.pkg
+77155>>>Use cProgressBar.pkg
+Including file: cProgressBar.pkg    (C:\Program Files (x86)\DataFlex 18.2\Pkg\cProgressBar.pkg)
+77155>>>>>Use Windows.pkg
+77155>>>>>Use cWinControl.pkg
+77155>>>>>Use CommCtrl.pkg
+77155>>>>>
+77155>>>>>Type tPbRange
+77155>>>>>    Field tPbRange.iLow  as DWord
+77155>>>>>    Field tPbRange.iHigh as DWord
+77155>>>>>End_Type
+77155>>>>>
+77155>>>>>//{ OverrideProperty=pbEnabled DesignTime=False }
+77155>>>>>Class cProgressBar is a cWinControl
+77156>>>>>
+77156>>>>>    Procedure Construct_Object
+77158>>>>>        Forward Send Construct_Object
+77160>>>>>        Property Integer private_piMinimum
+77161>>>>>        Property Integer private_piMaximum   100
+77162>>>>>        Property Integer private_piAdvanceBy 10
+77163>>>>>        Property Integer private_piPosition
+77164>>>>>        Property Integer private_pbVertical  False
+77165>>>>>        Property Integer private_pbSmooth    False
+77166>>>>>        Property Integer private_piBackColor clDefault
+77167>>>>>        Property Integer private_piBarColor  clDefault
+77168>>>>>
+77168>>>>>        Send Define_ToolTip_Support_Mixin
+77169>>>>>
+77169>>>>>        Set External_Class_Name 'cVdfProgressBar' To 'msctls_progress32'
+77170>>>>>        Set Focus_Mode to NonFocusable
+77171>>>>>        Set Skip_State to True
+77172>>>>>        Set pbUseFormWindowHandle to False     // Must come after Define_ToolTip_Support_Mixin
+77173>>>>>    End_Procedure
+77174>>>>>
+77174>>>>>    Import_Class_Protocol ToolTip_Support_Mixin
+77175>>>>>
+77175>>>>>    Procedure Set piMinimum Integer iMin
+77177>>>>>        Integer iMax
+77177>>>>>
+77177>>>>>        Set private_piMinimum to iMin
+77178>>>>>        Get private_piMaximum To iMax
+77179>>>>>        Send Windows_Message PBM_SETRANGE32 iMin iMax
+77180>>>>>    End_Procedure
+77181>>>>>    Function piMinimum Returns Integer
+77183>>>>>        If (Window_Handle(self)) Function_Return (WindowsMessage(PBM_GETRANGE, 1, 0))
+77186>>>>>        Else Function_Return (private_piMinimum(self))
+77188>>>>>    End_Function
+77189>>>>>
+77189>>>>>    Procedure Set piMaximum Integer iMax
+77191>>>>>        Integer iMin
+77191>>>>>
+77191>>>>>        Set private_piMaximum to iMax
+77192>>>>>        Get private_piMinimum To iMin
+77193>>>>>        Send Windows_Message PBM_SETRANGE32 iMin iMax
+77194>>>>>    End_Procedure
+77195>>>>>    Function piMaximum Returns Integer
+77197>>>>>        If (Window_Handle(self)) Function_Return (WindowsMessage(PBM_GETRANGE, 0, 0))
+77200>>>>>        Else Function_Return (private_piMaximum(self))
+77202>>>>>    End_Function
+77203>>>>>
+77203>>>>>    Procedure Set piAdvanceBy Integer iAdvanceBy
+77205>>>>>        Set private_piAdvanceBy To iAdvanceBy
+77206>>>>>        Send Windows_Message PBM_SETSTEP iAdvanceBy 0
+77207>>>>>    End_Procedure
+77208>>>>>    Function piAdvanceBy Returns Integer
+77210>>>>>        Function_Return (private_piAdvanceBy(self))
+77211>>>>>    End_Function
+77212>>>>>
+77212>>>>>    Procedure Set piPosition Integer iPos
+77214>>>>>        Set private_piPosition To iPos
+77215>>>>>        Send Windows_Message PBM_SETPOS iPos 0
+77216>>>>>    End_Procedure
+77217>>>>>
+77217>>>>>    Function piPosition Returns Integer
+77219>>>>>        If (Window_Handle(self)) Function_Return (WindowsMessage(PBM_GETPOS, 0, 0))
+77222>>>>>        Else Function_Return (private_piPosition(self))
+77224>>>>>    End_Function
+77225>>>>>
+77225>>>>>    Procedure Set pbVertical Boolean bVertical
+77227>>>>>        If (private_pbVertical(self) <> bVertical) Begin
+77229>>>>>            Set private_pbVertical To bVertical
+77230>>>>>           Send DoRecreateWindow
+77231>>>>>        End
+77231>>>>>>
+77231>>>>>    End_Procedure
+77232>>>>>
+77232>>>>>    Function pbVertical Returns Boolean
+77234>>>>>        Function_Return (private_pbVertical(self))
+77235>>>>>    End_Function
+77236>>>>>
+77236>>>>>    Procedure Set pbSmooth Boolean bSmooth
+77238>>>>>        If (private_pbSmooth(self) <> bSmooth) Begin
+77240>>>>>           Set private_pbSmooth To bSmooth
+77241>>>>>           Send DoRecreateWindow
+77242>>>>>        End
+77242>>>>>>
+77242>>>>>    End_Procedure
+77243>>>>>    Function pbSmooth Returns Boolean
+77245>>>>>        Function_Return (private_pbSmooth(self))
+77246>>>>>    End_Function
+77247>>>>>
+77247>>>>>    Procedure Set piBackColor Integer rgbColor
+77249>>>>>        Set private_piBackColor To rgbColor
+77250>>>>>        Send Windows_Message PBM_SETBKCOLOR 0 rgbColor
+77251>>>>>    End_Procedure
+77252>>>>>    Function piBackColor Returns Integer
+77254>>>>>        Function_Return (private_piBackColor(self))
+77255>>>>>    End_Function
+77256>>>>>
+77256>>>>>    Procedure Set piBarColor Integer rgbColor
+77258>>>>>        Set private_piBarColor To rgbColor
+77259>>>>>        Send Windows_Message PBM_SETBARCOLOR 0 rgbColor
+77260>>>>>    End_Procedure
+77261>>>>>    Function piBarColor Returns Integer
+77263>>>>>        Function_Return (private_piBarColor(self))
+77264>>>>>    End_Function
+77265>>>>>
+77265>>>>>    Procedure DoAdvance
+77267>>>>>        Send Windows_Message PBM_STEPIT 0 0
+77268>>>>>    End_procedure
+77269>>>>>
+77269>>>>>    Procedure DoAdvanceBy  Integer iAdvanceBy
+77271>>>>>        Send Windows_Message PBM_DELTAPOS iAdvanceBy 0
+77272>>>>>    End_procedure
+77273>>>>>
+77273>>>>>    Procedure private_DoInitWindow
+77275>>>>>        Set piBarColor  To (private_piBarColor(self))
+77276>>>>>        Set piBackColor To (private_piBackColor(self))
+77277>>>>>        Set piAdvanceBy To (private_piAdvanceBy(self))
+77278>>>>>        Set piMinimum   To (private_piMinimum(self))
+77279>>>>>        Set piMaximum   To (private_piMaximum(self))
+77280>>>>>        Set piPosition  To (private_piPosition(self))
+77281>>>>>    End_Procedure
+77282>>>>>
+77282>>>>>    Procedure Page_Object Integer iState
+77284>>>>>        Handle hWnd
+77284>>>>>
+77284>>>>>        Get Window_Handle To hWnd
+77285>>>>>        If (hWnd=0 and iState) Begin
+77287>>>>>            Set Window_Style To PBS_VERTICAL (private_pbVertical(self))
+77288>>>>>            Set Window_Style To PBS_SMOOTH   (private_pbSmooth(self))
+77289>>>>>            Forward Send Page_Object True
+77291>>>>>        End
+77291>>>>>>
+77291>>>>>        Else Forward Send Page_Object iState
+77294>>>>>     
+77294>>>>>        // Handle tooltip support....
+77294>>>>>        If (iState = 0) Begin
+77296>>>>>            Send RequestDeleteToolTip
+77297>>>>>        End 
+77297>>>>>>
+77297>>>>>        Else Begin
+77298>>>>>            Send RequestAddToolTip
+77299>>>>>        End
+77299>>>>>>
+77299>>>>>    End_Procedure
+77300>>>>>
+77300>>>>>    Procedure Page Integer iState
+77302>>>>>        Forward Send Page iState
+77304>>>>>        If (iState =1) Send private_DoInitWindow
+77307>>>>>    End_Procedure
+77308>>>>>
+77308>>>>>    // Called by Page_Object. Handles tooltip creation. We use a dedicated
+77308>>>>>    // method to perform AddToolTip because it is often the case that Page_Object
+77308>>>>>    // is implemented in a mixin class.
+77308>>>>>    Procedure RequestAddToolTip
+77310>>>>>        Send AddToolTip
+77311>>>>>    End_Procedure  // RequestAddToolTip
+77312>>>>>
+77312>>>>>
+77312>>>>>    // Called by Page_Object. Handles tooltip removal. 
+77312>>>>>    Procedure RequestDeleteToolTip
+77314>>>>>        Send DeleteToolTip
+77315>>>>>    End_Procedure // RequestDeleteToolTip
+77316>>>>>End_Class
+77317>>>Use cLinkLabel.pkg
+Including file: cLinkLabel.pkg    (C:\Program Files (x86)\DataFlex 18.2\Pkg\cLinkLabel.pkg)
+77317>>>>>Use UI
+77317>>>>>
+77317>>>>>Use GlobalFunctionsProcedures.pkg
+77317>>>>>Use Commctrl.pkg
+77317>>>>>Use tWinStructs.pkg
+77317>>>>>Use CharTranslate.pkg
+77317>>>>>
+77317>>>>>
+77317>>>>>
+77317>>>>>// we use container3d because it has better next/previous navigation logic
+77317>>>>>// we use a container because it works better (fonts and things are correct)
+77317>>>>>Class cLinkLabel is a container3d
+77318>>>>>    
+77318>>>>>    Import_Class_Protocol Label_Mixin
+77319>>>>>    Import_Class_Protocol ToolTip_Support_Mixin
+77320>>>>>    
+77320>>>>>    Procedure Construct_Object
+77322>>>>>        Boolean bSupported
+77322>>>>>        Forward Send Construct_Object
+77324>>>>>        
+77324>>>>>        
+77324>>>>>        Send Define_ToolTip_Support_Mixin
+77325>>>>>
+77325>>>>>        // determines if enter key opens link or is passed to parent
+77325>>>>>        Property Boolean pbEnterPassThrough False
+77326>>>>>
+77326>>>>>        // if true, height is adjusted to fit width and text
+77326>>>>>        Property Boolean pbAutoSizeHeight True
+77327>>>>>        
+77327>>>>>
+77327>>>>>        // Setting this allows it to take the DataFlex focus. Don't change!        
+77327>>>>>        Set Client_Area_State to False
+77328>>>>>        
+77328>>>>>        // only supported in XP and above. If not supported, you get no useful control
+77328>>>>>        Get IsControlSupported to bSupported
+77329>>>>>        If not bSupported Begin
+77331>>>>>            Send OnControlNotSupported
+77332>>>>>            Procedure_Return
+77333>>>>>        End
+77333>>>>>>
+77333>>>>>
+77333>>>>>        Set Color to clBtnFace
+77334>>>>>        Set Size to 14 100
+77335>>>>>        Set Border_Style to Border_None
+77336>>>>>        // if True, the links are not navigated to via keyboard.
+77336>>>>>        Set Skip_State to True
+77337>>>>>        // needed by tooltip
+77337>>>>>        Set pbUseFormWindowHandle to False
+77338>>>>>
+77338>>>>>        Set External_Class_Name "DFSysLink" to "SysLink"
+77339>>>>>        //Set Window_Style LWS_TRANSPARENT to True
+77339>>>>>        Set Window_Style WS_CLIPCHILDREN to False
+77340>>>>>        // to be consistent with other VDF controls like TextBox
+77340>>>>>        Set Window_Style WS_CLIPSIBLINGS to True
+77341>>>>>        Set External_Message WM_NOTIFY to msg_Notify
+77342>>>>>
+77342>>>>>    End_Procedure
+77343>>>>>    
+77343>>>>>    // control is only supported in XP (5.1) and above.
+77343>>>>>    Function IsControlSupported Returns Boolean
+77345>>>>>        Integer iMajor iMinor
+77345>>>>>        Boolean bSupported
+77345>>>>>        // this is supported in 5.1 and above
+77345>>>>>        Move (SysConf(SYSCONF_COMCTL_REV)) to iMajor
+77346>>>>>        Move (Low(iMajor)) to iMinor
+77347>>>>>        Move (Hi(iMajor)) to iMajor
+77348>>>>>        // Check for XP or above (5.1 or above)
+77348>>>>>        Move (iMajor>5 or (iMajor=5 and iMinor>0)) to bSupported
+77349>>>>>        Function_Return bSupported
+77350>>>>>    End_Function
+77351>>>>>    
+77351>>>>>    // augmented to handle NC_CLICK and NM_RETURN
+77351>>>>>    Procedure Notify Integer wParam Integer lParam
+77353>>>>>        tWinNmHdr Hdr
+77353>>>>>        tWinNmHdr Hdr
+77353>>>>>        tWinNmLink nmLink
+77353>>>>>        tWinNmLink nmLink
+77353>>>>>        tWinLItem LItem
+77353>>>>>        tWinLItem LItem
+77353>>>>>        Boolean bOk bPass
+77353>>>>>        Integer i
+77353>>>>>        String sID sUrl
+77353>>>>>        
+77353>>>>>        Move (MemCopy(AddressOf(Hdr),lParam,SizeOfType(tWinNmHdr))) to i
+77354>>>>>        If (Hdr.code=NM_CLICK or Hdr.code=NM_RETURN) Begin
+77356>>>>>            If (Hdr.code=NM_CLICK) Begin
+77358>>>>>                // if click, the LItem data is passed to us
+77358>>>>>                Move (MemCopy(AddressOf(nmLink),lParam,SizeOfType(tWinNmLink))) to i
+77359>>>>>                Move nmLink.item to LItem
+77360>>>>>            End
+77360>>>>>>
+77360>>>>>            Else Begin
+77361>>>>>                // do nothing is we pass Enters through
+77361>>>>>                Get pbEnterPassThrough to bPass
+77362>>>>>                If bPass Begin
+77364>>>>>                    Procedure_Return
+77365>>>>>                End
+77365>>>>>>
+77365>>>>>                // If Enter, we need to see which item has the focus.
+77365>>>>>                Get GetCurrentItem (&LItem) to bOK
+77366>>>>>                If not bOk Begin
+77368>>>>>                    Procedure_Return
+77369>>>>>                End
+77369>>>>>>
+77369>>>>>            End
+77369>>>>>>
+77369>>>>>            
+77369>>>>>            Get GetLItemIDtoString LItem to sID
+77370>>>>>            Get GetLItemURLtoString LItem to sUrl
+77371>>>>>            Send OnClick LItem.iLink sID sUrl
+77372>>>>>            
+77372>>>>>        End
+77372>>>>>>
+77372>>>>>        
+77372>>>>>    End_Procedure
+77373>>>>>    
+77373>>>>>    // get the ideal GUI height based on current GUI width and size of text
+77373>>>>>    Function IdealGUIHeight Returns Integer
+77375>>>>>        Integer iSize iGuiHeight 
+77375>>>>>        Handle hWnd
+77375>>>>>        tWinSize Size1
+77375>>>>>        tWinSize Size1
+77375>>>>>        
+77375>>>>>        Get Window_Handle to hWnd
+77376>>>>>        If (hWnd=0) Begin
+77378>>>>>            Error DFERR_PROGRAM "LM_GETIDEALSIZE has been called before the windows control is paged"
+77379>>>>>>
+77379>>>>>            Procedure_Return
+77380>>>>>        End
+77380>>>>>>
+77380>>>>>        
+77380>>>>>        Get GuiSize to iSize
+77381>>>>>        Get Windows_Message LM_GETIDEALSIZE (low(iSize)) (AddressOf(Size1)) to iGuiHeight
+77382>>>>>        Function_Return iGuiHeight
+77383>>>>>    End_Function
+77384>>>>>    
+77384>>>>>    // set the controls height to make it fit
+77384>>>>>    Procedure AutoSizeHeight
+77386>>>>>        Integer iSize iHeight
+77386>>>>>        Get Size to iSize
+77387>>>>>        Get IdealGUIHeight to iHeight
+77388>>>>>        Get GuiToDialog iHeight 0 to iHeight
+77389>>>>>        Set Size to (hi(iHeight)) (Low(iSize))
+77390>>>>>    End_Procedure
+77391>>>>>    
+77391>>>>>    // get item by item number. Returns the item data byref in a tWinLItem struct and
+77391>>>>>    // returns true if the item existed. Note that the string data returns in Unicode.
+77391>>>>>    Function GetItem Integer iItem tWinLItem ByRef LItem Returns Boolean
+77393>>>>>        Integer iRet 
+77393>>>>>        Move iItem to Litem.iLink 
+77394>>>>>        Move (LIS_ENABLED ior LIS_FOCUSED ior LIS_VISITED ior LIS_HOTTRACK ior LIS_DEFAULTCOLORS) to Litem.stateMask
+77395>>>>>        Move (LIF_ITEMID ior LIF_ITEMINDEX ior LIF_STATE ior LIF_URL) to Litem.Mask
+77396>>>>>        Get Windows_Message LM_GETITEM 0 (AddressOf(Litem)) to iRet
+77397>>>>>        Function_Return (iRet<>0)
+77398>>>>>    End_Function
+77399>>>>>    
+77399>>>>>    // get the item current, the item that has the windows focus.
+77399>>>>>    // Returns the item data ByRef in a tWinLItem Struct and
+77399>>>>>    // returns true if a current focus item exists. If the object does not have the
+77399>>>>>    // focus there is no current item.
+77399>>>>>    Function GetCurrentItem tWinLItem ByRef LItem Returns Boolean
+77401>>>>>        Integer iRet i
+77401>>>>>        Boolean bOk
+77401>>>>>        Repeat
+77401>>>>>>
+77401>>>>>            Get GetItem i (&LItem) to bOk
+77402>>>>>            If (bOk and (LItem.state iand LIS_FOCUSED)) Begin
+77404>>>>>                Function_Return True
+77405>>>>>            End
+77405>>>>>>
+77405>>>>>            Increment i
+77406>>>>>        Until (not(bOk))
+77408>>>>>        Function_Return False
+77409>>>>>    
+77409>>>>>    End_Function
+77410>>>>>    
+77410>>>>>    // pass utf16 in pointer and return an OEM string
+77410>>>>>    Function UniCodeToString Address pWideBuf Integer iWideLen Returns String
+77412>>>>>        String sID
+77412>>>>>        Address pOEMBuf
+77412>>>>>        Integer iOk
+77412>>>>>            
+77412>>>>>        Move (Utf16ToOemBuffer(pWideBuf,iWideLen)) to pOEMBuf
+77413>>>>>        Move (Repeat(Character(0),iWideLen)) to sID
+77414>>>>>        Move (MemCopy(AddressOf(sID),pOEMBuf,iWideLen)) to iOk
+77415>>>>>        Move (Free(pOEMBuf)) to iOk
+77416>>>>>
+77416>>>>>        Function_Return (CString(sID))
+77417>>>>>    End_Function
+77418>>>>>    
+77418>>>>>    // convert unicode ID string in tWinLItem to an OEM string
+77418>>>>>    Function GetLItemIDtoString tWinLItem LItem Returns String
+77420>>>>>        Address pWideBuf
+77420>>>>>        String sID
+77420>>>>>            
+77420>>>>>        Move (AddressOf(LItem.szID)) to pWideBuf
+77421>>>>>        Get UniCodeToString pWideBuf MAX_LINKID_TEXT to sID
+77422>>>>>        Function_Return sID
+77423>>>>>    End_Function    
+77424>>>>>    
+77424>>>>>    // convert unicode URL string in tWinLItem to an OEM string
+77424>>>>>    Function GetLItemURLtoString tWinLItem LItem Returns String
+77426>>>>>        Address pWideBuf
+77426>>>>>        String sID
+77426>>>>>            
+77426>>>>>        Move (AddressOf(LItem.szUrl)) to pWideBuf
+77427>>>>>        Get UniCodeToString pWideBuf L_MAX_URL_LENGTH to sID
+77428>>>>>        Function_Return sID
+77429>>>>>    End_Function    
+77430>>>>>    
+77430>>>>>    
+77430>>>>>    // augmented to switch to next item and then switch to next object
+77430>>>>>    Procedure Next
+77432>>>>>        tWinLItem LItem
+77432>>>>>        tWinLItem LItem
+77432>>>>>        Boolean bOK
+77432>>>>>        Get GetCurrentItem (&LItem) to Bok 
+77433>>>>>        If bOK Begin
+77435>>>>>            // if next item exists, let windows handle this.
+77435>>>>>            Get GetItem (LItem.iLink+1) (&LItem) to bOK
+77436>>>>>            If bOK Begin
+77438>>>>>                Set Windows_Override_State to False   
+77439>>>>>                Procedure_Return
+77440>>>>>            End
+77440>>>>>>
+77440>>>>>        End
+77440>>>>>>
+77440>>>>>        Forward Send Next
+77442>>>>>    End_Procedure
+77443>>>>>
+77443>>>>>    // augmented to switch to the previuous item and then switch to previous object
+77443>>>>>    Procedure Previous
+77445>>>>>        tWinLItem LItem
+77445>>>>>        tWinLItem LItem
+77445>>>>>        Boolean bOK
+77445>>>>>        Get GetCurrentItem (&LItem) to Bok 
+77446>>>>>        // if prior item exists, let windows handle this.
+77446>>>>>        If (bOK and LItem.iLink>0) Begin
+77448>>>>>            Set Windows_Override_State to False   
+77449>>>>>            Procedure_Return
+77450>>>>>        End
+77450>>>>>>
+77450>>>>>        Forward Send Previous
+77452>>>>>    End_Procedure
+77453>>>>>
+77453>>>>>    // augmented to determine if an Enter should be handled here or passed to
+77453>>>>>    // the container.
+77453>>>>>    Procedure Default_action
+77455>>>>>        Boolean bPass
+77455>>>>>        Get pbEnterPassThrough to bPass
+77456>>>>>        If bPass Begin
+77458>>>>>            Forward Send Default_action
+77460>>>>>        End
+77460>>>>>>
+77460>>>>>        Else Begin
+77461>>>>>            Set Windows_Override_State to False
+77462>>>>>        End
+77462>>>>>>
+77462>>>>>    End_Procedure
+77463>>>>>
+77463>>>>>    // augmented to only page if the control is supported and to
+77463>>>>>    // autosize as needed
+77463>>>>>    Procedure Page Integer iPageObject
+77465>>>>>        Boolean bAutoSize bSupported
+77465>>>>>        Integer iSize iHeight
+77465>>>>>
+77465>>>>>        Get IsControlSupported to bSupported
+77466>>>>>        If not bSupported Begin
+77468>>>>>            Procedure_Return
+77469>>>>>        End
+77469>>>>>>
+77469>>>>>        
+77469>>>>>        Forward Send Page iPageObject
+77471>>>>>        
+77471>>>>>        If (iPageObject=1) Begin
+77473>>>>>            Send Shadow_Display // synch enabled_state
+77474>>>>>            Get pbAutoSizeHeight to bAutoSize
+77475>>>>>            If bAutoSize Begin
+77477>>>>>                Send AutoSizeHeight
+77478>>>>>            End
+77478>>>>>>
+77478>>>>>        End
+77478>>>>>>
+77478>>>>>    End_Procedure
+77479>>>>>
+77479>>>>>    // augmented to handle tooltips
+77479>>>>>    Procedure Page_Object Integer iState
+77481>>>>>        Handle hWnd
+77481>>>>>        Get Window_Handle to hWnd
+77482>>>>>        Forward Send Page_Object iState
+77484>>>>>     
+77484>>>>>        // Handle tooltip support....
+77484>>>>>        If (iState = 0) Begin
+77486>>>>>            Send RequestDeleteToolTip
+77487>>>>>        End 
+77487>>>>>>
+77487>>>>>        Else Begin
+77488>>>>>            Send RequestAddToolTip
+77489>>>>>        End
+77489>>>>>>
+77489>>>>>
+77489>>>>>    End_Procedure
+77490>>>>>
+77490>>>>>    // Called by Page_Object. Handles tooltip creation. We use a dedicated
+77490>>>>>    // method to perform AddToolTip because it is often the case that Page_Object
+77490>>>>>    // is implemented in a mixin class.
+77490>>>>>    Procedure RequestAddToolTip
+77492>>>>>        Send AddToolTip
+77493>>>>>    End_Procedure  // RequestAddToolTip
+77494>>>>>
+77494>>>>>
+77494>>>>>    // Called by Page_Object. Handles tooltip removal. 
+77494>>>>>    Procedure RequestDeleteToolTip
+77496>>>>>        Send DeleteToolTip
+77497>>>>>    End_Procedure // RequestDeleteToolTip
+77498>>>>>
+77498>>>>>    // augmented to autosize as needed. 
+77498>>>>>    Procedure Set Value Integer iItem String sValue
+77500>>>>>        Boolean bAutoSize
+77500>>>>>        Forward Set Value to sValue
+77502>>>>>        // only autosize if paged and we allow autosizing
+77502>>>>>        If (Window_Handle(Self)) Begin
+77504>>>>>            Get pbAutoSizeHeight to bAutoSize
+77505>>>>>            If bAutoSize Begin
+77507>>>>>                Send AutoSizeHeight
+77508>>>>>            End
+77508>>>>>>
+77508>>>>>        End
+77508>>>>>>
+77508>>>>>    End_Procedure
+77509>>>>>        
+77509>>>>>    // default OnClick behavior shells and executes the URL if one exists. If Id is used
+77509>>>>>    // or you wish other things with your url you must augment this.    
+77509>>>>>    Procedure OnClick Integer iItem String sID String sUrl
+77511>>>>>
+77511>>>>>        If (sUrl<>"") Begin
+77513>>>>>            Runprogram Shell Background sUrl
+77514>>>>>        End
+77514>>>>>>
+77514>>>>>         
+77514>>>>>    End_Procedure
+77515>>>>>    
+77515>>>>>    // sent if this is run on a pre-XP system. This could be augmented to raise
+77515>>>>>    // an error, warning or whatever.
+77515>>>>>    Procedure OnControlNotSupported
+77517>>>>>    End_Procedure
+77518>>>>>
+77518>>>>>
+77518>>>>>    Procedure Enable_Window Integer iState
+77520>>>>>      Integer hWnd
+77520>>>>>      Get Window_Handle to hWnd
+77521>>>>>      If hWnd Begin
+77523>>>>>         // note that disabling the control makes no visual change but it does make it
+77523>>>>>         // impossible to select the item
+77523>>>>>         Move (EnableWindow(hWnd,iState)) to hWnd
+77524>>>>>      End
+77524>>>>>>
+77524>>>>>    End_Procedure
+77525>>>>>
+77525>>>>>    // must override because container class does nothing here. 
+77525>>>>>    Procedure Shadow_Display
+77527>>>>>      Send Enable_Window (not(Object_Shadow_State(Self)))
+77528>>>>>    End_Procedure
+77529>>>>>    
+77529>>>>>End_Class
+77530>>>Use cSplitButton.pkg
+Including file: cSplitButton.pkg    (C:\Program Files (x86)\DataFlex 18.2\Pkg\cSplitButton.pkg)
+77530>>>>>// cSplitButton class
+77530>>>>>
+77530>>>>>// This requires version 6 of common controls (vista or windows server 2008). If used with
+77530>>>>>// older versions you will just get a regular button with no split part.
+77530>>>>> 
+77530>>>>>Use Windows.pkg
+77530>>>>>
+77530>>>>>Class cSplitButton is a Button
+77531>>>>>
+77531>>>>>    Procedure Page Integer iPageObject
+77533>>>>>        Integer iStyle
+77533>>>>>        Boolean bSupported
+77533>>>>>        Get IsExControlSupported to bSupported
+77534>>>>>        If (iPageObject=1  and bSupported) Begin
+77536>>>>>            Get Form_Style iStyle to iStyle
+77537>>>>>            Move (iStyle ior BS_SPLITBUTTON) to iStyle
+77538>>>>>            Set Form_Style 0 to iStyle
+77539>>>>>        End
+77539>>>>>>
+77539>>>>>        Forward Send Page iPageObject
+77541>>>>>    End_Procedure
+77542>>>>>    
+77542>>>>>    Procedure Notify Integer wParam Integer lParam
+77544>>>>>        tWinNmHdr Hdr
+77544>>>>>        tWinNmHdr Hdr
+77544>>>>>        Integer iVoid
+77544>>>>>        Move (MemCopy(AddressOf(Hdr),lParam,SizeOfType(tWinNmHdr))) to iVoid
+77545>>>>>        If (Hdr.code=BCN_DROPDOWN) Begin
+77547>>>>>            Send OnDropDown
+77548>>>>>        End
+77548>>>>>>
+77548>>>>>        Else Begin
+77549>>>>>            Forward Send Notify wParam lParam
+77551>>>>>        End
+77551>>>>>>
+77551>>>>>    End_Procedure
+77552>>>>>    
+77552>>>>>End_Class
+77553>>>Use TrckBr.pkg
+77553>>>
+77553>>>Use Update.pkg
+Including file: Update.pkg    (C:\UNLOCODE-SEPARATOR\AppSrc\Update.pkg)
+77553>>>>>Use Windows.pkg
+77553>>>>>Use cHttpTransfer.pkg
+77553>>>>>
+77553>>>>>Object oHttpTransfer is a cHttpTransfer
+77555>>>>>    Set psRemoteHost to "www.unece.org"
+77556>>>>>    Set pbShowErrorDialog to False
+77557>>>>>
+77557>>>>>    Function DoDownloadFile String sFile String sUrlPredictor Returns Integer
+77560>>>>>        Integer iRetVal 
+77560>>>>>        String sUrlPredictorFinal
+77560>>>>>        Move ("fileadmin/DAM/cefact/locode/loc"+sUrlPredictor+"txt.zip") to sUrlPredictorFinal
+77561>>>>> 
+77561>>>>>        Set psSaveAsFile to sFile
+77562>>>>>        Send ClearHeaders
+77563>>>>>        Get HttpGetRequest sUrlPredictorFinal to iRetVal
+77564>>>>>        Function_Return iRetVal
+77565>>>>>    End_Function
+77566>>>>>End_Object
+77567>>>>>
+77567>>>>>Procedure initUpdate
+77570>>>>>    Boolean bPredictorOk
+77570>>>>>    
+77570>>>>>    Send prepareTempDirectory
+77571>>>>>    
+77571>>>>>    Get Predictor to bPredictorOk
+77572>>>>>    
+77572>>>>>    If (bPredictorOk) Begin 
+77574>>>>>        Send prepareFile
+77575>>>>>        Send saveInDB
+77576>>>>>    End
+77576>>>>>>
+77576>>>>>     
+77576>>>>>End_Procedure
+77577>>>>>
+77577>>>>>Procedure prepareTempDirectory  //------------------------------------ Clear Temp Directory
+77580>>>>>    String sRootPath sStaticPath sDelBatPath sTempPath  
+77580>>>>>    String sCommandRDPathDel sCommandMDPathDel
+77580>>>>>     
+77580>>>>>    Move ("C:\UNLOCODE-SEPARATOR\Data\") to sRootPath
+77581>>>>>    Move (sRootPath+"STATIC\") to sStaticPath
+77582>>>>>    Move (sRootPath+"TEMP\") to sTempPath 
+77583>>>>>    
+77583>>>>>    Move (sStaticPath+"Del.bat") to sDelBatPath
+77584>>>>>      
+77584>>>>>    Move ("rd /s /q "+sTempPath) to sCommandRDPathDel
+77585>>>>>    Move ("md "+sTempPath) to sCommandMDPathDel
+77586>>>>>    
+77586>>>>>    Direct_Output channel 7 sDelBatPath
+77588>>>>>        Writeln "@echo off"
+77590>>>>>        Writeln ""
+77592>>>>>        Writeln sCommandRDPathDel
+77594>>>>>        Writeln "Sleep 2"
+77596>>>>>        Writeln sCommandMDPathDel
+77598>>>>>    Close_Output channel 7
+77600>>>>>    
+77600>>>>>    Runprogram Wait sDelBatPath   
+77601>>>>>End_Procedure
+77602>>>>> 
+77602>>>>>Function Predictor Returns Boolean
+77605>>>>>    Boolean bReadyForUpdate bFinalWhile bZipExists bEndOfYearInCurse bMonthIncrement
+77605>>>>>    
+77605>>>>>    Date dtCurrentDateTime
+77605>>>>>    
+77605>>>>>    Integer iFirstSegment iSecondSegment iActualFirstSegment iActualSecondSegment ival iIncrementFirstSegment iIncrementSecondSegment
+77605>>>>>    
+77605>>>>>    String sFile sLastDownload 
+77605>>>>>    String sRootPath sStaticPath sTempPath  
+77605>>>>>    String sFilePath sPredictorPath sFinalTxtPath 
+77605>>>>>    String sFirstSegment sSecondSegment sActualFirstSegment sActualSecondSegment sActualSecondSegmentTemp sActualDiv
+77605>>>>>    String sUrlPredictor sZipContent
+77605>>>>>    String sdateTime
+77605>>>>>    
+77605>>>>>    Move ("C:\UNLOCODE-SEPARATOR\Data\") to sRootPath
+77606>>>>>    Move (sRootPath+"TEMP\") to sTempPath
+77607>>>>>    Move (sTempPath+"Unece.zip") to sFilePath
+77608>>>>>    Move (sTempPath+"CodeList.txt") to sFinalTxtPath
+77609>>>>>    Move False to bReadyForUpdate
+77610>>>>>    
+77610>>>>>    Clear Maintenance
+Including file: Maintenance.fd    (C:\UNLOCODE-SEPARATOR\DDSrc\Maintenance.fd)
+77611>>>>>    Move "" to Maintenance.updateDate
+77612>>>>>    Find GE Maintenance by 1
+77613>>>>>>
+77613>>>>>    If (Found) Begin
+77615>>>>>        Reread Maintenance
+77619>>>>>        
+77619>>>>>        Move Maintenance.LastDownload to sLastDownload 
+77620>>>>>        Move (Trim(sLastDownload)) to sLastDownload
+77621>>>>>        
+77621>>>>>        Move (Left(sLastDownload,2)) to sFirstSegment 
+77622>>>>>        Move (Right(sLastDownload,1)) to sSecondSegment
+77623>>>>>        
+77623>>>>>        If ((sFirstSegment eq "") or (sSecondSegment eq "")) Begin
+77625>>>>>            Move "17" to sFirstSegment 
+77626>>>>>            Move "1" to sSecondSegment    
+77627>>>>>        End  
+77627>>>>>>
+77627>>>>>    End
+77627>>>>>>
+77627>>>>>    Else Begin
+77628>>>>>        Move "17" to sFirstSegment 
+77629>>>>>        Move "1" to sSecondSegment  
+77630>>>>>    End
+77630>>>>>>
+77630>>>>>    
+77630>>>>>    Move (CurrentDateTime()) to dtCurrentDateTime
+77631>>>>>    Move dtCurrentDateTime to sdateTime    
+77632>>>>>   
+77632>>>>>    Move (Trim(sdateTime)) to sdateTime
+77633>>>>>    Move (Right(sdateTime,2)) to sActualFirstSegment 
+77634>>>>>    Move (Right(sdateTime,7)) to sActualDiv 
+77635>>>>>    Move (Left(sActualDiv,2)) to sActualSecondSegmentTemp 
+77636>>>>>
+77636>>>>>    If ((Left(sActualSecondSegmentTemp,1)) eq "0") Begin
+77638>>>>>        Move (Right(sActualSecondSegmentTemp,1)) to sActualSecondSegment
+77639>>>>>    End
+77639>>>>>>
+77639>>>>>    Else Move sActualSecondSegmentTemp to sActualSecondSegment   
+77641>>>>>    
+77641>>>>>    Move (Integer(sFirstSegment)) to iFirstSegment
+77642>>>>>    Move (Integer(sSecondSegment)) to iSecondSegment     
+77643>>>>>    Move (Integer(sActualFirstSegment)) to iActualFirstSegment
+77644>>>>>    Move (Integer(sActualSecondSegment)) to iActualSecondSegment 
+77645>>>>>    
+77645>>>>>    If ((iFirstSegment ne iActualFirstSegment) or (iSecondSegment ne iActualSecondSegment)) Begin
+77647>>>>>        Move iFirstSegment to iIncrementFirstSegment
+77648>>>>>        Move iSecondSegment to iIncrementSecondSegment
+77649>>>>>        
+77649>>>>>        If ((iFirstSegment ne 17) or (iSecondSegment ne 1)) Begin
+77651>>>>>            Move (iIncrementSecondSegment+1) to iIncrementSecondSegment
+77652>>>>>        End
+77652>>>>>>
+77652>>>>>               
+77652>>>>>        While ((not(bFinalWhile)) and ((not(bZipExists))))
+77656>>>>>            Move False to bMonthIncrement
+77657>>>>>            
+77657>>>>>            If (iIncrementSecondSegment lt 12) Begin
+77659>>>>>                 Move True to bMonthIncrement    
+77660>>>>>            End
+77660>>>>>>
+77660>>>>>
+77660>>>>>            If ((iIncrementFirstSegment lt iActualFirstSegment) and (bEndOfYearInCurse)) Begin
+77662>>>>>                Increment iIncrementFirstSegment 
+77663>>>>>                Move 1 to iIncrementSecondSegment
+77664>>>>>            End
+77664>>>>>>
+77664>>>>>
+77664>>>>>            // Download File
+77664>>>>>            Move ((String(iIncrementFirstSegment))+(String(iIncrementSecondSegment))) to sUrlPredictor
+77665>>>>>            Move sFilePath to sFile
+77666>>>>>            Get DoDownloadFile of oHttpTransfer sFile sUrlPredictor to ival
+77667>>>>>            
+77667>>>>>            If (iIncrementSecondSegment ne 12) Move False to bEndOfYearInCurse
+77670>>>>>            If (iIncrementSecondSegment eq 12) Move True to bEndOfYearInCurse
+77673>>>>>            
+77673>>>>>            If (bMonthIncrement) Increment iIncrementSecondSegment
+77676>>>>>
+77676>>>>>            //------------------------------------------------------------------
+77676>>>>>            //--- Check if the file zip are OK
+77676>>>>>            //------------------------------------------------------------------
+77676>>>>>            Direct_Input channel 7 sFilePath
+77678>>>>>                Readln sZipContent
+77679>>>>>            Close_Input channel 7
+77681>>>>>            
+77681>>>>>            Move (Left(sZipContent,21)) to sZipContent
+77682>>>>>            Move (Trim(sZipContent)) to sZipContent
+77683>>>>>            Move (Uppercase(sZipContent)) to sZipContent
+77684>>>>>            
+77684>>>>>            Move (Right(sZipContent,11)) to sZipContent
+77685>>>>>            Move (Trim(sZipContent)) to sZipContent
+77686>>>>>            
+77686>>>>>            If ((String(sZipContent)) eq "HTML PUBLIC") Begin
+77688>>>>>                 Move False to bZipExists
+77689>>>>>            End
+77689>>>>>>
+77689>>>>>            If (sZipContent ne "HTML PUBLIC") Begin
+77691>>>>>                Move True to bZipExists
+77692>>>>>                Move True to bReadyForUpdate
+77693>>>>>                Move sUrlPredictor to Maintenance.LastDownload 
+77694>>>>>                Move dtCurrentDateTime to Maintenance.updateDate
+77695>>>>>                SaveRecord Maintenance
+77696>>>>>                Unlock
+77697>>>>>>
+77697>>>>>            End
+77697>>>>>>
+77697>>>>>            If ((iIncrementFirstSegment eq iActualFirstSegment) and (iIncrementSecondSegment eq iActualSecondSegment)) Move True to bFinalWhile
+77700>>>>>        Loop
+77701>>>>>>
+77701>>>>>    End
+77701>>>>>>
+77701>>>>>    Function_Return bReadyForUpdate
+77702>>>>>End_Function 
+77703>>>>> 
+77703>>>>>Procedure prepareFile 
+77706>>>>>    Boolean bFinalWhile
+77706>>>>>    
+77706>>>>>    Integer iExistsCodeList ipositionInit ipositionYear iFileNameLength
+77706>>>>>    
+77706>>>>>    String sBuffer sFileName
+77706>>>>>    String sRootPath sStaticPath sDelBatPath sTempPath  
+77706>>>>>    String s7zPath sPathDirBat sPathRemBat sPathTXTDirOutput sFilePath
+77706>>>>>    
+77706>>>>>    String sCommandDirPath sCommandDir sCommand7z sCommandRem
+77706>>>>>   
+77706>>>>>    Move ("C:\UNLOCODE-SEPARATOR\Data\") to sRootPath
+77707>>>>>    Move (sRootPath+"STATIC\") to sStaticPath
+77708>>>>>    Move (sStaticPath+"32\7za.exe ") to s7zPath
+77709>>>>>    
+77709>>>>>    Move (sRootPath+"TEMP\") to sTempPath 
+77710>>>>>    Move (sTempPath+"Dir.bat") to sPathDirBat    
+77711>>>>>    Move (sTempPath+"Rem.bat") to sPathRemBat  
+77712>>>>>    Move (sTempPath+"Directorio.txt") to sPathTXTDirOutput
+77713>>>>>    Move (sTempPath+"Unece.zip") to sFilePath
+77714>>>>>
+77714>>>>>    Move ("cd "+sTempPath) to sCommandDirPath
+77715>>>>>    Move ("dir "+sTempPath+" >> "+sPathTXTDirOutput) to sCommandDir
+77716>>>>>    Move ("-y e "+sFilePath+" -o"+sTempPath) to sCommand7z
+77717>>>>>    
+77717>>>>>    Direct_Output channel 7 sPathDirBat
+77719>>>>>        Writeln "@echo off"
+77721>>>>>        Writeln ""
+77723>>>>>        Writeln sCommandDir
+77725>>>>>    Close_Output channel 7
+77727>>>>>  
+77727>>>>>    Runprogram Wait s7zPath sCommand7z 
+77728>>>>>    Runprogram Wait sPathDirBat
+77729>>>>>        
+77729>>>>>    Direct_Input channel 7 sPathTXTDirOutput
+77731>>>>>        While ((not(SeqEof)) and (not(bFinalWhile)))
+77735>>>>>           Readln sBuffer
+77736>>>>>           Move 0 to iExistsCodeList
+77737>>>>>           
+77737>>>>>           Move (Pos("CodeList.txt", sBuffer)) to iExistsCodeList
+77738>>>>>
+77738>>>>>            If (iExistsCodeList ne 0) Begin
+77740>>>>>                Move 6 to ipositionYear
+77741>>>>>                Move (Pos("-",sBuffer)) to ipositionInit
+77742>>>>>                If (ipositionInit ne 0) Begin
+77744>>>>>                    Move (ipositionInit-ipositionYear) to ipositionInit
+77745>>>>>                                       
+77745>>>>>                    Move (Length(sBuffer)) to iFileNameLength
+77746>>>>>                    Move (iFileNameLength-ipositionInit) to iFileNameLength
+77747>>>>>                
+77747>>>>>                    Move (Right(sBuffer,iFileNameLength)) to sFileName
+77748>>>>>                    
+77748>>>>>                    Move (Trim(sFileName)) to sFileName
+77749>>>>>                    Move True to bFinalWhile
+77750>>>>>                End
+77750>>>>>>
+77750>>>>>           End
+77750>>>>>>
+77750>>>>>        Loop
+77751>>>>>>
+77751>>>>>    Close_Input channel 7
+77753>>>>>    
+77753>>>>>    Move ('rename "'+sFileName+'" "CodeList.txt"') to sCommandRem
+77754>>>>>
+77754>>>>>    Direct_Output channel 7 sPathRemBat
+77756>>>>>        Writeln "@echo off"
+77758>>>>>        Writeln ""
+77760>>>>>        Writeln sCommandDirPath
+77762>>>>>        Writeln sCommandRem
+77764>>>>>    Close_Output channel 7
+77766>>>>>
+77766>>>>>    Runprogram Wait sPathRemBat
+77767>>>>>End_Procedure
+77768>>>>>
+77768>>>>>Procedure saveInDB
+77771>>>>>    Integer iLengthCH iLengthCode iLengthName iLengthSubDiv iLengthFunction iLengthStatus iLengthDate iLengthIATA iLengthCoordinates iLengthRemarks
+77771>>>>>    Integer iIniName iEndName iIniSbuDiv iIniFuntion iIniStatus iIniDate iIniIata iIniCoordinates iIniRemarks
+77771>>>>>    Integer iIniLengthLine
+77771>>>>>    
+77771>>>>>    String sRootPath sTempPath sCompleteTxtPath
+77771>>>>>    String sChange sLocode sName sNameWithoutDidacts sSubDiv sFunction sStatus sDate sIata sCoordinates sRemarks 
+77771>>>>>    String sBuffer sNameAux sAux sLocodeSeparator
+77771>>>>>    
+77771>>>>>    Move ("C:\UNLOCODE-SEPARATOR\Data\") to sRootPath
+77772>>>>>    Move (sRootPath+"TEMP\") to sTempPath 
+77773>>>>>    Move (sTempPath+"CodeList.txt") to sCompleteTxtPath    
+77774>>>>>    
+77774>>>>>    Direct_Input channel 7 sCompleteTxtPath
+77776>>>>>    
+77776>>>>>        While (not (SeqEof))
+77780>>>>>            Move "" to sChange 
+77781>>>>>            Move "" to sLocode 
+77782>>>>>            Move "" to sName 
+77783>>>>>            Move "" to sNameWithoutDidacts 
+77784>>>>>            Move "" to sSubDiv 
+77785>>>>>            Move "" to sFunction 
+77786>>>>>            Move "" to sStatus 
+77787>>>>>            Move "" to sDate 
+77788>>>>>            Move "" to sIata 
+77789>>>>>            Move "" to sCoordinates 
+77790>>>>>            Move "" to sRemarks     
+77791>>>>>            
+77791>>>>>            Readln sBuffer
+77792>>>>>            
+77792>>>>>            Move (ToOEM(sBuffer)) to sBuffer
+77793>>>>>            Move (Uppercase(sBuffer)) to sBuffer
+77794>>>>>            
+77794>>>>>            Get RemplaceDidacts sBuffer to sBuffer
+77795>>>>>            
+77795>>>>>            //static length
+77795>>>>>            Move 3 to iLengthCH
+77796>>>>>            Move 6 to iLengthCode
+77797>>>>>            Move 3 to iLengthSubDiv
+77798>>>>>            Move 7 to iLengthFunction
+77799>>>>>            Move 2 to iLengthStatus
+77800>>>>>            Move 3 to iLengthDate
+77801>>>>>            Move 3 to iLengthIATA
+77802>>>>>            Move 11 to iLengthCoordinates
+77803>>>>>            
+77803>>>>>            Move (Length(sBuffer)) to iIniLengthLine
+77804>>>>>        
+77804>>>>>            If (iIniLengthLine eq 171) Begin
+77806>>>>>                Move (Left(sBuffer,iLengthCH)) to sChange 
+77807>>>>>                Move (Mid(sBuffer,iLengthCode,4)) to sLocode    
+77808>>>>>                Move (Mid(sBuffer,34,11)) to sName
+77809>>>>>                Move (Mid(sBuffer,34,47)) to sNameWithoutDidacts
+77810>>>>>                Move (Mid(sBuffer,iLengthSubDiv,83)) to sSubDiv
+77811>>>>>                Move (Mid(sBuffer,iLengthFunction,87)) to sFunction
+77812>>>>>                Move (Mid(sBuffer,iLengthStatus,96)) to sStatus
+77813>>>>>                Move (Mid(sBuffer,iLengthDate,99)) to sDate
+77814>>>>>                Move (Mid(sBuffer,iLengthIATA,104)) to sIata
+77815>>>>>                Move (Mid(sBuffer,iLengthCoordinates,109)) to sCoordinates 
+77816>>>>>                Move (Mid(sBuffer,49,122)) to sRemarks
+77817>>>>>            End
+77817>>>>>>
+77817>>>>>        
+77817>>>>>            If (iIniLengthLine ne 171) Begin
+77819>>>>>                Move (Left(sBuffer,iLengthCH)) to sChange 
+77820>>>>>                Move (Mid(sBuffer,iLengthCode,4)) to sLocode
+77821>>>>>                //PreNames    
+77821>>>>>                Move (Mid(sBuffer,34,11)) to sNameAux
+77822>>>>>                Move ((Pos(sName, sBuffer, 40))) to iIniName
+77823>>>>>                
+77823>>>>>                Move (iIniName-11-1) to iLengthName 
+77824>>>>>                Move (Mid(sBuffer,iLengthName,11)) to sName
+77825>>>>>                Move (Mid(sBuffer,iLengthName,iIniName)) to sNameWithoutDidacts
+77826>>>>>                //PreSubDiv 
+77826>>>>>                Move (iIniName+iLengthName) to iEndName
+77827>>>>>                Move (iEndName+2) to iIniSbuDiv
+77828>>>>>                //Subdiv
+77828>>>>>                Move (Mid(sBuffer,iLengthSubDiv,iIniSbuDiv)) to sSubDiv
+77829>>>>>                //Function
+77829>>>>>                Move (iIniSbuDiv+4) to iIniFuntion
+77830>>>>>                Move (Mid(sBuffer,iLengthFunction,iIniFuntion)) to sFunction
+77831>>>>>                //Status
+77831>>>>>                Move (iIniFuntion+9) to iIniStatus
+77832>>>>>                Move (Mid(sBuffer,iLengthStatus,iIniStatus)) to sStatus
+77833>>>>>                //Date 
+77833>>>>>                Move (iIniStatus+3) to iIniDate
+77834>>>>>                Move (Mid(sBuffer,iLengthDate,iIniDate)) to sDate
+77835>>>>>                //Iata
+77835>>>>>                Move (iIniDate+5) to iIniIata
+77836>>>>>                Move (Mid(sBuffer,iLengthIATA,iIniIata)) to sIata
+77837>>>>>                //Coor
+77837>>>>>                Move (iIniIata+5) to iIniCoordinates
+77838>>>>>                Move (Mid(sBuffer,iLengthCoordinates,iIniCoordinates)) to sCoordinates 
+77839>>>>>                //Rem
+77839>>>>>                Move (iIniCoordinates+13) to iIniRemarks
+77840>>>>>                Move (iIniLengthLine-iIniRemarks) to iLengthRemarks
+77841>>>>>                Move (Mid(sBuffer,iLengthRemarks,iIniRemarks)) to sRemarks
+77842>>>>>            End    
+77842>>>>>>
+77842>>>>>            Move (Trim(sLocode)) to sLocode    
+77843>>>>>        
+77843>>>>>            If (((Length(sLocode)) ge 3) and (sFunction ne "")) Begin  
+77845>>>>>                
+77845>>>>>                Move (Left(sLocode,2)) to sAux
+77846>>>>>                Move (sAux+(Right(sLocode,3))) to sLocode
+77847>>>>>                        
+77847>>>>>                If ((Left(sFunction,1)) eq "1") Begin 
+77849>>>>>                    Clear Locode
+Including file: Locode.fd    (C:\UNLOCODE-SEPARATOR\DDSrc\Locode.fd)
+77850>>>>>                    Move sName to Locode.NAME
+77851>>>>>                    Move "1" to Locode.FUNCTIONS
+77852>>>>>                    Find eq Locode by 2
+77853>>>>>>
+77853>>>>>                    If (not(Found)) Begin
+77855>>>>>                        Move sChange to Locode.CHANGE
+77856>>>>>                        Move sLocode to Locode.LOCODE   
+77857>>>>>                        Move sName to Locode.NAME
+77858>>>>>                        Move sNameWithoutDidacts to Locode.NAMEWITHOUTDIDACTS
+77859>>>>>                        Move sSubDiv to Locode.SUBDIV
+77860>>>>>                        Move "1" to Locode.FUNCTIONS
+77861>>>>>                        Move sStatus to Locode.STATUS
+77862>>>>>                        Move sDate to Locode.DATEE
+77863>>>>>                        Move sIata to Locode.IATA
+77864>>>>>                        Move sCoordinates to Locode.COORDINATES 
+77865>>>>>                        Move sRemarks to Locode.REMARKS
+77866>>>>>                        Save Locode
+77868>>>>>                    End
+77868>>>>>>
+77868>>>>>                End
+77868>>>>>>
+77868>>>>>               
+77868>>>>>                If ((Mid(sFunction,1,2)) eq "2") Begin 
+77870>>>>>                    Clear Locode
+77871>>>>>                    Move sName to Locode.NAME
+77872>>>>>                    Move "2" to Locode.FUNCTIONS
+77873>>>>>                    Find eq Locode by 2
+77874>>>>>>
+77874>>>>>                    If (not(Found)) Begin
+77876>>>>>                        Move sChange to Locode.CHANGE
+77877>>>>>                        Move sLocode to Locode.LOCODE   
+77878>>>>>                        Move sName to Locode.NAME
+77879>>>>>                        Move sNameWithoutDidacts to Locode.NAMEWITHOUTDIDACTS
+77880>>>>>                        Move sSubDiv to Locode.SUBDIV
+77881>>>>>                        Move "2" to Locode.FUNCTIONS
+77882>>>>>                        Move sStatus to Locode.STATUS
+77883>>>>>                        Move sDate to Locode.DATEE
+77884>>>>>                        Move sIata to Locode.IATA
+77885>>>>>                        Move sCoordinates to Locode.COORDINATES 
+77886>>>>>                        Move sRemarks to Locode.REMARKS
+77887>>>>>                        Save Locode
+77889>>>>>                    End
+77889>>>>>>
+77889>>>>>                End
+77889>>>>>>
+77889>>>>>                
+77889>>>>>                If ((Mid(sFunction,1,3)) eq "3") Begin 
+77891>>>>>                    Clear Locode
+77892>>>>>                    Move sName to Locode.NAME
+77893>>>>>                    Move "3" to Locode.FUNCTIONS
+77894>>>>>                    Find eq Locode by 2
+77895>>>>>>
+77895>>>>>                    If (not(Found)) Begin
+77897>>>>>                        Move sChange to Locode.CHANGE
+77898>>>>>                        Move sLocode to Locode.LOCODE   
+77899>>>>>                        Move sName to Locode.NAME
+77900>>>>>                        Move sNameWithoutDidacts to Locode.NAMEWITHOUTDIDACTS
+77901>>>>>                        Move sSubDiv to Locode.SUBDIV
+77902>>>>>                        Move "3" to Locode.FUNCTIONS
+77903>>>>>                        Move sStatus to Locode.STATUS
+77904>>>>>                        Move sDate to Locode.DATEE
+77905>>>>>                        Move sIata to Locode.IATA
+77906>>>>>                        Move sCoordinates to Locode.COORDINATES 
+77907>>>>>                        Move sRemarks to Locode.REMARKS
+77908>>>>>                        Save Locode
+77910>>>>>                    End
+77910>>>>>>
+77910>>>>>                End
+77910>>>>>>
+77910>>>>>                
+77910>>>>>                If ((Mid(sFunction,1,4)) eq "4") Begin 
+77912>>>>>                    Clear Locode
+77913>>>>>                    Move sName to Locode.NAME
+77914>>>>>                    Move "4" to Locode.FUNCTIONS
+77915>>>>>                    Find eq Locode by 2
+77916>>>>>>
+77916>>>>>                    If (not(Found)) Begin
+77918>>>>>                        Move (Right(sLocode,3)) to sLocodeSeparator
+77919>>>>>                       
+77919>>>>>                        Move sChange to Locode.CHANGE
+77920>>>>>                        Move sLocodeSeparator to Locode.LOCODE   
+77921>>>>>                        Move sName to Locode.NAME
+77922>>>>>                        Move sNameWithoutDidacts to Locode.NAMEWITHOUTDIDACTS
+77923>>>>>                        Move sSubDiv to Locode.SUBDIV
+77924>>>>>                        Move "4" to Locode.FUNCTIONS
+77925>>>>>                        Move sStatus to Locode.STATUS
+77926>>>>>                        Move sDate to Locode.DATEE
+77927>>>>>                        Move sIata to Locode.IATA
+77928>>>>>                        Move sCoordinates to Locode.COORDINATES 
+77929>>>>>                        Move sRemarks to Locode.REMARKS
+77930>>>>>                        Save Locode
+77932>>>>>                    End
+77932>>>>>>
+77932>>>>>                End
+77932>>>>>>
+77932>>>>>             
+77932>>>>>                If ((Mid(sFunction,1,5)) eq "5") Begin 
+77934>>>>>                    Clear Locode
+77935>>>>>                    Move sName to Locode.NAME
+77936>>>>>                    Move "5" to Locode.FUNCTIONS
+77937>>>>>                    Find eq Locode by 2
+77938>>>>>>
+77938>>>>>                    If (not(Found)) Begin
+77940>>>>>                        Move sChange to Locode.CHANGE
+77941>>>>>                        Move sLocode to Locode.LOCODE   
+77942>>>>>                        Move sName to Locode.NAME
+77943>>>>>                        Move sNameWithoutDidacts to Locode.NAMEWITHOUTDIDACTS
+77944>>>>>                        Move sSubDiv to Locode.SUBDIV
+77945>>>>>                        Move "5" to Locode.FUNCTIONS
+77946>>>>>                        Move sStatus to Locode.STATUS
+77947>>>>>                        Move sDate to Locode.DATEE
+77948>>>>>                        Move sIata to Locode.IATA
+77949>>>>>                        Move sCoordinates to Locode.COORDINATES 
+77950>>>>>                        Move sRemarks to Locode.REMARKS
+77951>>>>>                        Save Locode
+77953>>>>>                    End
+77953>>>>>>
+77953>>>>>                End
+77953>>>>>>
+77953>>>>>                
+77953>>>>>                If ((Mid(sFunction,1,6)) eq "6") Begin 
+77955>>>>>                    Clear Locode
+77956>>>>>                    Move sName to Locode.NAME
+77957>>>>>                    Move "6" to Locode.FUNCTIONS
+77958>>>>>                    Find eq Locode by 2
+77959>>>>>>
+77959>>>>>                    If (not(Found)) Begin
+77961>>>>>                        Move sChange to Locode.CHANGE
+77962>>>>>                        Move sLocode to Locode.LOCODE   
+77963>>>>>                        Move sName to Locode.NAME
+77964>>>>>                        Move sNameWithoutDidacts to Locode.NAMEWITHOUTDIDACTS
+77965>>>>>                        Move sSubDiv to Locode.SUBDIV
+77966>>>>>                        Move "6" to Locode.FUNCTIONS
+77967>>>>>                        Move sStatus to Locode.STATUS
+77968>>>>>                        Move sDate to Locode.DATEE
+77969>>>>>                        Move sIata to Locode.IATA
+77970>>>>>                        Move sCoordinates to Locode.COORDINATES 
+77971>>>>>                        Move sRemarks to Locode.REMARKS
+77972>>>>>                        Save Locode
+77974>>>>>                    End
+77974>>>>>>
+77974>>>>>                End
+77974>>>>>>
+77974>>>>>            End  
+77974>>>>>>
+77974>>>>>        Loop
+77975>>>>>>
+77975>>>>>    Close_Input channel 7
+77977>>>>>End_Procedure
+77978>>>>>
+77978>>>>>//------------------------------------------------------------------------------
+77978>>>>>// UTIL
+77978>>>>>//------------------------------------------------------------------------------
+77978>>>>>
+77978>>>>>Function RemplaceDidacts String sText Returns String
+77981>>>>>    String sAux
+77981>>>>>    Move sText to sAux
+77982>>>>>
+77982>>>>>    Move (Replaces("…",sAux,"a")) to sAux
+77983>>>>>    Move (Replaces(" ",sAux,"a")) to sAux
+77984>>>>>    Move (Replaces("ƒ",sAux,"a")) to sAux
+77985>>>>>    Move (Replaces("Æ",sAux,"a")) to sAux
+77986>>>>>    Move (Replaces("„",sAux,"a")) to sAux
+77987>>>>>    Move (Replaces("†",sAux,"a")) to sAux
+77988>>>>>    Move (Replaces("‘",sAux,"a")) to sAux
+77989>>>>>   
+77989>>>>>    Move (Replaces("·",sAux,"A")) to sAux
+77990>>>>>    Move (Replaces("µ",sAux,"A")) to sAux
+77991>>>>>    Move (Replaces("µ",sAux,"A")) to sAux
+77992>>>>>    Move (Replaces("¶",sAux,"A")) to sAux
+77993>>>>>    Move (Replaces("Ç",sAux,"A")) to sAux
+77994>>>>>    Move (Replaces("Ž",sAux,"A")) to sAux
+77995>>>>>    Move (Replaces("",sAux,"A")) to sAux
+77996>>>>>    Move (Replaces("’",sAux,"A")) to sAux
+77997>>>>>    
+77997>>>>>    Move (Replaces("Š",sAux,"e")) to sAux
+77998>>>>>    Move (Replaces("‚",sAux,"e")) to sAux
+77999>>>>>    Move (Replaces("ˆ",sAux,"e")) to sAux
+78000>>>>>    Move (Replaces("‰",sAux,"e")) to sAux
+78001>>>>>    
+78001>>>>>    Move (Replaces("Ô",sAux,"E")) to sAux
+78002>>>>>    Move (Replaces("",sAux,"E")) to sAux
+78003>>>>>    Move (Replaces("Ò",sAux,"E")) to sAux
+78004>>>>>    Move (Replaces("Ó",sAux,"E")) to sAux
+78005>>>>>   
+78005>>>>>    Move (Replaces("",sAux,"i")) to sAux
+78006>>>>>    Move (Replaces("¡",sAux,"i")) to sAux
+78007>>>>>    Move (Replaces("Œ",sAux,"i")) to sAux
+78008>>>>>    Move (Replaces("‹",sAux,"i")) to sAux
+78009>>>>>    
+78009>>>>>    Move (Replaces("Þ",sAux,"I")) to sAux
+78010>>>>>    Move (Replaces("Ö",sAux,"I")) to sAux
+78011>>>>>    Move (Replaces("×",sAux,"I")) to sAux
+78012>>>>>    Move (Replaces("Ø",sAux,"I")) to sAux
+78013>>>>>    
+78013>>>>>    Move (Replaces("•",sAux,"o")) to sAux
+78014>>>>>    Move (Replaces("¢",sAux,"o")) to sAux
+78015>>>>>    Move (Replaces("“",sAux,"o")) to sAux
+78016>>>>>    Move (Replaces("ä",sAux,"o")) to sAux
+78017>>>>>    Move (Replaces("”",sAux,"o")) to sAux
+78018>>>>>    Move (Replaces("›",sAux,"o")) to sAux
+78019>>>>>
+78019>>>>>    Move (Replaces("ã",sAux,"O")) to sAux
+78020>>>>>    Move (Replaces("à",sAux,"O")) to sAux
+78021>>>>>    Move (Replaces("à",sAux,"O")) to sAux
+78022>>>>>    Move (Replaces("â",sAux,"O")) to sAux
+78023>>>>>    Move (Replaces("å",sAux,"O")) to sAux
+78024>>>>>    Move (Replaces("™",sAux,"O")) to sAux
+78025>>>>>    Move (Replaces("",sAux,"O")) to sAux
+78026>>>>>    
+78026>>>>>    Move (Replaces("—",sAux,"u")) to sAux
+78027>>>>>    Move (Replaces("£",sAux,"u")) to sAux
+78028>>>>>    Move (Replaces("–",sAux,"u")) to sAux
+78029>>>>>    Move (Replaces("",sAux,"u")) to sAux
+78030>>>>> 
+78030>>>>>    Move (Replaces("ë",sAux,"U")) to sAux
+78031>>>>>    Move (Replaces("é",sAux,"U")) to sAux
+78032>>>>>    Move (Replaces("ê",sAux,"U")) to sAux
+78033>>>>>    Move (Replaces("š",sAux,"U")) to sAux
+78034>>>>>    
+78034>>>>>    Move (Replaces("‡",sAux,"c")) to sAux
+78035>>>>>    Move (Replaces("€",sAux,"C")) to sAux
+78036>>>>>    
+78036>>>>>    Move (Replaces("¤",sAux,"n")) to sAux
+78037>>>>>    Move (Replaces("¥",sAux,"N")) to sAux
+78038>>>>>    
+78038>>>>>    Move (Replaces("ì",sAux,"y")) to sAux
+78039>>>>>    Move (Replaces("˜",sAux,"y")) to sAux
+78040>>>>>    Move (Replaces("í",sAux,"Y")) to sAux
+78041>>>>>        
+78041>>>>>    Function_Return sAux
+78042>>>>>End_Function
+78043>>>Use Search.pkg
+Including file: Search.pkg    (C:\UNLOCODE-SEPARATOR\AppSrc\Search.pkg)
+78043>>>>>Struct tSfor
+78043>>>>>    Boolean bSearchOk
+78043>>>>>    String sChange
+78043>>>>>    String sLocode 
+78043>>>>>    String sName 
+78043>>>>>    String sSubDiv
+78043>>>>>    String sStatus  
+78043>>>>>    String sIata 
+78043>>>>>    String sCoordinates 
+78043>>>>>    String sRemarks 
+78043>>>>>End_Struct
+78043>>>>>
+78043>>>>>Function SearchingFN String sTextBox Integer iSearchFunctionNumber Integer iSearchBy Returns tSfor
+78046>>>>>    Boolean bDBExists bSplitButtonOk
+78046>>>>>    String sLastDownload
+78046>>>>>    
+78046>>>>>    tSfor tsSfor
+78046>>>>>    tSfor tsSfor
+78046>>>>>    
+78046>>>>>    Move False to tsSfor.bSearchOk
+78047>>>>>    Move (Uppercase(sTextBox)) to sTextBox
+78048>>>>>    
+78048>>>>>    Clear Maintenance
+78049>>>>>    Move "" to Maintenance.updateDate
+78050>>>>>    Find GE Maintenance by 1
+78051>>>>>>
+78051>>>>>    If (Found) Begin
+78053>>>>>        Reread Maintenance
+78057>>>>>        Move Maintenance.LastDownload to sLastDownload 
+78058>>>>>        Move (Trim(sLastDownload)) to sLastDownload
+78059>>>>>        If (sLastDownload ne "") Move True to bDBExists
+78062>>>>>        Unlock
+78063>>>>>>
+78063>>>>>    End
+78063>>>>>>
+78063>>>>>    
+78063>>>>>    If (iSearchBy ne 0) Move True to bSplitButtonOk
+78066>>>>>    
+78066>>>>>    If ((bDBExists) and (bSplitButtonOk) and (sTextBox ne "")) Begin
+78068>>>>>        If (iSearchBy eq 1) Begin
+78070>>>>>            Clear Locode
+78071>>>>>            Move sTextBox to Locode.NAME
+78072>>>>>            Move iSearchFunctionNumber to Locode.FUNCTIONS
+78073>>>>>            Find eq Locode by 2
+78074>>>>>>
+78074>>>>>            If (Found) Begin
+78076>>>>>                Reread
+78077>>>>>                Move (Trim(Locode.CHANGE)) to tsSfor.sChange 
+78078>>>>>                Move (Trim(Locode.LOCODE)) to tsSfor.sLocode 
+78079>>>>>                Move (Trim(Locode.NAME)) to tsSfor.sName
+78080>>>>>                Move (Trim(Locode.SUBDIV)) to tsSfor.sSubDiv
+78081>>>>>                Move (Trim(Locode.STATUS)) to tsSfor.sStatus
+78082>>>>>                Move (Trim(Locode.IATA)) to tsSfor.sIata
+78083>>>>>                Move (Trim(Locode.COORDINATES)) to tsSfor.sCoordinates
+78084>>>>>                Move (Trim(Locode.REMARKS)) to tsSfor.sRemarks
+78085>>>>>            End    
+78085>>>>>>
+78085>>>>>        End
+78085>>>>>>
+78085>>>>>        
+78085>>>>>        If (tsSfor.sName ne "") Move True to tsSfor.bSearchOk
+78088>>>>>        If (tsSfor.sChange eq "") Move "N/A" to tsSfor.sChange 
+78091>>>>>        If (tsSfor.sLocode eq "") Move "N/A" to tsSfor.sLocode 
+78094>>>>>        If (tsSfor.sName eq "") Move "N/A" to tsSfor.sName
+78097>>>>>        If (tsSfor.sSubDiv eq "") Move "N/A" to tsSfor.sSubDiv
+78100>>>>>        If (tsSfor.sStatus eq "") Move "N/A" to tsSfor.sStatus
+78103>>>>>        If (tsSfor.sIata eq "") Move "N/A" to tsSfor.sIata
+78106>>>>>        If (tsSfor.sCoordinates eq "") Move "N/A" to tsSfor.sCoordinates
+78109>>>>>        If (tsSfor.sRemarks eq "") Move "N/A" to tsSfor.sRemarks
+78112>>>>>    End
+78112>>>>>>
+78112>>>>>    
+78112>>>>>    Function_Return tsSfor
+78113>>>>>End_Function
+78114>>>
+78114>>>Open Locode
+78116>>>Open Maintenance
+78118>>>
+78118>>>String sValueTextBox
+78118>>>
+78118>>>tSfor tsSfor2
+78118>>>tSfor tsSfor2
+78118>>>
+78118>>>Integer iSearchFunctionNumber iSearchBy
+78118>>>
+78118>>>Activate_View Activate_oViewMain for oViewMain
+78128>>>>
+78128>>>Object oViewMain is a dbView
+78130>>>
+78130>>>    Set Border_Style to Border_Thick
+78131>>>    Set Size to 62 220
+78132>>>    Set Location to 0 1
+78133>>>    Set Label to "Unlocode Separator"
+78134>>>
+78134>>>    Object oButton2 is a Button
+78136>>>        Set Size to 14 53
+78137>>>        Set Location to 6 160
+78138>>>        Set Label to "Update DB"
+78139>>>    
+78139>>>        // fires when the button is clicked
+78139>>>        Procedure OnClick
+78142>>>            Send initUpdate
+78143>>>        End_Procedure
+78144>>>    
+78144>>>    End_Object
+78145>>>
+78145>>>   Object oButton1 is a cSplitButton
+78147>>>       Set Size to 14 73
+78148>>>    Set Location to 6 9
+78149>>>    Set Label to 'Search By'
+78150>>>    Move 0 to iSearchBy    
+78151>>>   
+78151>>>    Procedure OnClick
+78154>>>        
+78154>>>        Get Value of oForm1 to sValueTextBox
+78155>>>        
+78155>>>        If (sValueTextBox eq "") Procedure_Return
+78158>>>        Get SearchingFN sValueTextBox iSearchFunctionNumber iSearchBy to tsSfor2
+78159>>>        
+78159>>>        Showln ("CHANGE : "+tsSfor2.sChange)
+78161>>>        Showln ("LOCODE : "+tsSfor2.sLocode)
+78163>>>        Showln ("NAME : "+tsSfor2.sName)
+78165>>>        Showln ("SUBDIV : "+tsSfor2.sSubDiv)
+78167>>>        Showln ("STATUS : "+tsSfor2.sStatus)
+78169>>>        Showln ("IATA : "+tsSfor2.sIata)
+78171>>>        Showln ("COORDINATES : "+tsSfor2.sCoordinates)
+78173>>>        Showln ("REMARKS : "+tsSfor2.sRemarks)
+78175>>>    End_Procedure
+78176>>>
+78176>>>    Object oButtonMenu is a cCJContextMenu
+78178>>>        Object oMenuItem1 is a cCJMenuItem
+78180>>>            Set psCaption to "Search By Name"
+78181>>>
+78181>>>            Procedure OnExecute Variant vCommandBarControl
+78184>>>                Delegate Set Label to "Search By Name"
+78186>>>                Move 1 to iSearchBy
+78187>>>            End_Procedure
+78188>>>        End_Object
+78189>>>    End_Object
+78190>>>
+78190>>>    Set phoButtonPopup to oButtonMenu 
+78191>>>End_Object
+78192>>>
+78192>>>    Object oRadioGroup1 is a RadioGroup
+78194>>>        Set Location to 23 9
+78195>>>        Set Size to 34 204
+78196>>>        Set Label to "Function"
+78197>>>    
+78197>>>        Object oRadio1 is a Radio
+78199>>>            Set Label to "Ports"
+78200>>>            Set Size to 10 34
+78201>>>            Set Location to 10 5
+78202>>>        End_Object
+78203>>>    
+78203>>>        Object oRadio2 is a Radio
+78205>>>            Set Label to "RailTerminals"
+78206>>>            Set Size to 10 62
+78207>>>            Set Location to 10 45
+78208>>>        End_Object
+78209>>>    
+78209>>>        Object oRadio3 is a Radio
+78211>>>            Set Label to "RoadTerminals"
+78212>>>            Set Size to 10 61
+78213>>>            Set Location to 10 127
+78214>>>        End_Object
+78215>>>        
+78215>>>        Object oRadio4 is a Radio
+78217>>>            Set Label to "Airports"
+78218>>>            Set Size to 10 35
+78219>>>            Set Location to 21 5
+78220>>>        End_Object
+78221>>>         
+78221>>>        Object oRadio5 is a Radio
+78223>>>            Set Label to "PostalExchangeOffices"
+78224>>>            Set Size to 10 78
+78225>>>            Set Location to 22 45
+78226>>>        End_Object
+78227>>>          
+78227>>>        Object oRadio6 is a Radio
+78229>>>            Set Label to "MultimodalFunctions"
+78230>>>            Set Size to 10 77
+78231>>>            Set Location to 22 127
+78232>>>        End_Object
+78233>>>    
+78233>>>        Procedure Notify_Select_State Integer iToItem Integer iFromItem
+78236>>>            Handle hoRadio
+78236>>>            
+78236>>>            Forward Send Notify_Select_State iToItem iFromItem
+78238>>>           
+78238>>>            Case Begin
+78238>>>                Case (iToItem = 0)
+78240>>>                        Move 1 to iSearchFunctionNumber
+78241>>>                    Case Break
+78242>>>                Case (iToItem = 1)
+78245>>>                        Move 2 to iSearchFunctionNumber
+78246>>>                    Case Break
+78247>>>                Case (iToItem = 2)
+78250>>>                        Move 3 to iSearchFunctionNumber
+78251>>>                    Case Break
+78252>>>                Case (iToItem = 3)
+78255>>>                        Move 4 to iSearchFunctionNumber
+78256>>>                    Case Break
+78257>>>                Case (iToItem = 4)
+78260>>>                        Move 5 to iSearchFunctionNumber
+78261>>>                    Case Break
+78262>>>                Case (iToItem = 5)
+78265>>>                        Move 6 to iSearchFunctionNumber
+78266>>>                    Case Break
+78267>>>            Case End
+78267>>>        End_Procedure   
+78268>>>    End_Object
+78269>>>
+78269>>>    Object oForm1 is a Form
+78271>>>        Set Size to 13 69
+78272>>>        Set Location to 6 86
+78273>>>        
+78273>>>        Procedure OnChange
+78276>>>            String sValue
+78276>>>        
+78276>>>            Get Value to sValue
+78277>>>        End_Procedure
+78278>>>    
+78278>>>    End_Object
+78279>>>End_Object
+78280>
+78280>        Procedure Activate_About
+78283>            Send DoAbout "" "" "" "" ""
+78284>        End_Procedure
+78285>
+78285>    End_Object
+78286>
+78286>End_Object
+78287>
+78287>Start_UI
+78288>
+Summary
+Memory Available: 2147483646
+Total Warnings : 0
+Total Errors   : 0
+Total Symbols  : 44661
+Total Resources: 0
+Total Commands : 78287
+Total Windows  : 1
+Total Pages    : 1
+Static Data    : 480613
+Message area   : 535815
+Total Blocks   : 28083

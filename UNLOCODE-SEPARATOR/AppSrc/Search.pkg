@@ -1,0 +1,66 @@
+Struct tSfor
+    Boolean bSearchOk
+    String sChange
+    String sLocode 
+    String sName 
+    String sSubDiv
+    String sStatus  
+    String sIata 
+    String sCoordinates 
+    String sRemarks 
+End_Struct
+
+Function SearchingFN String sTextBox Integer iSearchFunctionNumber Integer iSearchBy Returns tSfor
+    Boolean bDBExists bSplitButtonOk
+    String sLastDownload
+    
+    tSfor tsSfor
+    
+    Move False to tsSfor.bSearchOk
+    Move (Uppercase(sTextBox)) to sTextBox
+    
+    Clear Maintenance
+    Move "" to Maintenance.updateDate
+    Find GE Maintenance by 1
+    If (Found) Begin
+        Reread Maintenance
+        Move Maintenance.LastDownload to sLastDownload 
+        Move (Trim(sLastDownload)) to sLastDownload
+        If (sLastDownload ne "") Move True to bDBExists
+        Unlock
+    End
+    
+    If (iSearchBy ne 0) Move True to bSplitButtonOk
+    
+    If ((bDBExists) and (bSplitButtonOk) and (sTextBox ne "")) Begin
+        If (iSearchBy eq 1) Begin
+            Clear Locode
+            Move sTextBox to Locode.NAME
+            Move iSearchFunctionNumber to Locode.FUNCTIONS
+            Find eq Locode by 2
+            If (Found) Begin
+                Reread
+                Move (Trim(Locode.CHANGE)) to tsSfor.sChange 
+                Move (Trim(Locode.LOCODE)) to tsSfor.sLocode 
+                Move (Trim(Locode.NAME)) to tsSfor.sName
+                Move (Trim(Locode.SUBDIV)) to tsSfor.sSubDiv
+                Move (Trim(Locode.STATUS)) to tsSfor.sStatus
+                Move (Trim(Locode.IATA)) to tsSfor.sIata
+                Move (Trim(Locode.COORDINATES)) to tsSfor.sCoordinates
+                Move (Trim(Locode.REMARKS)) to tsSfor.sRemarks
+            End    
+        End
+        
+        If (tsSfor.sName ne "") Move True to tsSfor.bSearchOk
+        If (tsSfor.sChange eq "") Move "N/A" to tsSfor.sChange 
+        If (tsSfor.sLocode eq "") Move "N/A" to tsSfor.sLocode 
+        If (tsSfor.sName eq "") Move "N/A" to tsSfor.sName
+        If (tsSfor.sSubDiv eq "") Move "N/A" to tsSfor.sSubDiv
+        If (tsSfor.sStatus eq "") Move "N/A" to tsSfor.sStatus
+        If (tsSfor.sIata eq "") Move "N/A" to tsSfor.sIata
+        If (tsSfor.sCoordinates eq "") Move "N/A" to tsSfor.sCoordinates
+        If (tsSfor.sRemarks eq "") Move "N/A" to tsSfor.sRemarks
+    End
+    
+    Function_Return tsSfor
+End_Function

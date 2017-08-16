@@ -1,0 +1,4 @@
+#REPLACE FILE1 Maintenance
+#REPLACE Maintenance.Recnum |FN1,0
+#REPLACE Maintenance.updateDate |FD1,1
+#REPLACE Maintenance.LastDownload |FS1,2

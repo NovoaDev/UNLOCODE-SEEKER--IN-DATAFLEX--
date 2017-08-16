@@ -1,0 +1,33 @@
+-----------------------------------------------------------------------------
+  DATE: 13/08/2017      TIME: 17:30                                  PAGE:  1
+  FILE DEFINITION FOR FILE: Maintenance (# 1)
+-----------------------------------------------------------------------------
+  DRIVER NAME               : DATAFLEX
+  FILE ROOT NAME            : Maintenance
+  USER DISPLAY NAME         : Maintenance
+  DATAFLEX FILE NAME        : Maintenance
+-----------------------------------------------------------------------------
+  RECORD LENGTH             : 20        ( USED: 13 )
+  MAX NUMBER OF RECORDS     : 10000     ( USED: 1 )
+  FILE COMPRESSION          : NONE
+  RE-USE DELETED SPACE      : YES
+  LOCKING TYPE              : FILE
+  HEADER INTEGRITY CHECKING : YES
+  TRANSACTION TYPE          : CLIENT ATOMIC
+  RECORD IDENTITY INDEX     : 0 ( 0 , 0 )
+  FILE LOGIN PARAMETER      : 
+  SYSTEM FILE               : NO 
+-----------------------------------------------------------------------------
+
+NUM  FIELD NAME       TYPE SIZE  OFFST IX   RELATES TO FILE.FIELD
+---  ---------------  ---- ----- ----- --   ---------------------------------
+  1  updateDate       DAT      6     1  2   
+  2  LastDownload     ASC     10     4      
+
+
+INDEX# FIELDS          DES U/C    LENGTH LEVELS SEGMENTS MODE
+------ --------------- --- ---    ------ ------ -------- -------
+  1    Recnum          NO  NO       3      2       1     ON-LINE
+
+  2    updateDate      NO  NO       3      2       1     ON-LINE
+

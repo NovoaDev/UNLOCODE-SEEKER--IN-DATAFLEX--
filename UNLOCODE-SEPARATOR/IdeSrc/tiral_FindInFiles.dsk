@@ -1,0 +1,13 @@
+[Header]
+Mask=*.src;*.vw;*.sl;*.dg;*.rv;*.bp;*.pkg;*.wo;*.dd;*.inc;*.tpl;*.dfo;*.asp;*.asa;*.html;*.css;*.js
+Active=1
+SubDirectories=1
+WholeWordOnly=0
+SearchWhere=0
+Location=C:\UNLOCODE-SEPARATOR\IdeSrc\tiral_FindInFiles.dsk
+[C:\UNLOCODE-SEPARATOR\AppSrc]
+IsEnabled=1
+[C:\UNLOCODE-SEPARATOR\DDSrc]
+IsEnabled=1
+[C:\UNLOCODE-SEPARATOR\AppHtml]
+IsEnabled=1

@@ -1,0 +1,566 @@
+Use Windows.pkg
+Use cHttpTransfer.pkg
+
+Object oHttpTransfer is a cHttpTransfer
+    Set psRemoteHost to "www.unece.org"
+    Set pbShowErrorDialog to False
+
+    Function DoDownloadFile String sFile String sUrlPredictor Returns Integer
+        Integer iRetVal 
+        String sUrlPredictorFinal
+        Move ("fileadmin/DAM/cefact/locode/loc"+sUrlPredictor+"txt.zip") to sUrlPredictorFinal
+ 
+        Set psSaveAsFile to sFile
+        Send ClearHeaders
+        Get HttpGetRequest sUrlPredictorFinal to iRetVal
+        Function_Return iRetVal
+    End_Function
+End_Object
+
+Procedure initUpdate
+    Boolean bPredictorOk
+    
+    Send prepareTempDirectory
+    
+    Get Predictor to bPredictorOk
+    
+    If (bPredictorOk) Begin 
+        Send prepareFile
+        Send saveInDB
+    End
+     
+End_Procedure
+
+Procedure prepareTempDirectory  //------------------------------------ Clear Temp Directory
+    String sRootPath sStaticPath sDelBatPath sTempPath  
+    String sCommandRDPathDel sCommandMDPathDel
+     
+    Move ("C:\UNLOCODE-SEPARATOR\Data\") to sRootPath
+    Move (sRootPath+"STATIC\") to sStaticPath
+    Move (sRootPath+"TEMP\") to sTempPath 
+    
+    Move (sStaticPath+"Del.bat") to sDelBatPath
+      
+    Move ("rd /s /q "+sTempPath) to sCommandRDPathDel
+    Move ("md "+sTempPath) to sCommandMDPathDel
+    
+    Direct_Output channel 7 sDelBatPath
+        Writeln "@echo off"
+        Writeln ""
+        Writeln sCommandRDPathDel
+        Writeln "Sleep 2"
+        Writeln sCommandMDPathDel
+    Close_Output channel 7
+    
+    Runprogram Wait sDelBatPath   
+End_Procedure
+ 
+Function Predictor Returns Boolean
+    Boolean bReadyForUpdate bFinalWhile bZipExists bEndOfYearInCurse bMonthIncrement
+    
+    Date dtCurrentDateTime
+    
+    Integer iFirstSegment iSecondSegment iActualFirstSegment iActualSecondSegment ival iIncrementFirstSegment iIncrementSecondSegment
+    
+    String sFile sLastDownload 
+    String sRootPath sStaticPath sTempPath  
+    String sFilePath sPredictorPath sFinalTxtPath 
+    String sFirstSegment sSecondSegment sActualFirstSegment sActualSecondSegment sActualSecondSegmentTemp sActualDiv
+    String sUrlPredictor sZipContent
+    String sdateTime
+    
+    Move ("C:\UNLOCODE-SEPARATOR\Data\") to sRootPath
+    Move (sRootPath+"TEMP\") to sTempPath
+    Move (sTempPath+"Unece.zip") to sFilePath
+    Move (sTempPath+"CodeList.txt") to sFinalTxtPath
+    Move False to bReadyForUpdate
+    
+    Clear Maintenance
+    Move "" to Maintenance.updateDate
+    Find GE Maintenance by 1
+    If (Found) Begin
+        Reread Maintenance
+        
+        Move Maintenance.LastDownload to sLastDownload 
+        Move (Trim(sLastDownload)) to sLastDownload
+        
+        Move (Left(sLastDownload,2)) to sFirstSegment 
+        Move (Right(sLastDownload,1)) to sSecondSegment
+        
+        If ((sFirstSegment eq "") or (sSecondSegment eq "")) Begin
+            Move "17" to sFirstSegment 
+            Move "1" to sSecondSegment    
+        End  
+    End
+    Else Begin
+        Move "17" to sFirstSegment 
+        Move "1" to sSecondSegment  
+    End
+    
+    Move (CurrentDateTime()) to dtCurrentDateTime
+    Move dtCurrentDateTime to sdateTime    
+   
+    Move (Trim(sdateTime)) to sdateTime
+    Move (Right(sdateTime,2)) to sActualFirstSegment 
+    Move (Right(sdateTime,7)) to sActualDiv 
+    Move (Left(sActualDiv,2)) to sActualSecondSegmentTemp 
+
+    If ((Left(sActualSecondSegmentTemp,1)) eq "0") Begin
+        Move (Right(sActualSecondSegmentTemp,1)) to sActualSecondSegment
+    End
+    Else Move sActualSecondSegmentTemp to sActualSecondSegment   
+    
+    Move (Integer(sFirstSegment)) to iFirstSegment
+    Move (Integer(sSecondSegment)) to iSecondSegment     
+    Move (Integer(sActualFirstSegment)) to iActualFirstSegment
+    Move (Integer(sActualSecondSegment)) to iActualSecondSegment 
+    
+    If ((iFirstSegment ne iActualFirstSegment) or (iSecondSegment ne iActualSecondSegment)) Begin
+        Move iFirstSegment to iIncrementFirstSegment
+        Move iSecondSegment to iIncrementSecondSegment
+        
+        If ((iFirstSegment ne 17) or (iSecondSegment ne 1)) Begin
+            Move (iIncrementSecondSegment+1) to iIncrementSecondSegment
+        End
+               
+        While ((not(bFinalWhile)) and ((not(bZipExists))))
+            Move False to bMonthIncrement
+            
+            If (iIncrementSecondSegment lt 12) Begin
+                 Move True to bMonthIncrement    
+            End
+
+            If ((iIncrementFirstSegment lt iActualFirstSegment) and (bEndOfYearInCurse)) Begin
+                Increment iIncrementFirstSegment 
+                Move 1 to iIncrementSecondSegment
+            End
+
+            // Download File
+            Move ((String(iIncrementFirstSegment))+(String(iIncrementSecondSegment))) to sUrlPredictor
+            Move sFilePath to sFile
+            Get DoDownloadFile of oHttpTransfer sFile sUrlPredictor to ival
+            
+            If (iIncrementSecondSegment ne 12) Move False to bEndOfYearInCurse
+            If (iIncrementSecondSegment eq 12) Move True to bEndOfYearInCurse
+            
+            If (bMonthIncrement) Increment iIncrementSecondSegment
+
+            //------------------------------------------------------------------
+            //--- Check if the file zip are OK
+            //------------------------------------------------------------------
+            Direct_Input channel 7 sFilePath
+                Readln sZipContent
+            Close_Input channel 7
+            
+            Move (Left(sZipContent,21)) to sZipContent
+            Move (Trim(sZipContent)) to sZipContent
+            Move (Uppercase(sZipContent)) to sZipContent
+            
+            Move (Right(sZipContent,11)) to sZipContent
+            Move (Trim(sZipContent)) to sZipContent
+            
+            If ((String(sZipContent)) eq "HTML PUBLIC") Begin
+                 Move False to bZipExists
+            End
+            If (sZipContent ne "HTML PUBLIC") Begin
+                Move True to bZipExists
+                Move True to bReadyForUpdate
+                Move sUrlPredictor to Maintenance.LastDownload 
+                Move dtCurrentDateTime to Maintenance.updateDate
+                SaveRecord Maintenance
+                Unlock
+            End
+            If ((iIncrementFirstSegment eq iActualFirstSegment) and (iIncrementSecondSegment eq iActualSecondSegment)) Move True to bFinalWhile
+        Loop
+    End
+    Function_Return bReadyForUpdate
+End_Function 
+ 
+Procedure prepareFile 
+    Boolean bFinalWhile
+    
+    Integer iExistsCodeList ipositionInit ipositionYear iFileNameLength
+    
+    String sBuffer sFileName
+    String sRootPath sStaticPath sDelBatPath sTempPath  
+    String s7zPath sPathDirBat sPathRemBat sPathTXTDirOutput sFilePath
+    
+    String sCommandDirPath sCommandDir sCommand7z sCommandRem
+   
+    Move ("C:\UNLOCODE-SEPARATOR\Data\") to sRootPath
+    Move (sRootPath+"STATIC\") to sStaticPath
+    Move (sStaticPath+"32\7za.exe ") to s7zPath
+    
+    Move (sRootPath+"TEMP\") to sTempPath 
+    Move (sTempPath+"Dir.bat") to sPathDirBat    
+    Move (sTempPath+"Rem.bat") to sPathRemBat  
+    Move (sTempPath+"Directorio.txt") to sPathTXTDirOutput
+    Move (sTempPath+"Unece.zip") to sFilePath
+
+    Move ("cd "+sTempPath) to sCommandDirPath
+    Move ("dir "+sTempPath+" >> "+sPathTXTDirOutput) to sCommandDir
+    Move ("-y e "+sFilePath+" -o"+sTempPath) to sCommand7z
+    
+    Direct_Output channel 7 sPathDirBat
+        Writeln "@echo off"
+        Writeln ""
+        Writeln sCommandDir
+    Close_Output channel 7
+  
+    Runprogram Wait s7zPath sCommand7z 
+    Runprogram Wait sPathDirBat
+        
+    Direct_Input channel 7 sPathTXTDirOutput
+        While ((not(SeqEof)) and (not(bFinalWhile)))
+           Readln sBuffer
+           Move 0 to iExistsCodeList
+           
+           Move (Pos("CodeList.txt", sBuffer)) to iExistsCodeList
+
+            If (iExistsCodeList ne 0) Begin
+                Move 6 to ipositionYear
+                Move (Pos("-",sBuffer)) to ipositionInit
+                If (ipositionInit ne 0) Begin
+                    Move (ipositionInit-ipositionYear) to ipositionInit
+                                       
+                    Move (Length(sBuffer)) to iFileNameLength
+                    Move (iFileNameLength-ipositionInit) to iFileNameLength
+                
+                    Move (Right(sBuffer,iFileNameLength)) to sFileName
+                    
+                    Move (Trim(sFileName)) to sFileName
+                    Move True to bFinalWhile
+                End
+           End
+        Loop
+    Close_Input channel 7
+    
+    Move ('rename "'+sFileName+'" "CodeList.txt"') to sCommandRem
+
+    Direct_Output channel 7 sPathRemBat
+        Writeln "@echo off"
+        Writeln ""
+        Writeln sCommandDirPath
+        Writeln sCommandRem
+    Close_Output channel 7
+
+    Runprogram Wait sPathRemBat
+End_Procedure
+
+Procedure saveInDB
+    Integer iLengthCH iLengthCode iLengthName iLengthSubDiv iLengthFunction iLengthStatus iLengthDate iLengthIATA iLengthCoordinates iLengthRemarks
+    Integer iIniName iEndName iIniSbuDiv iIniFuntion iIniStatus iIniDate iIniIata iIniCoordinates iIniRemarks
+    Integer iIniLengthLine
+    
+    String sRootPath sTempPath sCompleteTxtPath
+    String sChange sLocode sName sNameWithoutDidacts sSubDiv sFunction sStatus sDate sIata sCoordinates sRemarks 
+    String sBuffer sNameAux sAux sLocodeSeparator
+    
+    Move ("C:\UNLOCODE-SEPARATOR\Data\") to sRootPath
+    Move (sRootPath+"TEMP\") to sTempPath 
+    Move (sTempPath+"CodeList.txt") to sCompleteTxtPath    
+    
+    Direct_Input channel 7 sCompleteTxtPath
+    
+        While (not (SeqEof))
+            Move "" to sChange 
+            Move "" to sLocode 
+            Move "" to sName 
+            Move "" to sNameWithoutDidacts 
+            Move "" to sSubDiv 
+            Move "" to sFunction 
+            Move "" to sStatus 
+            Move "" to sDate 
+            Move "" to sIata 
+            Move "" to sCoordinates 
+            Move "" to sRemarks     
+            
+            Readln sBuffer
+            
+            Move (ToOEM(sBuffer)) to sBuffer
+            Move (Uppercase(sBuffer)) to sBuffer
+            
+            Get RemplaceDidacts sBuffer to sBuffer
+            
+            //static length
+            Move 3 to iLengthCH
+            Move 6 to iLengthCode
+            Move 3 to iLengthSubDiv
+            Move 7 to iLengthFunction
+            Move 2 to iLengthStatus
+            Move 3 to iLengthDate
+            Move 3 to iLengthIATA
+            Move 11 to iLengthCoordinates
+            
+            Move (Length(sBuffer)) to iIniLengthLine
+        
+            If (iIniLengthLine eq 171) Begin
+                Move (Left(sBuffer,iLengthCH)) to sChange 
+                Move (Mid(sBuffer,iLengthCode,4)) to sLocode    
+                Move (Mid(sBuffer,34,11)) to sName
+                Move (Mid(sBuffer,34,47)) to sNameWithoutDidacts
+                Move (Mid(sBuffer,iLengthSubDiv,83)) to sSubDiv
+                Move (Mid(sBuffer,iLengthFunction,87)) to sFunction
+                Move (Mid(sBuffer,iLengthStatus,96)) to sStatus
+                Move (Mid(sBuffer,iLengthDate,99)) to sDate
+                Move (Mid(sBuffer,iLengthIATA,104)) to sIata
+                Move (Mid(sBuffer,iLengthCoordinates,109)) to sCoordinates 
+                Move (Mid(sBuffer,49,122)) to sRemarks
+            End
+        
+            If (iIniLengthLine ne 171) Begin
+                Move (Left(sBuffer,iLengthCH)) to sChange 
+                Move (Mid(sBuffer,iLengthCode,4)) to sLocode
+                //PreNames    
+                Move (Mid(sBuffer,34,11)) to sNameAux
+                Move ((Pos(sName, sBuffer, 40))) to iIniName
+                
+                Move (iIniName-11-1) to iLengthName 
+                Move (Mid(sBuffer,iLengthName,11)) to sName
+                Move (Mid(sBuffer,iLengthName,iIniName)) to sNameWithoutDidacts
+                //PreSubDiv 
+                Move (iIniName+iLengthName) to iEndName
+                Move (iEndName+2) to iIniSbuDiv
+                //Subdiv
+                Move (Mid(sBuffer,iLengthSubDiv,iIniSbuDiv)) to sSubDiv
+                //Function
+                Move (iIniSbuDiv+4) to iIniFuntion
+                Move (Mid(sBuffer,iLengthFunction,iIniFuntion)) to sFunction
+                //Status
+                Move (iIniFuntion+9) to iIniStatus
+                Move (Mid(sBuffer,iLengthStatus,iIniStatus)) to sStatus
+                //Date 
+                Move (iIniStatus+3) to iIniDate
+                Move (Mid(sBuffer,iLengthDate,iIniDate)) to sDate
+                //Iata
+                Move (iIniDate+5) to iIniIata
+                Move (Mid(sBuffer,iLengthIATA,iIniIata)) to sIata
+                //Coor
+                Move (iIniIata+5) to iIniCoordinates
+                Move (Mid(sBuffer,iLengthCoordinates,iIniCoordinates)) to sCoordinates 
+                //Rem
+                Move (iIniCoordinates+13) to iIniRemarks
+                Move (iIniLengthLine-iIniRemarks) to iLengthRemarks
+                Move (Mid(sBuffer,iLengthRemarks,iIniRemarks)) to sRemarks
+            End    
+            Move (Trim(sLocode)) to sLocode    
+        
+            If (((Length(sLocode)) ge 3) and (sFunction ne "")) Begin  
+                
+                Move (Left(sLocode,2)) to sAux
+                Move (sAux+(Right(sLocode,3))) to sLocode
+                        
+                If ((Left(sFunction,1)) eq "1") Begin 
+                    Clear Locode
+                    Move sName to Locode.NAME
+                    Move "1" to Locode.FUNCTIONS
+                    Find eq Locode by 2
+                    If (not(Found)) Begin
+                        Move sChange to Locode.CHANGE
+                        Move sLocode to Locode.LOCODE   
+                        Move sName to Locode.NAME
+                        Move sNameWithoutDidacts to Locode.NAMEWITHOUTDIDACTS
+                        Move sSubDiv to Locode.SUBDIV
+                        Move "1" to Locode.FUNCTIONS
+                        Move sStatus to Locode.STATUS
+                        Move sDate to Locode.DATEE
+                        Move sIata to Locode.IATA
+                        Move sCoordinates to Locode.COORDINATES 
+                        Move sRemarks to Locode.REMARKS
+                        Save Locode
+                    End
+                End
+               
+                If ((Mid(sFunction,1,2)) eq "2") Begin 
+                    Clear Locode
+                    Move sName to Locode.NAME
+                    Move "2" to Locode.FUNCTIONS
+                    Find eq Locode by 2
+                    If (not(Found)) Begin
+                        Move sChange to Locode.CHANGE
+                        Move sLocode to Locode.LOCODE   
+                        Move sName to Locode.NAME
+                        Move sNameWithoutDidacts to Locode.NAMEWITHOUTDIDACTS
+                        Move sSubDiv to Locode.SUBDIV
+                        Move "2" to Locode.FUNCTIONS
+                        Move sStatus to Locode.STATUS
+                        Move sDate to Locode.DATEE
+                        Move sIata to Locode.IATA
+                        Move sCoordinates to Locode.COORDINATES 
+                        Move sRemarks to Locode.REMARKS
+                        Save Locode
+                    End
+                End
+                
+                If ((Mid(sFunction,1,3)) eq "3") Begin 
+                    Clear Locode
+                    Move sName to Locode.NAME
+                    Move "3" to Locode.FUNCTIONS
+                    Find eq Locode by 2
+                    If (not(Found)) Begin
+                        Move sChange to Locode.CHANGE
+                        Move sLocode to Locode.LOCODE   
+                        Move sName to Locode.NAME
+                        Move sNameWithoutDidacts to Locode.NAMEWITHOUTDIDACTS
+                        Move sSubDiv to Locode.SUBDIV
+                        Move "3" to Locode.FUNCTIONS
+                        Move sStatus to Locode.STATUS
+                        Move sDate to Locode.DATEE
+                        Move sIata to Locode.IATA
+                        Move sCoordinates to Locode.COORDINATES 
+                        Move sRemarks to Locode.REMARKS
+                        Save Locode
+                    End
+                End
+                
+                If ((Mid(sFunction,1,4)) eq "4") Begin 
+                    Clear Locode
+                    Move sName to Locode.NAME
+                    Move "4" to Locode.FUNCTIONS
+                    Find eq Locode by 2
+                    If (not(Found)) Begin
+                        Move (Right(sLocode,3)) to sLocodeSeparator
+                       
+                        Move sChange to Locode.CHANGE
+                        Move sLocodeSeparator to Locode.LOCODE   
+                        Move sName to Locode.NAME
+                        Move sNameWithoutDidacts to Locode.NAMEWITHOUTDIDACTS
+                        Move sSubDiv to Locode.SUBDIV
+                        Move "4" to Locode.FUNCTIONS
+                        Move sStatus to Locode.STATUS
+                        Move sDate to Locode.DATEE
+                        Move sIata to Locode.IATA
+                        Move sCoordinates to Locode.COORDINATES 
+                        Move sRemarks to Locode.REMARKS
+                        Save Locode
+                    End
+                End
+             
+                If ((Mid(sFunction,1,5)) eq "5") Begin 
+                    Clear Locode
+                    Move sName to Locode.NAME
+                    Move "5" to Locode.FUNCTIONS
+                    Find eq Locode by 2
+                    If (not(Found)) Begin
+                        Move sChange to Locode.CHANGE
+                        Move sLocode to Locode.LOCODE   
+                        Move sName to Locode.NAME
+                        Move sNameWithoutDidacts to Locode.NAMEWITHOUTDIDACTS
+                        Move sSubDiv to Locode.SUBDIV
+                        Move "5" to Locode.FUNCTIONS
+                        Move sStatus to Locode.STATUS
+                        Move sDate to Locode.DATEE
+                        Move sIata to Locode.IATA
+                        Move sCoordinates to Locode.COORDINATES 
+                        Move sRemarks to Locode.REMARKS
+                        Save Locode
+                    End
+                End
+                
+                If ((Mid(sFunction,1,6)) eq "6") Begin 
+                    Clear Locode
+                    Move sName to Locode.NAME
+                    Move "6" to Locode.FUNCTIONS
+                    Find eq Locode by 2
+                    If (not(Found)) Begin
+                        Move sChange to Locode.CHANGE
+                        Move sLocode to Locode.LOCODE   
+                        Move sName to Locode.NAME
+                        Move sNameWithoutDidacts to Locode.NAMEWITHOUTDIDACTS
+                        Move sSubDiv to Locode.SUBDIV
+                        Move "6" to Locode.FUNCTIONS
+                        Move sStatus to Locode.STATUS
+                        Move sDate to Locode.DATEE
+                        Move sIata to Locode.IATA
+                        Move sCoordinates to Locode.COORDINATES 
+                        Move sRemarks to Locode.REMARKS
+                        Save Locode
+                    End
+                End
+            End  
+        Loop
+    Close_Input channel 7
+End_Procedure
+
+//------------------------------------------------------------------------------
+// UTIL
+//------------------------------------------------------------------------------
+
+Function RemplaceDidacts String sText Returns String
+    String sAux
+    Move sText to sAux
+
+    Move (Replaces("Ö",sAux,"a")) to sAux
+    Move (Replaces("†",sAux,"a")) to sAux
+    Move (Replaces("É",sAux,"a")) to sAux
+    Move (Replaces("∆",sAux,"a")) to sAux
+    Move (Replaces("Ñ",sAux,"a")) to sAux
+    Move (Replaces("Ü",sAux,"a")) to sAux
+    Move (Replaces("ë",sAux,"a")) to sAux
+   
+    Move (Replaces("∑",sAux,"A")) to sAux
+    Move (Replaces("µ",sAux,"A")) to sAux
+    Move (Replaces("µ",sAux,"A")) to sAux
+    Move (Replaces("∂",sAux,"A")) to sAux
+    Move (Replaces("«",sAux,"A")) to sAux
+    Move (Replaces("é",sAux,"A")) to sAux
+    Move (Replaces("è",sAux,"A")) to sAux
+    Move (Replaces("í",sAux,"A")) to sAux
+    
+    Move (Replaces("ä",sAux,"e")) to sAux
+    Move (Replaces("Ç",sAux,"e")) to sAux
+    Move (Replaces("à",sAux,"e")) to sAux
+    Move (Replaces("â",sAux,"e")) to sAux
+    
+    Move (Replaces("‘",sAux,"E")) to sAux
+    Move (Replaces("ê",sAux,"E")) to sAux
+    Move (Replaces("“",sAux,"E")) to sAux
+    Move (Replaces("”",sAux,"E")) to sAux
+   
+    Move (Replaces("ç",sAux,"i")) to sAux
+    Move (Replaces("°",sAux,"i")) to sAux
+    Move (Replaces("å",sAux,"i")) to sAux
+    Move (Replaces("ã",sAux,"i")) to sAux
+    
+    Move (Replaces("ﬁ",sAux,"I")) to sAux
+    Move (Replaces("÷",sAux,"I")) to sAux
+    Move (Replaces("◊",sAux,"I")) to sAux
+    Move (Replaces("ÿ",sAux,"I")) to sAux
+    
+    Move (Replaces("ï",sAux,"o")) to sAux
+    Move (Replaces("¢",sAux,"o")) to sAux
+    Move (Replaces("ì",sAux,"o")) to sAux
+    Move (Replaces("‰",sAux,"o")) to sAux
+    Move (Replaces("î",sAux,"o")) to sAux
+    Move (Replaces("õ",sAux,"o")) to sAux
+
+    Move (Replaces("„",sAux,"O")) to sAux
+    Move (Replaces("‡",sAux,"O")) to sAux
+    Move (Replaces("‡",sAux,"O")) to sAux
+    Move (Replaces("‚",sAux,"O")) to sAux
+    Move (Replaces("Â",sAux,"O")) to sAux
+    Move (Replaces("ô",sAux,"O")) to sAux
+    Move (Replaces("ù",sAux,"O")) to sAux
+    
+    Move (Replaces("ó",sAux,"u")) to sAux
+    Move (Replaces("£",sAux,"u")) to sAux
+    Move (Replaces("ñ",sAux,"u")) to sAux
+    Move (Replaces("Å",sAux,"u")) to sAux
+ 
+    Move (Replaces("Î",sAux,"U")) to sAux
+    Move (Replaces("È",sAux,"U")) to sAux
+    Move (Replaces("Í",sAux,"U")) to sAux
+    Move (Replaces("ö",sAux,"U")) to sAux
+    
+    Move (Replaces("á",sAux,"c")) to sAux
+    Move (Replaces("Ä",sAux,"C")) to sAux
+    
+    Move (Replaces("§",sAux,"n")) to sAux
+    Move (Replaces("•",sAux,"N")) to sAux
+    
+    Move (Replaces("Ï",sAux,"y")) to sAux
+    Move (Replaces("ò",sAux,"y")) to sAux
+    Move (Replaces("Ì",sAux,"Y")) to sAux
+        
+    Function_Return sAux
+End_Function
