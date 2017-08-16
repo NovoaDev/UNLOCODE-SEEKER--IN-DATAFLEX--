@@ -27,7 +27,7 @@ Static Folders:
 (C:\UNLOCODE-SEPARATOR\Data\STATIC)
 Function: folder where you save .bat file to delete and make temporary folder, executables and dll of 7zip portable version to decompress the downloaded file.
 
-by the way :
+# by the way :
 
 After looking for something similar to dataflex and I did not find anything I decided to do it and publish it in case someone could be useful at any time.
 
